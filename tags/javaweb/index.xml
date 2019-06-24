@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javaweb on Jaswine&#39;s Blog</title>
+    <link>https://jaswine.com/blog/tags/javaweb/</link>
+    <description>Recent content in Javaweb on Jaswine&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Jaswine</copyright>
+    <lastBuildDate>Mon, 26 Jun 2017 15:51:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/javaweb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>跨域(CORS)的解决办法和原理</title>
+      <link>https://jaswine.com/blog/post/cors/</link>
+      <pubDate>Mon, 26 Jun 2017 15:51:07 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/cors/</guid>
+      <description>&lt;p&gt;跨域是我们常常遇到的问题&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

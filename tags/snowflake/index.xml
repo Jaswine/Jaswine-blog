@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Snowflake on Jaswine&#39;s Blog</title>
+    <link>https://jaswine.com/blog/tags/snowflake/</link>
+    <description>Recent content in Snowflake on Jaswine&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Jaswine</copyright>
+    <lastBuildDate>Mon, 11 Mar 2019 17:25:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/snowflake/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Twitter的SnowFlake算法生成主键</title>
+      <link>https://jaswine.com/blog/post/snowflake/</link>
+      <pubDate>Mon, 11 Mar 2019 17:25:34 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/snowflake/</guid>
+      <description>&lt;p&gt;分布式&lt;code&gt;ID&lt;/code&gt;生成策略&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jaswine&#39;s Blog</title>
+    <link>https://jaswine.com/blog/</link>
+    <description>Recent content on Jaswine&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Jaswine</copyright>
+    <lastBuildDate>Tue, 12 Mar 2019 10:31:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL优化总结(持续更新...)</title>
+      <link>https://jaswine.com/blog/post/sql/</link>
+      <pubDate>Tue, 12 Mar 2019 10:31:38 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/sql/</guid>
+      <description>&lt;p&gt;&lt;code&gt;SQL&lt;/code&gt;是影响程序性能的一个环节，知道常见的&lt;code&gt;SQL&lt;/code&gt;优化方法有必要的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Twitter的SnowFlake算法生成主键</title>
+      <link>https://jaswine.com/blog/post/snowflake/</link>
+      <pubDate>Mon, 11 Mar 2019 17:25:34 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/snowflake/</guid>
+      <description>&lt;p&gt;分布式&lt;code&gt;ID&lt;/code&gt;生成策略&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开发过程中前后台交互中对于时间Date的处理</title>
+      <link>https://jaswine.com/blog/post/datatime/</link>
+      <pubDate>Mon, 04 Mar 2019 21:24:57 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/datatime/</guid>
+      <description>&lt;p&gt;⏰前后台时间处理统一解决方案&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bean的概念</title>
+      <link>https://jaswine.com/blog/post/bean/</link>
+      <pubDate>Wed, 08 Aug 2018 14:38:54 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/bean/</guid>
+      <description>&lt;p&gt;☕&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>跨域(CORS)的解决办法和原理</title>
+      <link>https://jaswine.com/blog/post/cors/</link>
+      <pubDate>Mon, 26 Jun 2017 15:51:07 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/cors/</guid>
+      <description>&lt;p&gt;跨域是我们常常遇到的问题&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ABOUT</title>
+      <link>https://jaswine.com/blog/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/about/</guid>
+      <description>This is my about page. 👋
+Lorem ipsum dolor sit amet, 😄 consectetur adipisicing elit. Voluptates aut, tenetur distinctio voluptatibus ab. Nihil id dignissimos unde, tenetur iusto facilis suscipit corporis, ipsam necessitatibus, eaque iste deleniti consequuntur reprehenderit? 🌍</description>
+    </item>
+    
+  </channel>
+</rss>

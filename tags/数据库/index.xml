@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on Jaswine&#39;s Blog</title>
+    <link>https://jaswine.com/blog/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Jaswine&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Jaswine</copyright>
+    <lastBuildDate>Tue, 12 Mar 2019 10:31:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL优化总结(持续更新...)</title>
+      <link>https://jaswine.com/blog/post/sql/</link>
+      <pubDate>Tue, 12 Mar 2019 10:31:38 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/sql/</guid>
+      <description>&lt;p&gt;&lt;code&gt;SQL&lt;/code&gt;是影响程序性能的一个环节，知道常见的&lt;code&gt;SQL&lt;/code&gt;优化方法有必要的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Twitter的SnowFlake算法生成主键</title>
+      <link>https://jaswine.com/blog/post/snowflake/</link>
+      <pubDate>Mon, 11 Mar 2019 17:25:34 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/post/snowflake/</guid>
+      <description>&lt;p&gt;分布式&lt;code&gt;ID&lt;/code&gt;生成策略&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

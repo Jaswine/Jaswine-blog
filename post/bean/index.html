@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>Bean的概念 - Jaswine&#39;s Blog</title>
+  <link rel='canonical' href='https://jaswine.com/blog/post/bean/' />
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='' />
+  <meta name='theme-color' content='black' />
+  
+    <link rel="shortcut icon" href="https://cdn.jaswine.com/blog/J-180x180.png" type="image/x-icon" />
+    <link rel="icon" href="https://cdn.jaswine.com/blog/J-180x180.png" type="image/x-icon" />
+  
+
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://jaswine.com/blog/sass/style.min.cf2eeff825d4dbc673ce0b82d270d9fc32d34973a7d5cd079e0dcf4fe3e77515.css" integrity="sha256-zy7v&#43;CXU28ZzzguC0nDZ/DLTSXOn1c0Hng3PT&#43;PndRU=" media="screen">
+<link rel="stylesheet" href="https://jaswine.com/blog/syntax.min.css" integrity="" media="screen">
+
+  <meta property="og:title" content="Bean的概念" />
+<meta property="og:description" content="☕" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jaswine.com/blog/post/bean/" />
+<meta property="article:published_time" content="2018-08-08T14:38:54&#43;00:00"/>
+<meta property="article:modified_time" content="2018-08-08T14:38:54&#43;00:00"/>
+
+  
+<meta itemprop="name" content="Bean的概念">
+<meta itemprop="description" content="☕">
+
+
+<meta itemprop="datePublished" content="2018-08-08T14:38:54&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-08T14:38:54&#43;00:00" />
+<meta itemprop="wordCount" content="260">
+
+
+
+<meta itemprop="keywords" content="Spring,Java," />
+
+</head>
+<body>
+
+  <header style="background-image:linear-gradient(
+      rgba(0,0,0,0.4),rgba(0,0,0,0.4)
+    ),url(&#39;https://cdn.jaswine.com/blog/sider.png&#39;)">
+
+  <div class="intro">
+    <div class="logo-container">
+      <a href="/">
+        <img src='https://cdn.jaswine.com/blog/111.png' alt="Profile 使用Twitter的SnowFlake算法生成主键" class="rounded-logo">
+      </a>
+    </div>
+    <h2>Jaswine®</h2>
+    <h3>Try Everything Different In My Life</h3>
+    <div class="menu">
+      
+
+        <p>
+            <a href="/blog/about/">
+                About
+            </a>
+        </p>
+
+        <p>
+            <a href="/blog/post/">
+                Blogs
+            </a>
+        </p>
+
+      
+        
+        <p>
+            <a href="mailto:jaswine@163.com" target="_blank" rel="external">
+                
+            </a>
+        </p>
+      
+    </div>
+
+  </div>
+
+  <div class="socials">
+      
+  
+    <a href="https://www.facebook.com/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M115 12.321v90.358c0 6.802-5.519 12.321-12.321 12.321H80.782V69.513h15.556l2.233-17.352H80.782V41.07c0-5.03 1.387-8.445 8.6-8.445h9.19V17.122c-1.592-.206-7.034-.693-13.4-.693-13.246 0-22.333 8.086-22.333 22.948v12.81H47.232v17.352h15.633V115H12.321C5.52 115 0 109.481 0 102.679V12.32C0 5.52 5.519 0 12.321 0h90.358C109.48 0 115 5.519 115 12.321z" />
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+    <a href="https://github.com/jaswine/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM71.182 98.494c-2.156.385-2.952-.95-2.952-2.053 0-1.386.051-8.471.051-14.195 0-4.005-1.335-6.546-2.9-7.881C74.878 73.313 84.89 72.003 84.89 55.6c0-4.671-1.669-7.007-4.39-10.01.436-1.105 1.9-5.648-.436-11.552-3.568-1.104-11.731 4.595-11.731 4.595-3.389-.95-7.06-1.438-10.679-1.438-3.62 0-7.29.488-10.679 1.438 0 0-8.163-5.699-11.73-4.595-2.337 5.878-.899 10.422-.437 11.551-2.72 3.004-4.004 5.34-4.004 10.011 0 16.326 9.574 17.712 19.072 18.765-1.232 1.104-2.336 3.003-2.72 5.724-2.44 1.104-8.677 3.004-12.4-3.568-2.335-4.056-6.545-4.39-6.545-4.39-4.159-.05-.282 2.619-.282 2.619 2.772 1.283 4.723 6.212 4.723 6.212 2.49 7.624 14.4 5.057 14.4 5.057 0 3.568.052 9.37.052 10.422 0 1.104-.77 2.438-2.952 2.053C27.21 92.821 15.35 76.701 15.35 57.86c0-23.564 18.02-41.456 41.585-41.456s42.663 17.892 42.663 41.456c.026 18.842-11.474 34.988-28.416 40.635zM46 82.81c-.488.103-.95-.102-1.001-.436-.051-.385.282-.719.77-.822.488-.05.95.154 1.001.488.077.334-.257.668-.77.77zm-2.439-.23c0 .333-.385.615-.898.615-.565.052-.95-.23-.95-.616 0-.333.385-.616.899-.616.487-.051.95.231.95.616zm-3.516-.283c-.103.334-.616.488-1.053.334-.488-.103-.821-.488-.719-.822.103-.334.617-.488 1.053-.385.513.154.847.54.719.873zm-3.158-1.386c-.23.282-.718.23-1.104-.154-.385-.334-.487-.822-.23-1.053.23-.282.718-.23 1.103.154.334.334.462.847.231 1.053zm-2.336-2.336c-.23.154-.667 0-.95-.385-.282-.385-.282-.822 0-1.001.283-.231.72-.052.95.333.283.385.283.847 0 1.053zm-1.668-2.49c-.231.23-.616.103-.899-.154-.282-.334-.333-.719-.102-.899.23-.23.616-.102.898.154.282.334.334.72.103.899zm-1.72-1.9c-.103.231-.436.283-.719.103-.334-.154-.488-.436-.385-.667.103-.154.385-.231.719-.103.334.18.488.462.385.667z"/>
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+    <a href="https://www.instagram.com/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M57.526 28.111c-16.254 0-29.364 13.11-29.364 29.363 0 16.254 13.11 29.364 29.364 29.364 16.253 0 29.363-13.11 29.363-29.364 0-16.253-13.11-29.363-29.363-29.363zm0 48.453c-10.504 0-19.09-8.56-19.09-19.09 0-10.528 8.56-19.09 19.09-19.09 10.528 0 19.09 8.562 19.09 19.09 0 10.53-8.587 19.09-19.09 19.09zM94.939 26.91a6.833 6.833 0 0 1-6.849 6.849 6.833 6.833 0 0 1-6.849-6.849 6.85 6.85 0 0 1 13.698 0zm19.448 6.951c-.435-9.174-2.53-17.301-9.251-23.997C98.44 3.17 90.313 1.074 81.139.614c-9.456-.537-37.797-.537-47.252 0-9.15.434-17.276 2.53-23.997 9.225S1.099 24.66.639 33.836c-.537 9.455-.537 37.796 0 47.252.434 9.174 2.53 17.3 9.251 23.996 6.721 6.696 14.822 8.792 23.997 9.252 9.455.536 37.796.536 47.252 0 9.174-.435 17.301-2.53 23.997-9.252 6.695-6.695 8.79-14.822 9.25-23.996.537-9.456.537-37.771 0-47.227zM102.17 91.233c-1.993 5.01-5.852 8.868-10.887 10.887-7.538 2.99-25.427 2.3-33.758 2.3-8.332 0-26.246.664-33.76-2.3-5.008-1.993-8.867-5.852-10.886-10.887-2.99-7.539-2.3-25.427-2.3-33.759 0-8.33-.664-26.245 2.3-33.758 1.993-5.01 5.852-8.868 10.887-10.887 7.539-2.99 25.427-2.3 33.759-2.3 8.33 0 26.245-.665 33.758 2.3 5.01 1.993 8.868 5.852 10.887 10.887 2.99 7.538 2.3 25.427 2.3 33.758 0 8.332.69 26.246-2.3 33.76z" />
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+    <a href="https://twitter.com/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM90.126 40.763c.051.72.051 1.464.051 2.182 0 22.256-16.942 47.9-47.9 47.9-9.548 0-18.404-2.772-25.848-7.547 1.36.154 2.67.205 4.055.205 7.881 0 15.12-2.67 20.895-7.187-7.392-.154-13.604-5.006-15.735-11.68 2.593.385 4.929.385 7.598-.308a16.837 16.837 0 0 1-13.476-16.531v-.205a16.824 16.824 0 0 0 7.598 2.13 16.8 16.8 0 0 1-7.496-14.016c0-3.131.822-6.006 2.285-8.496a47.803 47.803 0 0 0 34.705 17.61c-2.387-11.424 6.161-20.69 16.429-20.69 4.851 0 9.215 2.027 12.296 5.313a32.99 32.99 0 0 0 10.678-4.056 16.792 16.792 0 0 1-7.393 9.267c3.389-.36 6.674-1.31 9.703-2.618a35.437 35.437 0 0 1-8.445 8.727z"/>
+  
+  </svg>
+</div>
+</a>
+  
+
+  </div>
+
+</header>
+
+  <div class="content-wrapper">
+    
+    <main id="content" class="post">
+
+<h1>Bean的概念</h1>
+<div class="reading-time">
+  <div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M57.5 11C29.05 11 6 34.05 6 62.5S29.05 114 57.5 114 109 90.95 109 62.5 85.95 11 57.5 11zm0 93.032c-22.947 0-41.532-18.585-41.532-41.532 0-22.947 18.585-41.532 41.532-41.532 22.947 0 41.532 18.585 41.532 41.532 0 22.947-18.585 41.532-41.532 41.532zm12.833-21.68L52.703 69.54a2.508 2.508 0 0 1-1.018-2.015V33.427a2.5 2.5 0 0 1 2.492-2.492h6.646a2.5 2.5 0 0 1 2.492 2.492v29.426l13.871 10.092c1.122.81 1.35 2.368.54 3.49l-3.904 5.377a2.51 2.51 0 0 1-3.489.54z"/>
+  
+  </svg>
+</div>
+
+  <span>2 minutes</span>
+</div>
+
+<div class="published-date">
+  <div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M77.577 51.23a1.807 1.807 0 0 0-2.2.342l-27.562 27.79a1.807 1.807 0 0 1-2.2.342l-14.008-9.702a1.807 1.807 0 0 0-2.2.342l-1.952 1.968c-.287.22-.456.568-.455.936.001.37.172.716.46.934L45.637 86.77a1.807 1.807 0 0 0 2.2-.342l31.709-31.97c.287-.22.456-.567.455-.936a1.175 1.175 0 0 0-.46-.933l-1.963-1.36z"/><path d="M97.304 20H80.512c-.041.34-.063.683-.064 1.026a5.986 5.986 0 0 0 1.256 4.1c.054.003.103.02.157.025a4.881 4.881 0 0 1 1.865-.025c3.05.562 4.984 3.907 4.32 7.47-.666 3.563-3.678 5.996-6.728 5.433a4.932 4.932 0 0 1-2.437-1.258c-6.018-1.378-10.445-7.795-10.445-15.745 0-.347.023-.685.04-1.026H34.579c-.041.34-.063.683-.064 1.026a5.986 5.986 0 0 0 1.256 4.1c.054.003.103.02.157.025a4.881 4.881 0 0 1 1.865-.025c3.05.562 4.984 3.907 4.32 7.47-.666 3.563-3.678 5.996-6.728 5.433a4.932 4.932 0 0 1-2.437-1.258c-6.018-1.378-10.445-7.795-10.445-15.745 0-.22.019-.434.025-.652a9.788 9.788 0 0 0-5.697 4.471 9.683 9.683 0 0 0-2.65 4.764L1.158 92.871c-.965 4.689 2.6 8.503 7.948 8.503h6.334v2.673c-.077 5.41 4.263 9.861 9.705 9.953h72.16c5.438-.095 9.774-4.546 9.694-9.953V29.953c.08-5.407-4.256-9.858-9.695-9.953zM10.078 96.653c-2.378 0-3.964-1.697-3.535-3.782L16.637 43.84h80.787L87.331 92.871a5.254 5.254 0 0 1-5.091 3.782H10.078zm91.535 7.394c.036 2.403-1.891 4.382-4.308 4.424h-72.16c-2.42-.04-4.352-2.018-4.32-4.424v-2.673h60.443c5.348 0 10.484-3.814 11.449-8.503l8.897-43.215v54.391z"/><path d="M34.814 33c1.243 0 2.251-1.057 2.251-2.36 0-1.305-1.008-2.362-2.25-2.362-2.04 0-4.313-3.194-4.313-7.778s2.272-7.778 4.312-7.778c1.227 0 2.536 1.163 3.386 3.084H43C41.716 11.19 38.578 8 34.814 8 29.871 8 26 13.49 26 20.5c0 7.009 3.871 12.5 8.814 12.5z"/>
+  
+  </svg>
+</div>
+
+  <span>August 8, 2018</span>
+</div>
+
+<p>☕</p>
+
+<p>学习<code>Spring</code>的时候，<code>Bean</code>是我们最常看到的名词，但是对于他的理解不够深入，所以花时间来系统的学习一下到底什么是<code>Bean</code>。</p>
+
+<h1 id="相关博客">相关博客</h1>
+
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/JavaBeans" target="_blank">JavaBeans &ndash; 维基百科</a></li>
+<li><a href="https://blog.csdn.net/litong09282039/article/details/46888169" target="_blank">Java Bean 简介及其应用</a></li>
+<li><a href="https://www.zhihu.com/question/19773379" target="_blank">Java bean 是个什么概念 &ndash; 知乎</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414#rd" target="_blank">Java 帝国之Java bean (上）</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513118&amp;idx=1&amp;sn=487fefb8fa7efd59de6f37043eb21799#rd" target="_blank">Java 帝国之Java bean（下）</a></li>
+<li><a href="https://stackoverflow.com/questions/21866571/difference-between-javabean-and-spring-bean" target="_blank">Difference between JavaBean and Spring bean &ndash; Stack Overflow</a></li>
+<li><a href="http://crbtech.in/Java-Training/javabeans-vs-spring-beans-vs-pojos/" target="_blank">JavaBeans vs Spring beans vs POJOs</a></li>
+<li><a href="http://www.importnew.com/14019.html" target="_blank">JavaBeans vs Spring beans vs POJOs &ndash; 中文</a></li>
+<li><a href="https://www.quora.com/What-are-the-differences-between-Spring-beans-and-Java-beans" target="_blank">What are the differences between Spring beans and Java beans? &ndash; Quora</a></li>
+<li><a href="https://blog.csdn.net/haibin_hu/article/details/51793606" target="_blank">传统javabean与spring中的bean的区别</a></li>
+<li><a href="https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html" target="_blank">@Bean注解 &ndash; spring官方Doc</a></li>
+<li><a href="https://wizardforcel.gitbooks.io/spring-doc-3x/content/17.html" target="_blank">Spring IoC 容器和 bean 的介绍 &ndash; Spring中文文档3.1</a></li>
+<li><a href="https://www.tutorialspoint.com/spring/spring_bean_definition.htm" target="_blank">Spring - Bean Definition</a></li>
+<li><a href="https://www.baeldung.com/spring-bean-annotations" target="_blank">Spring Bean Annotations</a></li>
+</ul>
+
+<h1 id="java-bean">Java Bean</h1>
+
+<p>之前对<code>Java Bean</code>不是很理解，就肤浅的理解成为<code>Java</code>对象，随着学习的深入发现理解是不对的，所以系统的查了一下。</p>
+
+<p><a href="https://zh.wikipedia.org/wiki/JavaBeans" target="_blank">JavaBeans &ndash; 维基百科</a>定义了<code>Java Bean</code>是什么
+&gt; JavaBeans是Java中一种特殊的类，可以将多个对象封装到一个对象（bean）中。特点是可序列化，提供无参构造器，提供getter方法和setter方法访问对象的属性。</p>
+
+<p>总结一下，就是以下几点</p>
+
+<ul>
+<li>可以序列化</li>
+<li>类是一个公共类(Public修饰)</li>
+<li>不能有公共的实例变量，变量都应该是private的</li>
+<li>提供无参构造器</li>
+<li>提供setter和getter方法</li>
+</ul>
+
+<p><a href="https://blog.csdn.net/litong09282039/article/details/46888169" target="_blank">Java Bean 简介及其应用</a>这篇文章中对于<code>Java Bean</code>的结构进行了说明，包括以下三个部分</p>
+
+<blockquote>
+<ul>
+<li>属性：即Java Bean类的成员变量，用于描述JavaBean对象的状态，对象属性值的改变触发事件，属性本身就是事件源。</li>
+<li>方法：在Java Bean中，函数和过程统称为方法，通过方法来改变和获取属性的值。方法可以分为构造方法、访问方法和普通方法等。</li>
+<li>事件：事件实际上是一种特殊的Java Bean，属性值的改变触发事件，事件激发相关对象作出反应，通过Java Bean注册对象事件监听者机制来接收、处理事件，它实现了Java Bean之间的通信。</li>
+</ul>
+</blockquote>
+
+<p><a href="https://www.zhihu.com/question/19773379" target="_blank">Java bean 是个什么概念 &ndash; 知乎</a>这个问题中的第一个回答说明了为什么使用这种规范，看完这篇文章我已经明白Sun公司开始他的套路——定义规范，让程序员或者厂商自己去实现。就好像JDBC一样。下面写一下代码说明一下我的理解吧</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+<p>如上面的代码所示，我声明了一个类<code>Person</code>，他有两个成员变量，我们获取成员变量的值方法就是</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">().</span><span class="na">name</span></code></pre></div>
+<p>这个name我是怎么赋值的，我不知道。我现在修改一下Person类，改成如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+	
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">(){</span>
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">().</span><span class="na">toString</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>现在name这个成员变量都没有了，那以前那个程序肯定会报错啊，现在得到name是</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span></code></pre></div>
+<p>只是这边名字是通过随机生成的逻辑，我们也可以用别的逻辑来写。这样有好处啊，我反正会最后给你一个String的name，但是我怎么得到的你不知道，听着就越来越像接口的定义，接口就是规范啊，所以自然而然的形成如下的规范。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">;</span>
+
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>类成员变量的赋值和取值都通过两个方法来实现，那其中到底怎么实现你可以去写。</p>
+
+<p>ps：这里我觉得我的理解不是很好</p>
+
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414#rd" target="_blank">Java 帝国之Java bean (上）</a>，
+<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513118&amp;idx=1&amp;sn=487fefb8fa7efd59de6f37043eb21799#rd" target="_blank">Java 帝国之Java bean（下）</a>这两篇文章用非常通俗的话讲<code>Java Bean</code>说明白了，说明白了他为什么会产生说了他的变迁历史，因为我没有使用过EJB开发过项目，等我从事Java开发的时候已经是Spring的天下，所以EJB为什么差我不知道，不过大家都说差那肯定就是差了啊。</p>
+
+<h1 id="spring-bean">Spring Bean</h1>
+
+<p><a href="https://stackoverflow.com/questions/21866571/difference-between-javabean-and-spring-bean" target="_blank">Difference between JavaBean and Spring bean &ndash; Stack Overflow</a>这个投票最高的回答中是这么说的</p>
+<div class="highlight"><pre class="chroma"><code class="language-plant" data-lang="plant">Java Bean 有如下三个特征
+ - 有public修饰的空参构造器
+ - 通过setter和getter方法来修改和获得成员变量
+ - 实现序列化接口
+  
+Spring Bean是一个被Spring管理的简单对象。这个对象特别之处就是他是被spring容器实例化，配置和管理的。spring bean在spring的配置文件中被定义(一般是注解的方式),被spring容器实例化然后被依赖注入到应用中。
+
+注意了啊，spring bean不一定是java bean， spring bean可以不实现序列化的接口，也可以有有参数的构造器等等等。。。(PS:这不就是java类吗，，，)
+下面是一个文章链接</code></pre></div>
+<p><img src="spring2/s1.png" alt="JavaBean" /></p>
+
+<p><a href="http://crbtech.in/Java-Training/javabeans-vs-spring-beans-vs-pojos/" target="_blank">JavaBeans vs Spring beans vs POJOs</a>,
+<a href="http://www.importnew.com/14019.html" target="_blank">JavaBeans vs Spring beans vs POJOs &ndash; 中文</a>这连个是一个文章，中英文版本。习惯了阅读英文是一件非常有意思的事情哈，上面的回答就是拷贝这个文章中的，可以去详细看一下原文是怎么写的。
+PS：这个文章提到一个人叫<code>Martin Fowler</code>，你以后会经常看到他，微服务就是他提出的，相关的文章可以在他的网站看到，理所当然是英文的。。<a href="https://www.martinfowler.com/" target="_blank">Martin Fowler网站</a></p>
+
+<p>上面的还有几个链接文章基本上讲的是一个内容，可以看一看。</p>
+
+<hr />
+
+<p>作者： Jaswine</p>
+
+<p>一路走来,从小白到现在对知识有了很深层次的感悟,很多帮助都来自开源作者和博客作者的无私奉献。分享知识的同时也让自己对知识有了系统的认知。
+文章大多都是工作经验总结以及平时学习积累，基于自身认知不足之处在所难免，也请大家指正，共同进步。</p>
+
+<p>本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出, 如有问题，可邮件(Jaswine@163.com)咨询。</p>
+
+    </main>
+  </div>
+  <footer>
+    <div class="footer-wrapper">
+      <p>Made with ❤️ &mdash; Powered by <a href="https://gohugo.io/" target="_blank" rel="external">Hugo</a> and the <a href="https://github.com/bjacquemet/personal-web" target='_blank' rel="external">Personal Web</a> theme.</p>
+      <p>© Jaswine</p>
+    </div>
+  </footer>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600|Raleway:400,400i,600" rel="stylesheet">
+  
+</body>
+</html>
