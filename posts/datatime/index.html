@@ -10,7 +10,8 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Jaswine"/>
+  <meta name="description" content="⏰前后台时间处理统一解决方案
+"/>
   
 
   
@@ -19,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/about/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/datatime/"/>
 
   
 
-  <title>ABOUT &middot; Jaswine</title>
+  <title>开发过程中前后台交互中对于时间Date的处理 &middot; Jaswine</title>
 
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
@@ -106,66 +107,46 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/about/'>ABOUT</a></h2>
-          <span class="date">0001.01.01</span>
+          <h2><a href='/blog/posts/datatime/'>开发过程中前后台交互中对于时间Date的处理</a></h2>
+          <span class="date">2019.03.04</span>
         </div>
-        <div class="post_content markdown">
+        <div class="post_content markdown"><p>⏰前后台时间处理统一解决方案</p>
 
-<h2 id="关于我">关于我</h2>
-
-<blockquote>
-<p>Jaswine(王远志)，男，1993年11月30日生人。籍贯江苏淮安涟水。</p>
-</blockquote>
-
-<p>在大学后期通过自学的方式进入了IT行业，随着学习的深入，越发的觉得计算机科学的博大精深，学习的深度和广度越来越深，所以开通一个博客来记录自己的学习过程，同样也希望和大家进行技术上的交流，也希望给立志进入IT行业的小伙伴们一点借鉴。</p>
-
-<p>技术栈以<code>Java</code>语言为主，主要从事后端开发，目前对于计算机底层基础知识和分布式相关知识非常感兴趣。</p>
-
-<p>本站所有内容均来自本人观点，有本质上的错误欢迎私下交流。</p>
-
-<h2 id="about-me">About Me</h2>
-
-<p>Jaswine(YuanZhi Wang),a man who was born on November 30,1993. And my hometown is LianShui,HuaiAn City ,JiangSu Provinece.</p>
-
-<p>When I was about to graduate, I found that I was not interested in the original profession, so I learned computer knowledge myself. I hope my experience can give you some inspiration.</p>
-
-<p>I am a Java programmer, now, i have interest in computer science and distributed application.</p>
-
-<p>If you have any questions ,you can contact me by the E-Mail or WeChat.</p>
-
-<h2 id="联系方式-contact-info">联系方式(Contact Info):</h2>
+<p>前后台分离开来以后，对于时间的处理一直是比较麻烦的地方，总结一下相关的解决方案:</p>
 
 <ul>
-<li><p>E-mail</p>
+<li><p>1.使用时间戳传输
+前台和后台对于时间戳的处理都很方便，使用时间戳可以转换任意格式的时间</p></li>
 
-<ul>
-<li>yuanzhi_wang@163.com</li>
-<li>jaswine@163.com</li>
-<li>wangyuanzhi1993@gmail.com</li>
-</ul></li>
-
-<li><p>微信(WeChat):Secrets-li</p></li>
+<li><p>2.使用JsonFormat格式化时间</p></li>
 </ul>
 
-<p><img src="https://cdn.jaswine.com/blog/about/wx_code.png" style="width:200px"></p>
+<pre><code class="language-java">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot; , timezone=&quot;GMT+8&quot;)
+private Date updateTime;
+</code></pre>
 
-<h2 id="支持我-donate-me">支持我(Donate Me)</h2>
+<p><center>全文完</center></p>
 
-<p>如果你有所得，可以捐赠鼓励一下。</p>
+<hr />
 
-<ul>
-<li>微信(WeChat)</li>
-</ul>
+<p>作者： Jaswine</p>
 
-<p><img src="https://cdn.jaswine.com/blog/about/wx-pay.png" style="width:200px"></p>
+<p>一路走来,从小白到现在对知识有了很深层次的感悟,很多帮助都来自开源作者和博客作者的无私奉献。分享知识的同时也让自己对知识有了系统的认知。
+文章大多都是工作经验总结以及平时学习积累，基于自身认知不足之处在所难免，也请大家指正，共同进步。</p>
 
-<ul>
-<li>支付宝(AliPay)</li>
-</ul>
-
-<p><img src="https://cdn.jaswine.com/blog/about/ali-pay.png" style="width:200px"></p>
-</div>
+<p>本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出, 如有问题， 可邮件(Jaswine@163.com)咨询。</p></div>
         <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+                
+              </span>
+            </div>
+          </div>
           
         </div>
       </div>

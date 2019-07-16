@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jaswine</title>
-    <link>https://jaswine.com/blog/</link>
-    <description>Recent content on Jaswine</description>
+    <title>Posts on Jaswine</title>
+    <link>https://jaswine.com/blog/posts/</link>
+    <description>Recent content in Posts on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 16 Jul 2019 10:41:34 +0800</lastBuildDate>
     
-	<atom:link href="https://jaswine.com/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jaswine.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -72,15 +72,6 @@
       
       <guid>https://jaswine.com/blog/posts/cors/</guid>
       <description>&lt;p&gt;跨域是我们常常遇到的问题&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>ABOUT</title>
-      <link>https://jaswine.com/blog/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jaswine.com/blog/about/</guid>
-      <description>关于我 Jaswine(王远志)，男，1993年11月30日生人。籍贯江苏淮安涟水。 在大学后期通过自学的方式进入了IT行业，随着学习的深入，越发的觉得计算机科学的博大精深，学习的深度和广度越来越深，所以</description>
     </item>
     
   </channel>

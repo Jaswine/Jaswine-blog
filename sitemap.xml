@@ -3,168 +3,118 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jaswine.com/blog/post/sql/</loc>
-    <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/post/snowflake/</loc>
-    <lastmod>2019-03-11T17:25:34+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/post/datatime/</loc>
-    <lastmod>2019-03-04T21:24:57+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/post/bean/</loc>
-    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/post/cors/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/about/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/categories/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/cors/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/date/</loc>
-    <lastmod>2019-03-04T21:24:57+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/http/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jaswine.com/blog/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/mybatis_auto/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/mybatis/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/springboot/</loc>
+    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/maven/</loc>
+    <lastmod>2019-07-15T14:03:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/ali_maven/</loc>
+    <lastmod>2019-07-15T14:03:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2019-07-15T14:03:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/sql/</loc>
     <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/java/</loc>
-    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/javaweb/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/categories/javaweb/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/categories/java%E8%A7%84%E8%8C%83/</loc>
-    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/post/</loc>
-    <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/snowflake/</loc>
-    <lastmod>2019-03-11T17:25:34+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/spring/</loc>
-    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/categories/springmvc/</loc>
-    <lastmod>2019-03-04T21:24:57+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/tags/sql/</loc>
     <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/tags/</loc>
-    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://jaswine.com/blog/posts/snowflake/</loc>
+    <lastmod>2019-03-11T17:25:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/</loc>
+    <lastmod>2019-03-11T17:25:34+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://jaswine.com/blog/posts/datatime/</loc>
+    <lastmod>2019-03-04T21:24:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2019-03-04T21:24:57+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2019-03-12T10:31:38+00:00</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://jaswine.com/blog/posts/bean/</loc>
+    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/spring/</loc>
+    <lastmod>2018-08-08T14:38:54+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/tags/%E8%B7%A8%E5%9F%9F/</loc>
     <lastmod>2017-06-26T15:51:07+00:00</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/cors/</loc>
+    <lastmod>2017-06-26T15:51:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/categories/</loc>
     <priority>0</priority>
   </url>
   

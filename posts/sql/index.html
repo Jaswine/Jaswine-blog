@@ -10,7 +10,8 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Jaswine"/>
+  <meta name="description" content="SQL是影响程序性能的一个环节，知道常见的SQL优化方法有必要的
+"/>
   
 
   
@@ -19,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/about/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/sql/"/>
 
   
 
-  <title>ABOUT &middot; Jaswine</title>
+  <title>SQL优化总结(持续更新...) &middot; Jaswine</title>
 
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
@@ -106,66 +107,55 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/about/'>ABOUT</a></h2>
-          <span class="date">0001.01.01</span>
+          <h2><a href='/blog/posts/sql/'>SQL优化总结(持续更新...)</a></h2>
+          <span class="date">2019.03.12</span>
         </div>
-        <div class="post_content markdown">
-
-<h2 id="关于我">关于我</h2>
-
-<blockquote>
-<p>Jaswine(王远志)，男，1993年11月30日生人。籍贯江苏淮安涟水。</p>
-</blockquote>
-
-<p>在大学后期通过自学的方式进入了IT行业，随着学习的深入，越发的觉得计算机科学的博大精深，学习的深度和广度越来越深，所以开通一个博客来记录自己的学习过程，同样也希望和大家进行技术上的交流，也希望给立志进入IT行业的小伙伴们一点借鉴。</p>
-
-<p>技术栈以<code>Java</code>语言为主，主要从事后端开发，目前对于计算机底层基础知识和分布式相关知识非常感兴趣。</p>
-
-<p>本站所有内容均来自本人观点，有本质上的错误欢迎私下交流。</p>
-
-<h2 id="about-me">About Me</h2>
-
-<p>Jaswine(YuanZhi Wang),a man who was born on November 30,1993. And my hometown is LianShui,HuaiAn City ,JiangSu Provinece.</p>
-
-<p>When I was about to graduate, I found that I was not interested in the original profession, so I learned computer knowledge myself. I hope my experience can give you some inspiration.</p>
-
-<p>I am a Java programmer, now, i have interest in computer science and distributed application.</p>
-
-<p>If you have any questions ,you can contact me by the E-Mail or WeChat.</p>
-
-<h2 id="联系方式-contact-info">联系方式(Contact Info):</h2>
+        <div class="post_content markdown"><p><code>SQL</code>是影响程序性能的一个环节，知道常见的<code>SQL</code>优化方法有必要的</p>
 
 <ul>
-<li><p>E-mail</p>
+<li><p><strong>使用=来比较，不使用&lt;&gt;</strong></p>
 
-<ul>
-<li>yuanzhi_wang@163.com</li>
-<li>jaswine@163.com</li>
-<li>wangyuanzhi1993@gmail.com</li>
-</ul></li>
+<p>= 增加了索引的使用几率</p></li>
 
-<li><p>微信(WeChat):Secrets-li</p></li>
+<li><p><strong>使用LIMIT 1来返回一条记录</strong></p>
+
+<p>使用<code>LIMIT 1</code>避免全表扫描</p></li>
+
+<li><p><strong>避免使用SELECT *,这样会全表扫描</strong></p>
+
+<p><code>SELECT *</code> 会全表扫描</p></li>
+
+<li><p><strong>WHERE子句中列尽量被索引</strong></p>
+
+<p>加快查询速度</p></li>
+
+<li><p><strong>使用LIMIT来完成分页</strong></p>
+
+<p>分页工具有很多，底层都是<code>LIMIT</code>去实现的</p></li>
 </ul>
 
-<p><img src="https://cdn.jaswine.com/blog/about/wx_code.png" style="width:200px"></p>
+<p><center><font color = "1E8E06" size = 8>全文完</font></center></p>
 
-<h2 id="支持我-donate-me">支持我(Donate Me)</h2>
+<hr />
 
-<p>如果你有所得，可以捐赠鼓励一下。</p>
+<p>作者： Jaswine</p>
 
-<ul>
-<li>微信(WeChat)</li>
-</ul>
+<p>一路走来,从小白到现在对知识有了很深层次的感悟,很多帮助都来自开源作者和博客作者的无私奉献。分享知识的同时也让自己对知识有了系统的认知。
+文章大多都是工作经验总结以及平时学习积累，基于自身认知不足之处在所难免，也请大家指正，共同进步。</p>
 
-<p><img src="https://cdn.jaswine.com/blog/about/wx-pay.png" style="width:200px"></p>
-
-<ul>
-<li>支付宝(AliPay)</li>
-</ul>
-
-<p><img src="https://cdn.jaswine.com/blog/about/ali-pay.png" style="width:200px"></p>
-</div>
+<p>本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出, 如有问题， 可邮件(Jaswine@163.com)咨询。</p></div>
         <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/sql/">sql</a>
+                
+              </span>
+            </div>
+          </div>
           
         </div>
       </div>

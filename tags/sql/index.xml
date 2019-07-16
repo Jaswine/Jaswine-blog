@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sql on Jaswine&#39;s Blog</title>
+    <title>sql on Jaswine</title>
     <link>https://jaswine.com/blog/tags/sql/</link>
-    <description>Recent content in Sql on Jaswine&#39;s Blog</description>
+    <description>Recent content in sql on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Jaswine</copyright>
+    <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Mar 2019 10:31:38 +0000</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/sql/index.xml" rel="self" type="application/rss+xml" />
@@ -14,10 +13,10 @@
     
     <item>
       <title>SQL优化总结(持续更新...)</title>
-      <link>https://jaswine.com/blog/post/sql/</link>
+      <link>https://jaswine.com/blog/posts/sql/</link>
       <pubDate>Tue, 12 Mar 2019 10:31:38 +0000</pubDate>
       
-      <guid>https://jaswine.com/blog/post/sql/</guid>
+      <guid>https://jaswine.com/blog/posts/sql/</guid>
       <description>&lt;p&gt;&lt;code&gt;SQL&lt;/code&gt;是影响程序性能的一个环节，知道常见的&lt;code&gt;SQL&lt;/code&gt;优化方法有必要的&lt;/p&gt;</description>
     </item>
     

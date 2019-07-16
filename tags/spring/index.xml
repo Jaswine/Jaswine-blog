@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Spring on Jaswine&#39;s Blog</title>
+    <title>Spring on Jaswine</title>
     <link>https://jaswine.com/blog/tags/spring/</link>
-    <description>Recent content in Spring on Jaswine&#39;s Blog</description>
+    <description>Recent content in Spring on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Jaswine</copyright>
+    <language>zh-cn</language>
     <lastBuildDate>Wed, 08 Aug 2018 14:38:54 +0000</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/spring/index.xml" rel="self" type="application/rss+xml" />
@@ -14,10 +13,10 @@
     
     <item>
       <title>Bean的概念</title>
-      <link>https://jaswine.com/blog/post/bean/</link>
+      <link>https://jaswine.com/blog/posts/bean/</link>
       <pubDate>Wed, 08 Aug 2018 14:38:54 +0000</pubDate>
       
-      <guid>https://jaswine.com/blog/post/bean/</guid>
+      <guid>https://jaswine.com/blog/posts/bean/</guid>
       <description>&lt;p&gt;☕&lt;/p&gt;</description>
     </item>
     
