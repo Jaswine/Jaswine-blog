@@ -3,26 +3,54 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jaswine.com/blog/tags/gc/</loc>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/jvm/</loc>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jaswine.com/blog/</loc>
-    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/posts/</loc>
-    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/</loc>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/gc/</loc>
+    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/buider/</loc>
+    <lastmod>2019-08-19T10:38:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/%E6%9E%84%E9%80%A0%E5%99%A8/</loc>
+    <lastmod>2019-08-19T10:38:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/posts/mybatis_auto/</loc>
     <lastmod>2019-07-16T10:41:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/</loc>
-    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -77,14 +105,14 @@
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/posts/datatime/</loc>
+    <loc>https://jaswine.com/blog/tags/java/</loc>
     <lastmod>2019-03-04T21:24:57+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <loc>https://jaswine.com/blog/posts/datatime/</loc>
     <lastmod>2019-03-04T21:24:57+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

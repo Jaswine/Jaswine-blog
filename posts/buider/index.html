@@ -10,7 +10,8 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/java/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/buider/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/java/index.xml">
-  
 
-  <title>Java &middot; Jaswine</title>
+  <title>使用构建器(Builder)来替代多个构造器 &middot; Jaswine</title>
 
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
@@ -105,22 +104,131 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/datatime/">开发过程中前后台交互中对于时间Date的处理</a>
-            <div class="post_time"><span class="date">03-04</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/buider/'>使用构建器(Builder)来替代多个构造器</a></h2>
+          <span class="date">2019.08.19</span>
         </div>
-        
+        <div class="post_content markdown"><p>在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。</p>
+
+<p><code>Java</code>用<code>new</code>这个关键字来创建对象，创建对象的细节我们写在构造器中。我们调用构造器来创建对象的时候可以依据传入的参数不同来控制创建对象的细节。</p>
+
+<h1 id="相关资源">相关资源</h1>
+
+<ul>
+<li><a href="https://github.com/Jaswine/Jaswine-commons">使用Builder方式来重写序列号工具类(源代码) - github</a></li>
+</ul>
+
+<p><strong>示例要求:</strong>
+&gt; 编写一个生成序列号的工具类，序列号是字符串类型，可以是UUID，可以是时间(如201901201536)，可以是前缀+时间，可以是时间+后缀，可以是前缀+时间+后缀，并且以后根据需求可能还会进行扩展</p>
+
+<h1 id="传统方式-构造器重载">传统方式(构造器重载)</h1>
+
+<pre><code class="language-java">public class Serial{
+    private Type serialType;
+    private String prefix;
+    private String suffix;
+
+    Serial(Type serialType){
+        this.serialType = serialType;
+    }
+
+    Serial(String prefix,Type serialType){
+        this.serialType = serialType;
+        this.prefix = prefix;
+    }
+
+    Serial(Type serialType,String suffix){
+        this.serialType = serialType;
+        this.suffix = suffix;
+    }
+
+    Serial(String prefix,Type serialType,String suffix){
+        this.serialType = serialType;
+        this.prefix = prefix;
+        this.suffix = suffix;
+    }
+}
+</code></pre>
+
+<h1 id="传统方式缺点">传统方式缺点</h1>
+
+<ul>
+<li>不能很好的扩展大量的参数</li>
+<li>代码很丑</li>
+</ul>
+
+<h1 id="builder方式">Builder方式</h1>
+
+<pre><code class="language-java">public class Person {
+
+	static Builder builder(String name){
+		return new Builder().withName(name);
+	}
+
+	static class Builder{
+
+		private String name;
+		private int age;
+		private String location;
+
+		Builder withName(String name){
+			this.name = name;
+			return this;
+		}
+
+		Builder withAge(int age){
+			this.age = age;
+			return this;
+		}
+
+		Builder withLocation(String location){
+			this.location = location;
+			return this;
+		}
+
+		String generateperson(){
+			return this.toString();
+		}
+
+		@Override
+		public String toString() {
+			return &quot;Builder{&quot; +&quot;name='&quot; + name + '\'' +&quot;, age=&quot; + age +&quot;, location='&quot; + location + '\'' +'}';
+		}
+	}
+}
+</code></pre>
+
+<p>所有的对象创建工作都给<code>Builder</code>这个内部类去完成，使用代码如下：</p>
+
+<pre><code class="language-java"> Person.builder(&quot;jaswine&quot;)
+    .withAge(12)
+    .withLocation(&quot;wuxi.jiangsu&quot;)
+    .generateperson();
+</code></pre>
+
+<p>最后的结果是:</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/builder.png" alt="res" /></p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">构造器</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
