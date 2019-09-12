@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>springboot on Jaswine</title>
+    <title>SpringBoot on Jaswine</title>
     <link>https://jaswine.com/blog/tags/springboot/</link>
-    <description>Recent content in springboot on Jaswine</description>
+    <description>Recent content in SpringBoot on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 16 Jul 2019 10:41:34 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 16:48:39 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringBoot中打日志,让排查不再错误不再难</title>
+      <link>https://jaswine.com/blog/posts/boot_log/</link>
+      <pubDate>Mon, 19 Aug 2019 16:48:39 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/boot_log/</guid>
+      <description>&lt;p&gt;使用日志在排查错误的时候可以更快的定位到错误所在的位置,SpringBoot已经帮我们集成了相关的日志模块&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>SpringBoot&#43;Myabtis自动创建数据表</title>

@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jaswine.com/blog/tags/</loc>
+    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/</loc>
+    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/</loc>
+    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/</loc>
+    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/jsonview/</loc>
+    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/springboot/</loc>
+    <lastmod>2019-08-19T16:48:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/boot_log/</loc>
+    <lastmod>2019-08-19T16:48:39+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jaswine.com/blog/tags/gc/</loc>
     <lastmod>2019-08-19T11:22:54+08:00</lastmod>
     <priority>0</priority>
@@ -10,24 +50,6 @@
   
   <url>
     <loc>https://jaswine.com/blog/tags/jvm/</loc>
-    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/</loc>
-    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/posts/</loc>
-    <lastmod>2019-08-19T11:22:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/</loc>
     <lastmod>2019-08-19T11:22:54+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -55,12 +77,6 @@
   
   <url>
     <loc>https://jaswine.com/blog/tags/mybatis/</loc>
-    <lastmod>2019-07-16T10:41:34+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jaswine.com/blog/tags/springboot/</loc>
     <lastmod>2019-07-16T10:41:34+08:00</lastmod>
     <priority>0</priority>
   </url>

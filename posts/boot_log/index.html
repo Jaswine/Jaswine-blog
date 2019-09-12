@@ -10,7 +10,7 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="SQL是影响程序性能的一个环节，知道常见的SQL优化方法有必要的
+  <meta name="description" content="使用日志在排查错误的时候可以更快的定位到错误所在的位置,SpringBoot已经帮我们集成了相关的日志模块
 "/>
   
 
@@ -20,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/sql/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/boot_log/"/>
 
   
 
-  <title>SQL优化总结(持续更新...) &middot; Jaswine</title>
+  <title>SpringBoot中打日志,让排查不再错误不再难 &middot; Jaswine</title>
 
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
@@ -107,32 +107,58 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/sql/'>SQL优化总结(持续更新...)</a></h2>
-          <span class="date">2019.03.12</span>
+          <h2><a href='/blog/posts/boot_log/'>SpringBoot中打日志,让排查不再错误不再难</a></h2>
+          <span class="date">2019.08.19</span>
         </div>
-        <div class="post_content markdown"><p><code>SQL</code>是影响程序性能的一个环节，知道常见的<code>SQL</code>优化方法有必要的</p>
+        <div class="post_content markdown"><p>使用日志在排查错误的时候可以更快的定位到错误所在的位置,SpringBoot已经帮我们集成了相关的日志模块</p>
+
+<h1 id="参考">参考</h1>
 
 <ul>
-<li><p><strong>使用=来比较，不使用&lt;&gt;</strong></p>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/reference/html/boot-features-logging.html">SpringBoot-Log(官方文档)</a></li>
+</ul>
 
-<p>= 增加了索引的使用几率</p></li>
+<h1 id="版本">版本</h1>
 
-<li><p><strong>使用LIMIT 1来返回一条记录</strong></p>
+<ul>
+<li>SpringBoot版本: 2.0.4.RELEASE</li>
+</ul>
 
-<p>使用<code>LIMIT 1</code>避免全表扫描</p></li>
+<h1 id="背景">背景</h1>
 
-<li><p><strong>避免使用SELECT *,这样会全表扫描</strong></p>
+<p>在使用SpringBoot开发项目的过程中，日志方面直接使用全部默认的配置的。部署在服务器上直接是</p>
 
-<p><code>SELECT *</code> 会全表扫描</p></li>
+<pre><code class="language-bash">nohup java -jar xxx.jar &amp;
+</code></pre>
 
-<li><p><strong>WHERE子句中列尽量被索引</strong></p>
+<p>所有的日志都输出到nohup.out中。不符合有追求的程序员的开发方式，所以得改。并且在后续的工作中，使用ELK可以实时的分析日志。</p>
 
-<p>加快查询速度</p></li>
+<h1 id="开搞">开搞</h1>
 
-<li><p><strong>使用LIMIT来完成分页</strong></p>
+<p>在官方的文档中，SpringBoot使用的Commons-logging作为默认的日志框架，但是同时也预留了其他的日志框架的实现。我们使用日志主要是为了完成一下的功能：</p>
 
-<p>分页工具有很多，底层都是<code>LIMIT</code>去实现的</p></li>
-</ul></div>
+<ul>
+<li>记录程序执行的细节</li>
+<li>给程序出错的时候排查问题的所在</li>
+<li>结合其他工具来完成一些功能(e.g:使用ELK实时分析日志)</li>
+</ul>
+
+<p>来搞一下SpringBoot怎么完成上面的功能</p>
+
+<h2 id="输出日志">输出日志</h2>
+
+<ul>
+<li><em>默认</em></li>
+</ul>
+
+<pre><code class="language-yml">
+</code></pre>
+
+<h2 id="使用log4j2">使用log4j2</h2>
+
+<h2 id="使用logback">使用logback</h2>
+
+<h2 id="使用slf4j">使用slf4j</h2></div>
         <div class="post_footer">
           
           <div class="meta">
@@ -140,7 +166,7 @@
               <span class="field tags">
                 <i class="remixicon-stack-line"></i>
                 
-                <a href="https://jaswine.com/blog/tags/sql/">sql</a>
+                <a href="https://jaswine.com/blog/tags/springboot/">SpringBoot</a>
                 
               </span>
             </div>
