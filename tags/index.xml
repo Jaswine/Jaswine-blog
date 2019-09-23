@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 21 Aug 2019 15:28:43 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Sep 2019 22:19:45 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,14 +14,23 @@
     <item>
       <title></title>
       <link>https://jaswine.com/blog/tags/</link>
-      <pubDate>Wed, 21 Aug 2019 15:28:43 +0800</pubDate>
+      <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>SpringBoot</title>
+      <title>wiremock</title>
+      <link>https://jaswine.com/blog/tags/wiremock/</link>
+      <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/wiremock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>springboot</title>
       <link>https://jaswine.com/blog/tags/springboot/</link>
       <pubDate>Mon, 19 Aug 2019 16:48:39 +0800</pubDate>
       

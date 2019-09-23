@@ -6,10 +6,19 @@
     <description>Recent content on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 21 Aug 2019 15:28:43 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Sep 2019 22:19:45 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用wiremock来构建测试环境,落地先设计后开发</title>
+      <link>https://jaswine.com/blog/posts/wiremock/</link>
+      <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/wiremock/</guid>
+      <description>&lt;p&gt;使用&lt;code&gt;wiremock&lt;/code&gt;可以模拟后台，将约定好的数据先写好，前端按照这个数据去展示，后台按照这个数据去开发。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用Jackson的JsonView返回不同的</title>
@@ -117,6 +126,15 @@
       
       <guid>https://jaswine.com/blog/about/</guid>
       <description>关于我 Jaswine(王远志)，男，1993年11月30日生人。籍贯江苏淮安涟水。 在大学后期通过自学的方式进入了IT行业，随着学习的深入，越发的觉得计算机科学的博大精深，学习的深度和广度越来越深，所以</description>
+    </item>
+    
+    <item>
+      <title>前辈</title>
+      <link>https://jaswine.com/blog/senior/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/senior/</guid>
+      <description>读万卷书不如行万里路，行万里路不如高人指路 感谢前辈免费输出的知识 美团技术团队 有赞技术团队 纯洁的微笑-Java 会飞的污熊-Java 四火的唠叨-熊燚(全栈)</description>
     </item>
     
   </channel>

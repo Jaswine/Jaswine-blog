@@ -4,26 +4,37 @@
   
   <url>
     <loc>https://jaswine.com/blog/tags/</loc>
-    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/</loc>
-    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/posts/</loc>
-    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jaswine.com/blog/tags/</loc>
-    <lastmod>2019-08-21T15:28:43+08:00</lastmod>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/tags/wiremock/</loc>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/posts/wiremock/</loc>
+    <lastmod>2019-09-17T22:19:45+08:00</lastmod>
   </url>
   
   <url>
@@ -32,14 +43,14 @@
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/tags/springboot/</loc>
+    <loc>https://jaswine.com/blog/posts/boot_log/</loc>
     <lastmod>2019-08-19T16:48:39+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/posts/boot_log/</loc>
+    <loc>https://jaswine.com/blog/tags/springboot/</loc>
     <lastmod>2019-08-19T16:48:39+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -160,6 +171,10 @@
   <url>
     <loc>https://jaswine.com/blog/categories/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jaswine.com/blog/senior/</loc>
   </url>
   
 </urlset>
