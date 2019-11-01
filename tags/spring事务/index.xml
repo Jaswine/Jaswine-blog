@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spring事务 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/</link>
+    <description>Recent content in spring事务 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 08 Oct 2019 09:24:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring事务设置read-only在Oracle数据库中不起作用</title>
+      <link>https://jaswine.com/blog/posts/oracle_read/</link>
+      <pubDate>Tue, 08 Oct 2019 09:24:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/oracle_read/</guid>
+      <description>&lt;p&gt;在多个SQL读中，我们开启read-only可以提高数据库的性能&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,37 @@
     <description>Recent content on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Sep 2019 22:19:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2019 10:22:32 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>服务器列表</title>
+      <link>https://jaswine.com/blog/posts/servers/</link>
+      <pubDate>Fri, 01 Nov 2019 10:22:32 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/servers/</guid>
+      <description>&lt;p&gt;服务器上的服务太多，端口占用不清楚，写一个列表&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot应用监控</title>
+      <link>https://jaswine.com/blog/posts/boot_monitor/</link>
+      <pubDate>Sat, 19 Oct 2019 08:37:42 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/boot_monitor/</guid>
+      <description>&lt;p&gt;SpringBoot给我们提供了对应用程序的监控接口，有Actuator提供的监控，还可以使用Jconsole或者Visual 来监控应用的情况。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring事务设置read-only在Oracle数据库中不起作用</title>
+      <link>https://jaswine.com/blog/posts/oracle_read/</link>
+      <pubDate>Tue, 08 Oct 2019 09:24:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/oracle_read/</guid>
+      <description>&lt;p&gt;在多个SQL读中，我们开启read-only可以提高数据库的性能&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用wiremock来构建测试环境,落地先设计后开发</title>
@@ -26,7 +53,7 @@
       <pubDate>Wed, 21 Aug 2019 15:28:43 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/jsonview/</guid>
-      <description></description>
+      <description>&lt;p&gt;在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -134,7 +161,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jaswine.com/blog/senior/</guid>
-      <description>读万卷书不如行万里路，行万里路不如高人指路 感谢前辈免费输出的知识 美团技术团队 有赞技术团队 纯洁的微笑-Java 会飞的污熊-Java 四火的唠叨-熊燚(全栈) 陶辉笔记-陶辉(Nginx&amp;amp;网络)</description>
+      <description>读万卷书不如行万里路，行万里路不如高人指路 感谢前辈免费输出的知识 美团技术团队 有赞技术团队 阿里巴巴中间件团队 纯洁的微笑-Java 会飞的污熊-Java 四火的唠叨-熊燚(全栈) 陶辉笔记-陶辉(Nginx&amp;a</description>
     </item>
     
   </channel>

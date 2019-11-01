@@ -10,8 +10,7 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。
-"/>
+  <meta name="description" content="Hugo theme zozo example site."/>
   
 
   
@@ -20,11 +19,13 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/jsonview/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/"/>
 
   
+  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/index.xml">
+  
 
-  <title>使用Jackson的JsonView返回不同的 &middot; Jaswine</title>
+  <title>spring事务 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -109,109 +110,22 @@
 </div>
 
   <div class="content">
-    <div class="post_page">
-      <div class="post animated fadeInDown">
-        <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/jsonview/'>使用Jackson的JsonView返回不同的</a></h2>
-          <span class="date">2019.08.21</span>
-        </div>
-        <div class="post_content markdown"><p>在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。</p>
-
-<h2 id="情景">情景</h2>
-
-<p>有一个<code>user</code>对象，</p>
-
-<pre><code class="language-java">public class User{
-
-    private String username;
-    private String password;
-    private int age;
-
-    // 省略get，set方法
-}
-</code></pre>
-
-<p>在不同的接口中我们可能有的时候要返回password，有的时候不需要，不要的时候就要重新写一个没有password字段的vo对象。</p>
-
-<h2 id="使用jackson">使用Jackson</h2>
-
-<p>使用jackson可以解觉这样的问题</p>
-
-<pre><code class="language-java">public class User{
-
-    // 声明视图接口
-    public interface UserSimpleView{};
-    public interface UserDetailView extends UserSimpleView {};
-
-    private String username;
-    private String password;
-    private int age;
-
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    @JsonView(UserSimpleView.class)
-    public String getUsername(){
-        return username;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-    @JsonView(UserDetailView.class)
-    public String getPassword(){
-        return password;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-    @JsonView(UserSimpleView.class)
-    public String getAge(){
-        return age;
-    }
-}
-</code></pre>
-
-<p>在Controller中指定返回的视图</p>
-
-<pre><code class="language-java">
-@GetMapping(&quot;/user&quot;)
-@JsonView(User.UserSimpleView.class)
-public DTO getAllUserInfo(){
-
-    return null;
-}
-
-@GetMapping(&quot;/user/2&quot;)
-@JsonView(User.UserDetailView.class)
-public DTO getUserDetailInfo(){
-
-    return null;
-}
-
-</code></pre></div>
-        <div class="post_footer">
-          
-          <div class="meta">
-            <div class="info">
-              <span class="field tags">
-                <i class="remixicon-stack-line"></i>
-                
-                <a href="https://jaswine.com/blog/tags//"></a>
-                
-              </span>
-            </div>
+    <div class="list_with_title">
+      
+      <div class="listing_title">2019</div>
+      <div class="listing">
+        
+        <div class="listing_item">
+          <div class="listing_post">
+            <a href="/blog/posts/oracle_read/">Spring事务设置read-only在Oracle数据库中不起作用</a>
+            <div class="post_time"><span class="date">10-08</span></div>
           </div>
-          
         </div>
+        
       </div>
       
-      
     </div>
+    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

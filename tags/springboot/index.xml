@@ -6,10 +6,19 @@
     <description>Recent content in SpringBoot on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 19 Aug 2019 16:48:39 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 08:37:42 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringBoot应用监控</title>
+      <link>https://jaswine.com/blog/posts/boot_monitor/</link>
+      <pubDate>Sat, 19 Oct 2019 08:37:42 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/boot_monitor/</guid>
+      <description>&lt;p&gt;SpringBoot给我们提供了对应用程序的监控接口，有Actuator提供的监控，还可以使用Jconsole或者Visual 来监控应用的情况。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>SpringBoot中打日志,让排查不再错误不再难</title>

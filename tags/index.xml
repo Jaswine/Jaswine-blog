@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Sep 2019 22:19:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2019 10:22:32 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,54 @@
     <item>
       <title></title>
       <link>https://jaswine.com/blog/tags/</link>
-      <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
+      <pubDate>Fri, 01 Nov 2019 10:22:32 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lede</title>
+      <link>https://jaswine.com/blog/tags/lede/</link>
+      <pubDate>Fri, 01 Nov 2019 10:22:32 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/lede/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jaswine.com/blog/tags/linux/</link>
+      <pubDate>Fri, 01 Nov 2019 10:22:32 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringBoot</title>
+      <link>https://jaswine.com/blog/tags/springboot/</link>
+      <pubDate>Sat, 19 Oct 2019 08:37:42 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/springboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>https://jaswine.com/blog/tags/oracle/</link>
+      <pubDate>Tue, 08 Oct 2019 09:24:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring事务</title>
+      <link>https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Tue, 08 Oct 2019 09:24:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/</guid>
       <description></description>
     </item>
     
@@ -26,15 +71,6 @@
       <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/wiremock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SpringBoot</title>
-      <link>https://jaswine.com/blog/tags/springboot/</link>
-      <pubDate>Mon, 19 Aug 2019 16:48:39 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/tags/springboot/</guid>
       <description></description>
     </item>
     

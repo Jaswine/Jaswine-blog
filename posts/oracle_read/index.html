@@ -10,7 +10,7 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。
+  <meta name="description" content="在多个SQL读中，我们开启read-only可以提高数据库的性能
 "/>
   
 
@@ -20,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/jsonview/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/oracle_read/"/>
 
   
 
-  <title>使用Jackson的JsonView返回不同的 &middot; Jaswine</title>
+  <title>Spring事务设置read-only在Oracle数据库中不起作用 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -112,88 +112,39 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/jsonview/'>使用Jackson的JsonView返回不同的</a></h2>
-          <span class="date">2019.08.21</span>
+          <h2><a href='/blog/posts/oracle_read/'>Spring事务设置read-only在Oracle数据库中不起作用</a></h2>
+          <span class="date">2019.10.08</span>
         </div>
-        <div class="post_content markdown"><p>在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。</p>
+        <div class="post_content markdown"><p>在多个SQL读中，我们开启read-only可以提高数据库的性能</p>
 
-<h2 id="情景">情景</h2>
+<h2 id="为啥要read-only">为啥要read-only</h2>
 
-<p>有一个<code>user</code>对象，</p>
+<p>在一次执行多个读的时候，为了保持数据的一致性我们要开启事务。</p>
 
-<pre><code class="language-java">public class User{
+<blockquote>
+<p>e.g 统计报表的时候要执行多个查询，但是没有增删改的操作，但是需要保持数据一致性</p>
+</blockquote>
 
-    private String username;
-    private String password;
-    private int age;
+<p>为了保持数据一致性我们需要开启事务，但是都是查，所以开启read only的时候</p>
 
-    // 省略get，set方法
-}
-</code></pre>
+<ul>
+<li>不记录回滚段</li>
+<li>不记录回滚日志</li>
+</ul>
 
-<p>在不同的接口中我们可能有的时候要返回password，有的时候不需要，不要的时候就要重新写一个没有password字段的vo对象。</p>
+<h2 id="问题">问题</h2>
 
-<h2 id="使用jackson">使用Jackson</h2>
+<p>在一次项目中开启事务的read only后并没有生效，但是在抛出异常的时候事务是生效启动回滚。</p>
 
-<p>使用jackson可以解觉这样的问题</p>
+<h2 id="根源">根源</h2>
 
-<pre><code class="language-java">public class User{
+<p>查了一下，是因为Oracle数据库不支持JDBC级别的read only。</p>
 
-    // 声明视图接口
-    public interface UserSimpleView{};
-    public interface UserDetailView extends UserSimpleView {};
+<blockquote>
+<p>Read-only connections are supported by the Oracle server, but not by the Oracle JDBC drivers.</p>
 
-    private String username;
-    private String password;
-    private int age;
-
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    @JsonView(UserSimpleView.class)
-    public String getUsername(){
-        return username;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-    @JsonView(UserDetailView.class)
-    public String getPassword(){
-        return password;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-    @JsonView(UserSimpleView.class)
-    public String getAge(){
-        return age;
-    }
-}
-</code></pre>
-
-<p>在Controller中指定返回的视图</p>
-
-<pre><code class="language-java">
-@GetMapping(&quot;/user&quot;)
-@JsonView(User.UserSimpleView.class)
-public DTO getAllUserInfo(){
-
-    return null;
-}
-
-@GetMapping(&quot;/user/2&quot;)
-@JsonView(User.UserDetailView.class)
-public DTO getUserDetailInfo(){
-
-    return null;
-}
-
-</code></pre></div>
+<p>文章链接:<a href="https://docs.oracle.com/cd/B19306_01/java.102/b14355/apxtips.htm#i1007231">Oracle Doc</a></p>
+</blockquote></div>
         <div class="post_footer">
           
           <div class="meta">
@@ -201,7 +152,9 @@ public DTO getUserDetailInfo(){
               <span class="field tags">
                 <i class="remixicon-stack-line"></i>
                 
-                <a href="https://jaswine.com/blog/tags//"></a>
+                <a href="https://jaswine.com/blog/tags/oracle/">oracle</a>
+                
+                <a href="https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
                 
               </span>
             </div>
