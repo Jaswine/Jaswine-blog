@@ -6,10 +6,28 @@
     <description>Recent content in Java on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Mar 2019 21:24:57 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 14:18:16 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为啥推荐使用Java的包装类</title>
+      <link>https://jaswine.com/blog/posts/base_wrap/</link>
+      <pubDate>Mon, 16 Dec 2019 14:18:16 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/base_wrap/</guid>
+      <description>&lt;p&gt;在Java的世界中,有8个基本类型的变量还有对应的包装类。为什么会存在这样的问题呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记录一次递归引起的StackOverflowError</title>
+      <link>https://jaswine.com/blog/posts/stackoverflow/</link>
+      <pubDate>Tue, 15 Oct 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
+      <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>开发过程中前后台交互中对于时间Date的处理</title>

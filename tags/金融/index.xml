@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>金融 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E9%87%91%E8%9E%8D/</link>
+    <description>Recent content in 金融 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 12 Nov 2019 22:44:12 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E9%87%91%E8%9E%8D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[闰年效应]给财务系统带来的影响</title>
+      <link>https://jaswine.com/blog/posts/leap_year/</link>
+      <pubDate>Tue, 12 Nov 2019 22:44:12 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/leap_year/</guid>
+      <description>&lt;p&gt;我们一年是365天或者366天,每一个月是28，29，30或者31天,四年一闰年，每一个闰年就会多出一天，这给财务系统带来了很大的麻烦。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

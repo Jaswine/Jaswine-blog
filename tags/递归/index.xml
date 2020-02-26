@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>递归 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E9%80%92%E5%BD%92/</link>
+    <description>Recent content in 递归 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 15 Oct 2019 14:03:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E9%80%92%E5%BD%92/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>记录一次递归引起的StackOverflowError</title>
+      <link>https://jaswine.com/blog/posts/stackoverflow/</link>
+      <pubDate>Tue, 15 Oct 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
+      <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

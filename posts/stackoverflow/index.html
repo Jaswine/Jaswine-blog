@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="StackOverflowError非常少见，今天在业务代码中的一个俄地柜方法报了突然StackOverflowError错误。
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/stackoverflow/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/index.xml">
-  
 
-  <title>Tags &middot; Jaswine</title>
+  <title>记录一次递归引起的StackOverflowError &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -110,159 +109,117 @@
 </div>
 
   <div class="content">
-    <div class="page_tags">
-      <ul>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/java">
-            java <span class="terms_count">3</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/springboot">
-            springboot <span class="terms_count">3</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E6%B1%87%E6%80%BB">
-            汇总 <span class="terms_count">2</span>
-          </a>
-        </li>
-        
-        
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/gc">
-            gc <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/jvm">
-            jvm <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/maven">
-            maven <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/mybatis">
-            mybatis <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/oracle">
-            oracle <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/spring">
-            spring <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/spring%E4%BA%8B%E5%8A%A1">
-            spring事务 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/sql">
-            sql <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/wiremock">
-            wiremock <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8">
-            分库分表 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E6%9E%84%E9%80%A0%E5%99%A8">
-            构造器 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E8%B7%A8%E5%9F%9F">
-            跨域 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E9%80%92%E5%BD%92">
-            递归 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E9%87%91%E8%9E%8D">
-            金融 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a href="https://jaswine.com/blog/tags/%E9%98%BF%E9%87%8C%E4%BA%91">
-            阿里云 <span class="terms_count">1</span>
-          </a>
-        </li>
-        
-        
-      </ul>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/stackoverflow/'>记录一次递归引起的StackOverflowError</a></h2>
+          <span class="date">2019.10.15</span>
+        </div>
+        <div class="post_content markdown"><p><code>StackOverflowError</code>非常少见，今天在业务代码中的一个俄地柜方法报了突然<code>StackOverflowError</code>错误。</p>
+
+<h2 id="1-场景">1.场景</h2>
+
+<p>数据库有一张表,记录了一个链接的推荐关系，比如A第一次打开链接推荐给B，B又推荐给C，C继续推荐下去。。。</p>
+
+<p>这个数据模型应该是一个树形，现在的一个需求就是输入一个人id能知道他的源头推荐人(或者说他的推荐路径)是什么</p>
+
+<ul>
+<li><strong>表结构简化</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">推荐人id</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">B</td>
+<td align="left">A</td>
+</tr>
+
+<tr>
+<td align="left">C</td>
+<td align="left">B</td>
+</tr>
+
+<tr>
+<td align="left">D</td>
+<td align="left">C</td>
+</tr>
+
+<tr>
+<td align="left">E</td>
+<td align="left">D</td>
+</tr>
+
+<tr>
+<td align="left">F</td>
+<td align="left">E</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="2-问题">2.问题</h2>
+
+<p>测试在测试的过程中，伪造数据发生了循环的错误，A推荐B，B推荐C，C又推荐A形成了一个循环，递归一直调用，导致<code>StackOverflowError</code>的发生。</p>
+
+<h2 id="3-解决">3.解决</h2>
+
+<p>强制声明递归次数，超过这个次数还没有返回直接抛异常或者给别的提示。</p>
+
+<h2 id="附-算法实现">附.算法实现</h2>
+
+<pre><code class="language-java">public class Demo {
+
+    /**
+     * 模拟推荐关系
+     * 第一个Integer   -&gt;   id
+     * 第二个Integer   -&gt;   推荐人id 
+     */
+    static Map&lt;Integer,Integer&gt; a;
+
+    /* 获得推荐人id */
+	static int getTj(int id){
+		Integer integer = a.get(id);
+		if (integer == null){
+			return integer;
+		}
+		return getTj(integer);
+	}
+
+	public static void main(String[] args) {
+		a = new HashMap&lt;&gt;(8);
+		a.put(1, 2);
+		a.put(2, 3);
+		a.put(3, 1);
+		System.out.println(getTj(1));
+	}
+}
+</code></pre></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E9%80%92%E5%BD%92/">递归</a>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

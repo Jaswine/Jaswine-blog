@@ -6,18 +6,45 @@
     <description>Recent content in Posts on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 01 Nov 2019 10:22:32 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 01 Feb 2020 10:22:32 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>服务器列表</title>
-      <link>https://jaswine.com/blog/posts/servers/</link>
-      <pubDate>Fri, 01 Nov 2019 10:22:32 +0800</pubDate>
+      <title>🔝[置顶]自己写的技术文档汇总</title>
+      <link>https://jaswine.com/blog/posts/docs/</link>
+      <pubDate>Sat, 01 Feb 2020 10:22:32 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/servers/</guid>
-      <description>&lt;p&gt;服务器上的服务太多，端口占用不清楚，写一个列表&lt;/p&gt;</description>
+      <guid>https://jaswine.com/blog/posts/docs/</guid>
+      <description>&lt;p&gt;汇总自己学习过的技术&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>🔝[置顶]自己扒的源代码汇总</title>
+      <link>https://jaswine.com/blog/posts/source/</link>
+      <pubDate>Sat, 01 Feb 2020 10:22:32 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/source/</guid>
+      <description>&lt;p&gt;汇总自己扒过的源码&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为啥推荐使用Java的包装类</title>
+      <link>https://jaswine.com/blog/posts/base_wrap/</link>
+      <pubDate>Mon, 16 Dec 2019 14:18:16 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/base_wrap/</guid>
+      <description>&lt;p&gt;在Java的世界中,有8个基本类型的变量还有对应的包装类。为什么会存在这样的问题呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[闰年效应]给财务系统带来的影响</title>
+      <link>https://jaswine.com/blog/posts/leap_year/</link>
+      <pubDate>Tue, 12 Nov 2019 22:44:12 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/leap_year/</guid>
+      <description>&lt;p&gt;我们一年是365天或者366天,每一个月是28，29，30或者31天,四年一闰年，每一个闰年就会多出一天，这给财务系统带来了很大的麻烦。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,6 +54,15 @@
       
       <guid>https://jaswine.com/blog/posts/boot_monitor/</guid>
       <description>&lt;p&gt;SpringBoot给我们提供了对应用程序的监控接口，有Actuator提供的监控，还可以使用Jconsole或者Visual 来监控应用的情况。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记录一次递归引起的StackOverflowError</title>
+      <link>https://jaswine.com/blog/posts/stackoverflow/</link>
+      <pubDate>Tue, 15 Oct 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
+      <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
     </item>
     
     <item>
