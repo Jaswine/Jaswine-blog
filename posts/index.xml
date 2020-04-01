@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>使用Java8中Stream的API</title>
+      <link>https://jaswine.com/blog/posts/stream/</link>
+      <pubDate>Thu, 05 Dec 2019 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/stream/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Java8&lt;/code&gt;中带来全新的&lt;code&gt;Stream API&lt;/code&gt;，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[闰年效应]给财务系统带来的影响</title>
       <link>https://jaswine.com/blog/posts/leap_year/</link>
       <pubDate>Tue, 12 Nov 2019 22:44:12 +0800</pubDate>

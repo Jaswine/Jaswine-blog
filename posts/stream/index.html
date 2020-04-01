@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="Java8中带来全新的Stream API，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/java/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/stream/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/java/index.xml">
-  
 
-  <title>Java &middot; Jaswine</title>
+  <title>使用Java8中Stream的API &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -110,43 +109,98 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/base_wrap/">为啥推荐使用Java的包装类</a>
-            <div class="post_time"><span class="date">12-16</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/stream/'>使用Java8中Stream的API</a></h2>
+          <span class="date">2019.12.05</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/stream/">使用Java8中Stream的API</a>
-            <div class="post_time"><span class="date">12-05</span></div>
+        <div class="post_content markdown"><p><code>Java8</code>中带来全新的<code>Stream API</code>，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。</p>
+
+<p>使用<code>stream</code>是因为生成一张复杂的报表，想用一条SQL直接写出来，但是一直没有达到想要的效果，碍于项目的进度，只能很丑的分成多条SQL来完成。查出来的结果还要各种按照条件删选。直到遇到<code>stream</code>，最直接的感觉就是:</p>
+
+<blockquote>
+<p>以操控集合像写SQL一样</p>
+</blockquote>
+
+<h1 id="stream特点">Stream特点</h1>
+
+<ul>
+<li>如同流一样，单向不可重复</li>
+<li>可以并行化操作</li>
+</ul>
+
+<h1 id="stream生命周期">Stream生命周期</h1>
+
+<p><code>stream</code>的操作主要分成三步:</p>
+
+<ul>
+<li>1.创建流</li>
+<li>2.Intermediate操作刘</li>
+<li>3.Terminal操作流</li>
+</ul>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/stream_flow.png" alt="流" /></p>
+
+<p>其中Intermediate操作可以叠加多次，但是Terminal操作只能操作一次。</p>
+
+<h2 id="stream的创建">Stream的创建</h2>
+
+<p>创建<code>stream</code>有以下几种方法:</p>
+
+<pre><code class="language-java"># 第一种
+Stream stream = Stream.of(1,2,3);
+
+# 第二种
+Integer[] intArr = [1,2,3]
+Stream stream = Stream.of(intArr);;
+
+# 第三种
+List&lt;Integer&gt; list = new ArrayList();
+stream = list.stream();
+</code></pre>
+
+<h2 id="intermediate操作stream">Intermediate操作Stream</h2>
+
+<pre><code class="language-java"># Filter(筛选出大于1的元素)
+List&lt;Integer&gt; intList = list.stream()
+                .fliter(i -&gt; i &gt; 1)
+                .collect(Collectors.toList());
+
+# map(映射成大写)
+List&lt;String&gt; output = wordList.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+
+# sorted(按照年龄排序)
+Person p1 new Person(&quot;James&quot;,12);
+Person p1 new Person(&quot;Pony&quot;,22);
+Person p1 new Person(&quot;Nancy&quot;,12);
+. . .
+List&lt;Person&gt; list = persons.stream().
+                .sorted(p - &gt; )
+
+</code></pre>
+
+<h2 id="terminal操作">Terminal操作</h2></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+              </span>
+            </div>
           </div>
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/stackoverflow/">记录一次递归引起的StackOverflowError</a>
-            <div class="post_time"><span class="date">10-15</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/datatime/">开发过程中前后台交互中对于时间Date的处理</a>
-            <div class="post_time"><span class="date">03-04</span></div>
-          </div>
-        </div>
-        
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
