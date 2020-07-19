@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="⏰前后台时间处理统一解决方案
+  <meta name="description" content="IO是学习编程绕不过的话题，从学习Java中BIO到NIO，再到Nginx、Redis、kafka....IO一直是非常热门的话题
+❓为什么他们那么快?
 "/>
   
 
@@ -20,11 +21,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/datatime/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/io/"/>
 
   
 
-  <title>开发过程中前后台交互中对于时间Date的处理 &middot; Jaswine</title>
+  <title>「大白话」计算机世界的I/O &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -112,23 +113,65 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/datatime/'>开发过程中前后台交互中对于时间Date的处理</a></h2>
-          <span class="date">2019.03.04</span>
+          <h2><a href='/blog/posts/io/'>「大白话」计算机世界的I/O</a></h2>
+          <span class="date">2020.04.19</span>
         </div>
-        <div class="post_content markdown"><p>⏰前后台时间处理统一解决方案</p>
+        <div class="post_content markdown"><p><code>IO</code>是学习编程绕不过的话题，从学习<code>Java</code>中<code>BIO</code>到<code>NIO</code>，再到<code>Nginx</code>、<code>Redis</code>、<code>kafka</code>....<code>IO</code>一直是非常热门的话题</p>
 
-<p>前后台分离开来以后，对于时间的处理一直是比较麻烦的地方，总结一下相关的解决方案:</p>
+<p><em><strong>❓为什么他们那么快?</strong></em></p>
+
+<p>无论是C语言写的Redis还是Java写的kafka，我们经常看到的字眼是使用了非阻塞的IO模型。说明这是和语言无关的特性，值得去学习一下</p>
+
+<p><strong>📌 有几点共识写在前面</strong></p>
+
+<blockquote>
+<p>1.应用程序的IO都是操作系统去实现的，本质上就是使用OS的API来完成IO
+2.Linux没有统一好异步非阻塞的IO模型</p>
+</blockquote>
+
+<!-- TOC -->
 
 <ul>
-<li><p>1.使用时间戳传输
-前台和后台对于时间戳的处理都很方便，使用时间戳可以转换任意格式的时间</p></li>
+<li><a href="#大纲">大纲</a>
 
-<li><p>2.使用JsonFormat格式化时间</p></li>
+<ul>
+<li><a href="#io模型">IO模型</a></li>
+<li><a href="#操作系统的io系统调用">操作系统的IO系统调用</a></li>
+<li><a href="#java中bio的执行细节">Java中BIO的执行细节</a></li>
+<li><a href="#java中nio的执行细节">Java中NIO的执行细节</a></li>
+<li><a href="#redis的io模型">Redis的IO模型</a></li>
+<li><a href="#nginx的io模型">Nginx的IO模型</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
 </ul>
 
-<pre><code class="language-java">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot; , timezone=&quot;GMT+8&quot;)
-private Date updateTime;
-</code></pre></div>
+<!-- /TOC -->
+
+<h1 id="大纲">大纲</h1>
+
+<h2 id="io模型">IO模型</h2>
+
+<p>在《UNIX网络编程•卷1:套接字联网API(第三版)》<sup>[1]</sup>中，UNIX网络模型如下</p>
+
+<blockquote>
+<p><img src="https://cdn.jaswine.com/Web/Blog/io/io_model.png" alt="" /></p>
+</blockquote>
+
+<h2 id="操作系统的io系统调用">操作系统的IO系统调用</h2>
+
+<h2 id="java中bio的执行细节">Java中BIO的执行细节</h2>
+
+<h2 id="java中nio的执行细节">Java中NIO的执行细节</h2>
+
+<h2 id="redis的io模型">Redis的IO模型</h2>
+
+<h2 id="nginx的io模型">Nginx的IO模型</h2>
+
+<h2 id="参考">参考</h2>
+
+<p><em>[1]<a href="https://book.douban.com/subject/4859464/">UNIX网络编程•卷1:套接字联网API(第三版)</a></em></p>
+
+<p><em>[2]<a href="https://man.linuxde.net/strace">Linux命令Doc-strace</a></em></p></div>
         <div class="post_footer">
           
           <div class="meta">
@@ -137,6 +180,14 @@ private Date updateTime;
                 <i class="remixicon-stack-line"></i>
                 
                 <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+                <a href="https://jaswine.com/blog/tags/io/">IO</a>
+                
+                <a href="https://jaswine.com/blog/tags/redis/">Redis</a>
+                
+                <a href="https://jaswine.com/blog/tags/nginx/">Nginx</a>
+                
+                <a href="https://jaswine.com/blog/tags/tomcat/">Tomcat</a>
                 
               </span>
             </div>

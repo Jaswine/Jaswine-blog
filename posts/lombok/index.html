@@ -10,7 +10,7 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="⏰前后台时间处理统一解决方案
+  <meta name="description" content="lombok在项目中常常使用，总结一下它的使用方法
 "/>
   
 
@@ -20,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/datatime/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/lombok/"/>
 
   
 
-  <title>开发过程中前后台交互中对于时间Date的处理 &middot; Jaswine</title>
+  <title>使用lombok来简化项目开发 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -112,23 +112,27 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/datatime/'>开发过程中前后台交互中对于时间Date的处理</a></h2>
-          <span class="date">2019.03.04</span>
+          <h2><a href='/blog/posts/lombok/'>使用lombok来简化项目开发</a></h2>
+          <span class="date">2019.04.12</span>
         </div>
-        <div class="post_content markdown"><p>⏰前后台时间处理统一解决方案</p>
+        <div class="post_content markdown"><p><code>lombok</code>在项目中常常使用，总结一下它的使用方法</p>
 
-<p>前后台分离开来以后，对于时间的处理一直是比较麻烦的地方，总结一下相关的解决方案:</p>
+<h1 id="lombok可以做什么">lombok可以做什么</h1>
+
+<p><code>lombok</code>给我们提供了一下的功能:</p>
 
 <ul>
-<li><p>1.使用时间戳传输
-前台和后台对于时间戳的处理都很方便，使用时间戳可以转换任意格式的时间</p></li>
-
-<li><p>2.使用JsonFormat格式化时间</p></li>
+<li>对象的<code>getter/setter</code>方法</li>
+<li>对象构造器</li>
+<li><code>hash/equals</code>方法重写</li>
+<li><code>bulider</code>构建对象模式</li>
 </ul>
 
-<pre><code class="language-java">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot; , timezone=&quot;GMT+8&quot;)
-private Date updateTime;
-</code></pre></div>
+<h1 id="examples">Examples</h1>
+
+<ul>
+<li><strong>Getter/Setter方法</strong></li>
+</ul></div>
         <div class="post_footer">
           
           <div class="meta">

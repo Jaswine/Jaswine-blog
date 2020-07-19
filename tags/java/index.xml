@@ -6,10 +6,30 @@
     <description>Recent content in Java on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Dec 2019 14:18:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2020 11:22:54 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>「大白话」计算机世界的I/O</title>
+      <link>https://jaswine.com/blog/posts/io/</link>
+      <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/io/</guid>
+      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「大白话」Java8与函数式编程</title>
+      <link>https://jaswine.com/blog/posts/java8_fun/</link>
+      <pubDate>Thu, 19 Mar 2020 11:22:54 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/java8_fun/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>为啥推荐使用Java的包装类</title>
@@ -36,6 +56,24 @@
       
       <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
       <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用lombok来简化项目开发</title>
+      <link>https://jaswine.com/blog/posts/lombok/</link>
+      <pubDate>Fri, 12 Apr 2019 10:31:38 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/lombok/</guid>
+      <description>&lt;p&gt;&lt;code&gt;lombok&lt;/code&gt;在项目中常常使用，总结一下它的使用方法&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用构建器(Builder)来替代多个构造器</title>
+      <link>https://jaswine.com/blog/posts/buider/</link>
+      <pubDate>Tue, 19 Mar 2019 10:38:39 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/buider/</guid>
+      <description>&lt;p&gt;在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+    <description>Recent content in 分布式 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 05 Jul 2020 11:15:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「汇总」分布式事务方案</title>
+      <link>https://jaswine.com/blog/posts/distributed_trans/</link>
+      <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/distributed_trans/</guid>
+      <description>&lt;p&gt;系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

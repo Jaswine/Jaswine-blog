@@ -6,15 +6,24 @@
     <description>Recent content on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 01 Feb 2020 10:22:32 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2020 11:15:23 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>「汇总」分布式事务方案</title>
+      <link>https://jaswine.com/blog/posts/distributed_trans/</link>
+      <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/distributed_trans/</guid>
+      <description>&lt;p&gt;系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>🔝[置顶]自己写的技术文档汇总</title>
       <link>https://jaswine.com/blog/posts/docs/</link>
-      <pubDate>Sat, 01 Feb 2020 10:22:32 +0800</pubDate>
+      <pubDate>Wed, 01 Jul 2020 10:22:32 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/docs/</guid>
       <description>&lt;p&gt;汇总自己学习过的技术&lt;/p&gt;</description>
@@ -23,10 +32,30 @@
     <item>
       <title>🔝[置顶]自己扒的源代码汇总</title>
       <link>https://jaswine.com/blog/posts/source/</link>
-      <pubDate>Sat, 01 Feb 2020 10:22:32 +0800</pubDate>
+      <pubDate>Wed, 01 Jul 2020 10:22:32 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/source/</guid>
       <description>&lt;p&gt;汇总自己扒过的源码&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「大白话」计算机世界的I/O</title>
+      <link>https://jaswine.com/blog/posts/io/</link>
+      <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/io/</guid>
+      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「大白话」Java8与函数式编程</title>
+      <link>https://jaswine.com/blog/posts/java8_fun/</link>
+      <pubDate>Thu, 19 Mar 2020 11:22:54 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/java8_fun/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -120,15 +149,6 @@
     </item>
     
     <item>
-      <title>使用构建器(Builder)来替代多个构造器</title>
-      <link>https://jaswine.com/blog/posts/buider/</link>
-      <pubDate>Mon, 19 Aug 2019 10:38:39 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/buider/</guid>
-      <description>&lt;p&gt;在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>SpringBoot&#43;Myabtis自动创建数据表</title>
       <link>https://jaswine.com/blog/posts/mybatis_auto/</link>
       <pubDate>Tue, 16 Jul 2019 10:41:34 +0800</pubDate>
@@ -144,6 +164,24 @@
       
       <guid>https://jaswine.com/blog/posts/ali_maven/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maven&lt;/code&gt;私服是企业开发的基础工具,在阿里云部署一个自己的&lt;code&gt;Maven&lt;/code&gt;私服仓库。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用lombok来简化项目开发</title>
+      <link>https://jaswine.com/blog/posts/lombok/</link>
+      <pubDate>Fri, 12 Apr 2019 10:31:38 +0000</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/lombok/</guid>
+      <description>&lt;p&gt;&lt;code&gt;lombok&lt;/code&gt;在项目中常常使用，总结一下它的使用方法&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用构建器(Builder)来替代多个构造器</title>
+      <link>https://jaswine.com/blog/posts/buider/</link>
+      <pubDate>Tue, 19 Mar 2019 10:38:39 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/buider/</guid>
+      <description>&lt;p&gt;在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。&lt;/p&gt;</description>
     </item>
     
     <item>

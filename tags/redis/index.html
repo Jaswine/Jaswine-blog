@@ -10,8 +10,7 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="⏰前后台时间处理统一解决方案
-"/>
+  <meta name="description" content="Hugo theme zozo example site."/>
   
 
   
@@ -20,11 +19,13 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/datatime/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/tags/redis/"/>
 
   
+  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/redis/index.xml">
+  
 
-  <title>开发过程中前后台交互中对于时间Date的处理 &middot; Jaswine</title>
+  <title>Redis &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -109,44 +110,22 @@
 </div>
 
   <div class="content">
-    <div class="post_page">
-      <div class="post animated fadeInDown">
-        <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/datatime/'>开发过程中前后台交互中对于时间Date的处理</a></h2>
-          <span class="date">2019.03.04</span>
-        </div>
-        <div class="post_content markdown"><p>⏰前后台时间处理统一解决方案</p>
-
-<p>前后台分离开来以后，对于时间的处理一直是比较麻烦的地方，总结一下相关的解决方案:</p>
-
-<ul>
-<li><p>1.使用时间戳传输
-前台和后台对于时间戳的处理都很方便，使用时间戳可以转换任意格式的时间</p></li>
-
-<li><p>2.使用JsonFormat格式化时间</p></li>
-</ul>
-
-<pre><code class="language-java">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot; , timezone=&quot;GMT+8&quot;)
-private Date updateTime;
-</code></pre></div>
-        <div class="post_footer">
-          
-          <div class="meta">
-            <div class="info">
-              <span class="field tags">
-                <i class="remixicon-stack-line"></i>
-                
-                <a href="https://jaswine.com/blog/tags/java/">Java</a>
-                
-              </span>
-            </div>
+    <div class="list_with_title">
+      
+      <div class="listing_title">2020</div>
+      <div class="listing">
+        
+        <div class="listing_item">
+          <div class="listing_post">
+            <a href="/blog/posts/io/">「大白话」计算机世界的I/O</a>
+            <div class="post_time"><span class="date">04-19</span></div>
           </div>
-          
         </div>
+        
       </div>
       
-      
     </div>
+    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

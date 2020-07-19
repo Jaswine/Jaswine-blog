@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lambda on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/lambda/</link>
+    <description>Recent content in lambda on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 19 Mar 2020 11:22:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「大白话」Java8与函数式编程</title>
+      <link>https://jaswine.com/blog/posts/java8_fun/</link>
+      <pubDate>Thu, 19 Mar 2020 11:22:54 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/java8_fun/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

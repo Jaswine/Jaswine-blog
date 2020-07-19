@@ -10,7 +10,7 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="⏰前后台时间处理统一解决方案
+  <meta name="description" content="系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下
 "/>
   
 
@@ -20,11 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/posts/datatime/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/distributed_trans/"/>
 
   
 
-  <title>开发过程中前后台交互中对于时间Date的处理 &middot; Jaswine</title>
+  <title>「汇总」分布式事务方案 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -112,23 +112,31 @@
     <div class="post_page">
       <div class="post animated fadeInDown">
         <div class="post_title post_detail_title">
-          <h2><a href='/blog/posts/datatime/'>开发过程中前后台交互中对于时间Date的处理</a></h2>
-          <span class="date">2019.03.04</span>
+          <h2><a href='/blog/posts/distributed_trans/'>「汇总」分布式事务方案</a></h2>
+          <span class="date">2020.07.05</span>
         </div>
-        <div class="post_content markdown"><p>⏰前后台时间处理统一解决方案</p>
+        <div class="post_content markdown"><p>系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下</p>
 
-<p>前后台分离开来以后，对于时间的处理一直是比较麻烦的地方，总结一下相关的解决方案:</p>
+<h2 id="前提概述">前提概述</h2>
+
+<p>事务具有ACID特性，即</p>
 
 <ul>
-<li><p>1.使用时间戳传输
-前台和后台对于时间戳的处理都很方便，使用时间戳可以转换任意格式的时间</p></li>
-
-<li><p>2.使用JsonFormat格式化时间</p></li>
+<li>原子性(atomicity)</li>
+<li>隔离性(isolation)</li>
+<li>持久性(durability)</li>
+<li>一致性(consistency)</li>
 </ul>
 
-<pre><code class="language-java">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot; , timezone=&quot;GMT+8&quot;)
-private Date updateTime;
-</code></pre></div>
+<h2 id="解决方案">解决方案</h2>
+
+<h3 id="2pc-xa">2PC/XA</h3>
+
+<h3 id="tcc">TCC</h3>
+
+<h3 id="本地消息表">本地消息表</h3>
+
+<h3 id="mq事务">MQ事务</h3></div>
         <div class="post_footer">
           
           <div class="meta">
@@ -136,7 +144,7 @@ private Date updateTime;
               <span class="field tags">
                 <i class="remixicon-stack-line"></i>
                 
-                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                <a href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
                 
               </span>
             </div>
