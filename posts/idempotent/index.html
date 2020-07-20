@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="在一个项目中，因为硬件机器太烂，网络太烂而导致用户点击消费的时候很长时间没有收到回复，用户再次点击引发了重复消费的问题
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/idempotent/"/>
+
+  
+
+  <title>「坑•经验」一次线上重复消费的问题-接口幂等性 &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/idempotent/'>「坑•经验」一次线上重复消费的问题-接口幂等性</a></h2>
+          <span class="date">2019.07.18</span>
+        </div>
+        <div class="post_content markdown"><p>在一个项目中，因为硬件机器太烂，网络太烂而导致用户点击消费的时候很长时间没有收到回复，用户再次点击引发了重复消费的问题</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#起因">起因</a></li>
+<li><a href="#排查">排查</a></li>
+<li><a href="#解决方案">解决方案</a>
+
+<ul>
+<li><a href="#app端限制操作">APP端限制操作</a></li>
+<li><a href="#后台接口做幂等">后台接口做幂等</a>
+
+<ul>
+<li><a href="#token机制">Token机制</a></li>
+</ul></li>
+<li><a href="#延伸redis实现">「延伸」Redis实现</a></li>
+<li><a href="#延伸状态机制">「延伸」状态机制</a></li>
+</ul></li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="起因">起因</h2>
+
+<p>XX政府机关食堂想做一个食堂人脸消费系统，实现靠脸吃饭的目标(主要是政府里外来的务工人员太多，原来的基于卡消费系统没有做失效的功能，而且卡容易掉，当然也是我们接了人家的大项目这个小系统算是加点钱半买半送的，实现了智能化改造，毕竟对官员的升迁有用嘛😎)。</p>
+
+<p>突然收到消息，一位顾客刷一次重复消费了两次。</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/idempotent/md-1.png" alt="" /></p>
+
+<h2 id="排查">排查</h2>
+
+<p>立马到现场排查，第一步定位是不是后台出错了，看了一下没有错误日志。</p>
+
+<p>根据现象，再次实地现场模拟，发现问题如下:</p>
+
+<ul>
+<li>极快速的点击两次，会发送两条消费请求过来(一样的参数)</li>
+<li>现场网络很差，经常掉包(食堂，之前没有预留到机房的网线)</li>
+</ul>
+
+<h2 id="解决方案">解决方案</h2>
+
+<h3 id="app端限制操作">APP端限制操作</h3>
+
+<p>APP端改成没有收到后台返回的消息，按钮处于不可点击的状态，这样就变成同步的状态</p>
+
+<h3 id="后台接口做幂等">后台接口做幂等</h3>
+
+<h4 id="token机制">Token机制</h4>
+
+<p>client端每一次调用消费接口之前要先调用token接口来获取消允许消费的token，然后再带上token的消费数据来实现消费，server端负责生成token以及负责校验token是否存在，存在则可以消费，不存在则不可以消费。这样就保证了消费接口的幂等性</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/idempotent/md-2.png" alt="" /></p>
+
+<p>如下图是实现的时序图</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/idempotent/md-3.png" alt="" /></p>
+
+<blockquote>
+<p>特点:
+1.通用</p>
+</blockquote>
+
+<h3 id="延伸-redis实现">「延伸」Redis实现</h3>
+
+<p>当一个对象(比如一个支付订单)需要且只能消费一次的时候，可以使用<code>Redis</code>吧这个对象的id存在redis中，如果这个对象呗消费成功，那么就将这个对象的id从redis中移除，如果没有的话则进行失败的处理逻辑</p>
+
+<ul>
+<li><strong>异常情况</strong></li>
+</ul>
+
+<p>做过一个合同管理的系统，依据合同的内容生成应收，然后对着应收去收钱(即到账),但是有情况是一次只到了部分的账款，即存在一个应收对应多个到账。当然也可以判断这个账款不收全就依然可以收费，这个又得写部分的业务代码</p>
+
+<blockquote>
+<p>特点:
+1.具体业务具体对待对象是否可消费</p>
+</blockquote>
+
+<h3 id="延伸-状态机制">「延伸」状态机制</h3>
+
+<p>给被消费的对象一个状态值(比如一个订单，待支付，已支付，已取消)，如果这个对象被消费时候就要校验这个对象的状态值是否符合当前状态下的业务</p>
+
+<blockquote>
+<p>特点:
+1.和业务切合太深</p>
+</blockquote></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E5%B9%82%E7%AD%89%E6%80%A7/">幂等性</a>
+                
+                <a href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

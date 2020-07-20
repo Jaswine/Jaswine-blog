@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="使用@Transactional注解就可以很简单的开启一个事务，但是在一次开发中发现事务没有起作用
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/debug_trans/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml">
-  
 
-  <title>分布式 &middot; Jaswine</title>
+  <title>「Debug」记录一次Spring事务不生效的情况 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -110,34 +109,128 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2020</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/distributed_trans/">「汇总」分布式事务方案</a>
-            <div class="post_time"><span class="date">07-05</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/debug_trans/'>「Debug」记录一次Spring事务不生效的情况</a></h2>
+          <span class="date">2020.04.15</span>
         </div>
-        
+        <div class="post_content markdown"><p>使用<code>@Transactional</code>注解就可以很简单的开启一个事务，但是在一次开发中发现事务没有起作用</p>
+
+<p>在一次开发中，发现一个事务没有起效果，导致数据库中产生了脏数据，最后通过Google的方法解决了。现在记录一下当时是怎么想的</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#现象">现象</a></li>
+<li><a href="#原因">原因</a></li>
+<li><a href="#解决办法">解决办法</a>
+
+<ul>
+<li><a href="#1引入自身bean">1.引入自身bean</a></li>
+<li><a href="#2通过applicationcontext引入bean">2.通过ApplicationContext引入bean</a></li>
+<li><a href="#3通过aopcontext获取到当前类的代理类">3.通过AopContext获取到当前类的代理类</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="现象">现象</h2>
+
+<p>有一个业务是将excel导进来的数据处理一下再导到数据库中，业务逻辑如下图</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/debug_trans/trans-1.png" alt="" /></p>
+
+<p>代码如下</p>
+
+<pre><code class="language-java">/**
+ *
+ *  代码知识模拟了一下
+ *  其中testTransaction想当于插入数据方法
+ *  testTransactionNoWork相当于转换数据方法
+ */
+public class InputDataService{
+
+    @Resource
+    private LogMapper logMapper;
+
+	@Transactional(rollbackFor = Exception.class)
+	public void testTransaction(){
+		for (int i = 1; i &lt; 100; i++) {
+			Log log = new Log(1,&quot;测试log&quot; + i);					
+			logMapper.insert(log);
+			System.out.println(i);
+			if (i == 3){
+				throw new RuntimeException(&quot;ERROR&quot;);
+			}
+		}
+	}
+	
+	public void testTransactionNoWork(){
+		this.testTransaction();
+	}
+}
+</code></pre>
+
+<h2 id="原因">原因</h2>
+
+<p>spring事务是使用的<code>AOP</code>的动态代理机制来生成一个代理类来完成的，事务相关操作都是由代理类来完成的。</p>
+
+<pre><code class="language-JAVA">public void testTransactionNoWork(){
+    this.testTransaction();
+}
+</code></pre>
+
+<p>这个方法使用<code>this</code>来调用方式，本质上是实例调用，并没有通过事务代理类来调用方法，所以导致了事务失效。</p>
+
+<p><strong>// TODO</strong></p>
+
+<ul>
+<li>1.Spring中事务实现的原理是什么</li>
+<li>2.Spring中AOP实现的原理是什么</li>
+</ul>
+
+<h2 id="解决办法">解决办法</h2>
+
+<h3 id="1-引入自身bean">1.引入自身bean</h3>
+
+<pre><code class="language-JAVA">    @Autowired
+    private InputDataService inputDataService;
+
+    public void testTransactionNoWork(){
+        this.inputDataService.testTransaction();
+    }
+
+</code></pre>
+
+<h3 id="2-通过applicationcontext引入bean">2.通过ApplicationContext引入bean</h3>
+
+<h3 id="3-通过aopcontext获取到当前类的代理类">3.通过AopContext获取到当前类的代理类</h3>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://juejin.im/post/5d4bea09f265da03db0764a7">🔗内部方法调用，事务不起作用的原因及解决办法</a></p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E4%BA%8B%E5%8A%A1/">事务</a>
+                
+                <a href="https://jaswine.com/blog/tags/spring/">spring</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
       </div>
       
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/idempotent/">「坑•经验」一次线上重复消费的问题-接口幂等性</a>
-            <div class="post_time"><span class="date">07-18</span></div>
-          </div>
-        </div>
-        
-      </div>
       
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

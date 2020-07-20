@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>动态代理 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+    <description>Recent content in 动态代理 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 15 Mar 2020 14:03:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「坑•经验」实现接口异常重试机制</title>
+      <link>https://jaswine.com/blog/posts/retry/</link>
+      <pubDate>Sun, 15 Mar 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/retry/</guid>
+      <description>&lt;p&gt;在使用微服务的过程中，系统之间接口相互调用有时候被调用的接口会莫名其妙的报错，有的时候是因为网络的问题，这非常影响系统的可用性，所以希望有接口重试机制&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

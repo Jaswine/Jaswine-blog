@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>事务 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E4%BA%8B%E5%8A%A1/</link>
+    <description>Recent content in 事务 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 Apr 2020 14:03:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E4%BA%8B%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「Debug」记录一次Spring事务不生效的情况</title>
+      <link>https://jaswine.com/blog/posts/debug_trans/</link>
+      <pubDate>Wed, 15 Apr 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/debug_trans/</guid>
+      <description>&lt;p&gt;使用&lt;code&gt;@Transactional&lt;/code&gt;注解就可以很简单的开启一个事务，但是在一次开发中发现事务没有起作用&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
