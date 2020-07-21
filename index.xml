@@ -239,6 +239,15 @@
     </item>
     
     <item>
+      <title>「总结」使用GeoHash算法来简化GIS点位查询</title>
+      <link>https://jaswine.com/blog/posts/geohash/</link>
+      <pubDate>Thu, 18 Oct 2018 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/geohash/</guid>
+      <description>&lt;p&gt;在项目中有一个需求查询最近的事件点信息，事件点位信息非常多，使用传统计算方式非常的耗时，&lt;code&gt;Google&lt;/code&gt;之后找打GeoHash算法，非常好，记录一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Bean的概念</title>
       <link>https://jaswine.com/blog/posts/bean/</link>
       <pubDate>Wed, 08 Aug 2018 14:38:54 +0000</pubDate>
