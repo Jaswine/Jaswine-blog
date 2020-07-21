@@ -146,22 +146,22 @@
 
 <p>我们使用的地图经度的范围是[-180,180],维度的范围是[-90,90],对整个地图进行第一次等分的时候可以将地图分成四个</p>
 
-<p><img src="https:/cdn.jaswine.com/Web/Blog/geohash/gh-1.png" alt="" /></p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-1.png" alt="" /></p>
 
 <p>对四个格子在进行平分又可以得到4个格子，一个地图就可以分成16小格子，依靠这个规则依次划分下去可以得到无穷无尽的格子，每一格子都有一个编码</p>
 
 <p>如现在对纬度<code>39.21779321</code>进行换算编码，最后得到这个纬度的纬度编码为:10110 11111
-<img src="https:/cdn.jaswine.com/Web/Blog/geohash/gh-2.png" alt="" /></p>
+<img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-2.png" alt="" /></p>
 
 <p>那么假设经度是<code>120.63946734</code>，那么他的经度编码为: 11010 10111</p>
 
-<p><img src="https:/cdn.jaswine.com/Web/Blog/geohash/gh-3.png" alt="" /></p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-3.png" alt="" /></p>
 
 <p>奇数位放纬度，偶数位放经度，得到混合编码为： 11011 01100 11101 11111</p>
 
 <p>每五位作为一个二进制数，转换成十进制数为 : 27 12 29 31</p>
 
-<p><img src="https:/cdn.jaswine.com/Web/Blog/geohash/gh-base.png" alt="" /></p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-base.png" alt="" /></p>
 
 <p>使用<code>base32</code>对得到的十进制数进行编码得到 : 3M57</p></div>
         <div class="post_footer">
