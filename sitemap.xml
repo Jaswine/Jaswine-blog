@@ -133,14 +133,14 @@
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/tags/springboot/</loc>
+    <loc>https://jaswine.com/blog/posts/boot_monitor/</loc>
     <lastmod>2019-10-19T08:37:42+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jaswine.com/blog/posts/boot_monitor/</loc>
+    <loc>https://jaswine.com/blog/tags/springboot/</loc>
     <lastmod>2019-10-19T08:37:42+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
