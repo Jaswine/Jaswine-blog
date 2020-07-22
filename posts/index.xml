@@ -12,30 +12,12 @@
     
     
     <item>
-      <title>「汇总」分布式事务方案</title>
+      <title>「总结」从本地事务到分布式事务</title>
       <link>https://jaswine.com/blog/posts/distributed_trans/</link>
       <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/distributed_trans/</guid>
       <description>&lt;p&gt;系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>🔝[置顶]自己写的技术文档汇总</title>
-      <link>https://jaswine.com/blog/posts/docs/</link>
-      <pubDate>Wed, 01 Jul 2020 10:22:32 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/docs/</guid>
-      <description>&lt;p&gt;汇总自己学习过的技术&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>🔝[置顶]自己扒的源代码汇总</title>
-      <link>https://jaswine.com/blog/posts/source/</link>
-      <pubDate>Wed, 01 Jul 2020 10:22:32 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/source/</guid>
-      <description>&lt;p&gt;汇总自己扒过的源码&lt;/p&gt;</description>
     </item>
     
     <item>

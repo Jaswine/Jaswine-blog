@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>「汇总」分布式事务方案</title>
+      <title>「总结」从本地事务到分布式事务</title>
       <link>https://jaswine.com/blog/posts/distributed_trans/</link>
       <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
       
