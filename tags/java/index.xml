@@ -6,10 +6,19 @@
     <description>Recent content in Java on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 19 Apr 2020 11:22:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 11:15:23 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>「🐞探究」使用strace来探究Java I/O在操作系统层面的调用</title>
+      <link>https://jaswine.com/blog/posts/tools/strace/</link>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/tools/strace/</guid>
+      <description>&lt;p&gt;我们写的代码最终以一个进程的形式运行在操作系统上，我们的进程要依赖操作系统完成一些工作，此时进程便会进行系统调用，Linux系统下提供strace来查看系统调用信息，以此来查看Java 提供的IO在操作系统层面是什么情况&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>「大白话」计算机世界的I/O</title>

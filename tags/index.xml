@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jul 2020 11:15:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 11:15:23 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,45 @@
     <item>
       <title></title>
       <link>https://jaswine.com/blog/tags/</link>
-      <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>I/O</title>
+      <link>https://jaswine.com/blog/tags/i/o/</link>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/i/o/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://jaswine.com/blog/tags/java/</link>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://jaswine.com/blog/tags/linux/</link>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>操作系统</title>
+      <link>https://jaswine.com/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     
@@ -35,15 +71,6 @@
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/io/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://jaswine.com/blog/tags/java/</link>
-      <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/tags/java/</guid>
       <description></description>
     </item>
     
