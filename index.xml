@@ -12,76 +12,76 @@
     
     
     <item>
-      <title>「🐞探究」使用strace来探究Java I/O在操作系统层面的调用</title>
-      <link>https://jaswine.com/blog/posts/tools/strace/</link>
+      <title>「💡探究」使用strace来探究Java I/O在操作系统层面的调用</title>
+      <link>https://jaswine.com/blog/posts/explore/strace/</link>
       <pubDate>Thu, 23 Jul 2020 11:15:23 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/tools/strace/</guid>
+      <guid>https://jaswine.com/blog/posts/explore/strace/</guid>
       <description>&lt;p&gt;我们写的代码最终以一个进程的形式运行在操作系统上，我们的进程要依赖操作系统完成一些工作，此时进程便会进行系统调用，Linux系统下提供strace来查看系统调用信息，以此来查看Java 提供的IO在操作系统层面是什么情况&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「总结」从本地事务到分布式事务</title>
-      <link>https://jaswine.com/blog/posts/distributed_trans/</link>
+      <title>「📝总结」从本地事务到分布式事务</title>
+      <link>https://jaswine.com/blog/posts/summary/distributed_trans/</link>
       <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/distributed_trans/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/distributed_trans/</guid>
       <description>&lt;p&gt;系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「大白话」计算机世界的I/O</title>
-      <link>https://jaswine.com/blog/posts/io/</link>
+      <title>「🔨实践」使用RocketMQ实现分布式事务</title>
+      <link>https://jaswine.com/blog/posts/practice/trans_rocketmq/</link>
+      <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/trans_rocketmq/</guid>
+      <description>&lt;p&gt;分布式系统中，消息队列是必不可不少的中间件，实现服务之间的异步调用，分布式系统中存在分布式事务的问题，使用RocketMQ可以实现分布式事务&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「📝总结」计算机世界的I/O</title>
+      <link>https://jaswine.com/blog/posts/summary/io/</link>
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/io/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/io/</guid>
       <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「Debug」记录一次Spring事务不生效的情况</title>
-      <link>https://jaswine.com/blog/posts/debug_trans/</link>
+      <title>「🐞DEBUG」记录一次Spring事务不生效的情况</title>
+      <link>https://jaswine.com/blog/posts/debug/debug_trans/</link>
       <pubDate>Wed, 15 Apr 2020 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/debug_trans/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/debug_trans/</guid>
       <description>&lt;p&gt;使用&lt;code&gt;@Transactional&lt;/code&gt;注解就可以很简单的开启一个事务，但是在一次开发中发现事务没有起作用&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「大白话」Java8与函数式编程</title>
-      <link>https://jaswine.com/blog/posts/java8_fun/</link>
+      <title>「📝总结」Java8与函数式编程</title>
+      <link>https://jaswine.com/blog/posts/summary/java8_fun/</link>
       <pubDate>Thu, 19 Mar 2020 11:22:54 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/java8_fun/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/java8_fun/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>「坑•经验」实现接口异常重试机制</title>
-      <link>https://jaswine.com/blog/posts/retry/</link>
+      <title>「🔨实践」实现接口异常重试机制</title>
+      <link>https://jaswine.com/blog/posts/practice/retry/</link>
       <pubDate>Sun, 15 Mar 2020 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/retry/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/retry/</guid>
       <description>&lt;p&gt;在使用微服务的过程中，系统之间接口相互调用有时候被调用的接口会莫名其妙的报错，有的时候是因为网络的问题，这非常影响系统的可用性，所以希望有接口重试机制&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>为啥推荐使用Java的包装类</title>
-      <link>https://jaswine.com/blog/posts/base_wrap/</link>
-      <pubDate>Mon, 16 Dec 2019 14:18:16 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/base_wrap/</guid>
-      <description>&lt;p&gt;在Java的世界中,有8个基本类型的变量还有对应的包装类。为什么会存在这样的问题呢？&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用Java8中Stream的API</title>
-      <link>https://jaswine.com/blog/posts/stream/</link>
+      <title>「🔨实践」使用Java8中Stream的API</title>
+      <link>https://jaswine.com/blog/posts/practice/stream/</link>
       <pubDate>Thu, 05 Dec 2019 11:15:23 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/stream/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/stream/</guid>
       <description>&lt;p&gt;&lt;code&gt;Java8&lt;/code&gt;中带来全新的&lt;code&gt;Stream API&lt;/code&gt;，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。&lt;/p&gt;</description>
     </item>
     
@@ -95,164 +95,74 @@
     </item>
     
     <item>
-      <title>SpringBoot应用监控</title>
-      <link>https://jaswine.com/blog/posts/boot_monitor/</link>
-      <pubDate>Sat, 19 Oct 2019 08:37:42 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/boot_monitor/</guid>
-      <description>&lt;p&gt;SpringBoot给我们提供了对应用程序的监控接口，有Actuator提供的监控，还可以使用Jconsole或者Visual 来监控应用的情况。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>记录一次递归引起的StackOverflowError</title>
-      <link>https://jaswine.com/blog/posts/stackoverflow/</link>
+      <title>「🐞DEBUG」记录一次递归引起的StackOverflowError</title>
+      <link>https://jaswine.com/blog/posts/debug/stackoverflow/</link>
       <pubDate>Tue, 15 Oct 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/stackoverflow/</guid>
       <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Spring事务设置read-only在Oracle数据库中不起作用</title>
-      <link>https://jaswine.com/blog/posts/oracle_read/</link>
-      <pubDate>Tue, 08 Oct 2019 09:24:50 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/oracle_read/</guid>
-      <description>&lt;p&gt;在多个SQL读中，我们开启read-only可以提高数据库的性能&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用wiremock来构建测试环境,落地先设计后开发</title>
-      <link>https://jaswine.com/blog/posts/wiremock/</link>
-      <pubDate>Tue, 17 Sep 2019 22:19:45 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/wiremock/</guid>
-      <description>&lt;p&gt;使用&lt;code&gt;wiremock&lt;/code&gt;可以模拟后台，将约定好的数据先写好，前端按照这个数据去展示，后台按照这个数据去开发。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用Jackson的JsonView返回不同的</title>
-      <link>https://jaswine.com/blog/posts/jsonview/</link>
-      <pubDate>Wed, 21 Aug 2019 15:28:43 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/jsonview/</guid>
-      <description>&lt;p&gt;在开发中我们返回的对象是VO(View Object),有的时候，返回的vo对象存在重复的情况。使用Jackson中的Jsonview可以解决这个问题。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>SpringBoot中打日志,让排查不再错误不再难</title>
-      <link>https://jaswine.com/blog/posts/boot_log/</link>
-      <pubDate>Mon, 19 Aug 2019 16:48:39 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/boot_log/</guid>
-      <description>&lt;p&gt;使用日志在排查错误的时候可以更快的定位到错误所在的位置,SpringBoot已经帮我们集成了相关的日志模块&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>随话Java对象GC的事</title>
-      <link>https://jaswine.com/blog/posts/gc/</link>
+      <title>「📝总结」随话Java对象GC的事</title>
+      <link>https://jaswine.com/blog/posts/summary/gc/</link>
       <pubDate>Mon, 19 Aug 2019 11:22:54 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/gc/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/gc/</guid>
       <description>&lt;p&gt;&#39;Java&#39;对象垃圾回收是一个系统的问题，有前后的联系关系，所以要前后串联起来看。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「坑•经验」一次线上重复消费的问题-接口幂等性</title>
-      <link>https://jaswine.com/blog/posts/idempotent/</link>
+      <title>「🐞DEBUG」记录一次线上重复消费的问题-接口幂等性</title>
+      <link>https://jaswine.com/blog/posts/debug/idempotent/</link>
       <pubDate>Thu, 18 Jul 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/idempotent/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/idempotent/</guid>
       <description>&lt;p&gt;在一个项目中，因为硬件机器太烂，网络太烂而导致用户点击消费的时候很长时间没有收到回复，用户再次点击引发了重复消费的问题&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>SpringBoot&#43;Myabtis自动创建数据表</title>
-      <link>https://jaswine.com/blog/posts/mybatis_auto/</link>
-      <pubDate>Tue, 16 Jul 2019 10:41:34 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/mybatis_auto/</guid>
-      <description>使用Springboot和Mybatis是项目中常用的框架，在有的项目中需要自己初始化一些表，这样全自动生成减少运维时间和出错的几率. 参考</description>
-    </item>
-    
-    <item>
-      <title>使用阿里云的maven打造自己的私服仓库</title>
-      <link>https://jaswine.com/blog/posts/ali_maven/</link>
+      <title>「🔨实践」使用阿里云的maven打造自己的私服仓库</title>
+      <link>https://jaswine.com/blog/posts/practice/ali_maven/</link>
       <pubDate>Mon, 15 Jul 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/ali_maven/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/ali_maven/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maven&lt;/code&gt;私服是企业开发的基础工具,在阿里云部署一个自己的&lt;code&gt;Maven&lt;/code&gt;私服仓库。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>使用lombok来简化项目开发</title>
-      <link>https://jaswine.com/blog/posts/lombok/</link>
-      <pubDate>Fri, 12 Apr 2019 10:31:38 +0000</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/lombok/</guid>
-      <description>&lt;p&gt;&lt;code&gt;lombok&lt;/code&gt;在项目中常常使用，总结一下它的使用方法&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用构建器(Builder)来替代多个构造器</title>
-      <link>https://jaswine.com/blog/posts/buider/</link>
+      <title>「🔨实践」使用构建器(Builder)来替代多个构造器</title>
+      <link>https://jaswine.com/blog/posts/practice/buider/</link>
       <pubDate>Tue, 19 Mar 2019 10:38:39 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/buider/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/buider/</guid>
       <description>&lt;p&gt;在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>SQL优化总结(持续更新...)</title>
-      <link>https://jaswine.com/blog/posts/sql/</link>
-      <pubDate>Tue, 12 Mar 2019 10:31:38 +0000</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/sql/</guid>
-      <description>&lt;p&gt;&lt;code&gt;SQL&lt;/code&gt;是影响程序性能的一个环节，知道常见的&lt;code&gt;SQL&lt;/code&gt;优化方法有必要的&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用Twitter的SnowFlake算法生成主键</title>
-      <link>https://jaswine.com/blog/posts/snowflake/</link>
-      <pubDate>Mon, 11 Mar 2019 17:25:34 +0000</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/snowflake/</guid>
-      <description>&lt;p&gt;分布式&lt;code&gt;ID&lt;/code&gt;生成策略&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>开发过程中前后台交互中对于时间Date的处理</title>
-      <link>https://jaswine.com/blog/posts/datatime/</link>
-      <pubDate>Mon, 04 Mar 2019 21:24:57 +0000</pubDate>
-      
-      <guid>https://jaswine.com/blog/posts/datatime/</guid>
-      <description>&lt;p&gt;⏰前后台时间处理统一解决方案&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>「总结」使用GeoHash算法来简化GIS点位查询</title>
-      <link>https://jaswine.com/blog/posts/geohash/</link>
+      <title>「🔨实践」使用GeoHash算法来简化GIS点位查询</title>
+      <link>https://jaswine.com/blog/posts/practice/geohash/</link>
       <pubDate>Thu, 18 Oct 2018 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/geohash/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/geohash/</guid>
       <description>&lt;p&gt;在项目中有一个需求查询最近的事件点信息，事件点位信息非常多，使用传统计算方式非常的耗时，&lt;code&gt;Google&lt;/code&gt;之后找打GeoHash算法，非常好，记录一下&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Bean的概念</title>
-      <link>https://jaswine.com/blog/posts/bean/</link>
+      <title>「📝总结」Bean的概念</title>
+      <link>https://jaswine.com/blog/posts/summary/bean/</link>
       <pubDate>Wed, 08 Aug 2018 14:38:54 +0000</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/bean/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/bean/</guid>
       <description>&lt;p&gt;☕&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>跨域(CORS)的解决办法和原理</title>
-      <link>https://jaswine.com/blog/posts/cors/</link>
+      <title>「📝总结」跨域(CORS)的解决办法和原理</title>
+      <link>https://jaswine.com/blog/posts/summary/cors/</link>
       <pubDate>Mon, 26 Jun 2017 15:51:07 +0000</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/cors/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/cors/</guid>
       <description>&lt;p&gt;跨域是我们常常遇到的问题&lt;/p&gt;</description>
     </item>
     

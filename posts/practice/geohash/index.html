@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="在项目中有一个需求查询最近的事件点信息，事件点位信息非常多，使用传统计算方式非常的耗时，Google之后找打GeoHash算法，非常好，记录一下
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/geohash/"/>
+
+  
+
+  <title>「🔨实践」使用GeoHash算法来简化GIS点位查询 &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/geohash/'>「🔨实践」使用GeoHash算法来简化GIS点位查询</a></h2>
+          <span class="date">2018.10.18</span>
+        </div>
+        <div class="post_content markdown"><p>在项目中有一个需求查询最近的事件点信息，事件点位信息非常多，使用传统计算方式非常的耗时，<code>Google</code>之后找打GeoHash算法，非常好，记录一下</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#起因">起因</a></li>
+<li><a href="#解决方案">解决方案</a>
+
+<ul>
+<li><a href="#geohash">GeoHash</a></li>
+</ul></li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="起因">起因</h2>
+
+<p>园区中有很多网格员来处理园区的中发生的事件，网格员开启定位后就可以查看附近的事件信息然后到现场进行处理，本来的实现方法是遍历事件表，然后将事件表中点位和网格员所在的点位进行计算，查找出附近的事件信息</p>
+
+<p>但是随着上线之后事件信息原来越多，每一次遍历表还要进行点位计算非常的耗时，所以这个方法需要修改</p>
+
+<h2 id="解决方案">解决方案</h2>
+
+<h3 id="geohash">GeoHash</h3>
+
+<p>GeoHash算法的思想就是讲地图分割成一个个小格子，然后每一个进行编码(唯一)，然后对事件点位信息进行hash计算出对应的编码存储，实质上就是将事件和格子进行了绑定，当网格员查询附件事件的时候就直接hash计算出网格员所在格子编码，然后使用这个编码去事件表中查询这个格子中所有事件，这样就避免了计算的步骤</p>
+
+<p><strong>实现</strong></p>
+
+<p>我们使用的地图经度的范围是[-180,180],维度的范围是[-90,90],对整个地图进行第一次等分的时候可以将地图分成四个</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-1.png" alt="" /></p>
+
+<p>对四个格子在进行平分又可以得到4个格子，一个地图就可以分成16小格子，依靠这个规则依次划分下去可以得到无穷无尽的格子，每一格子都有一个编码</p>
+
+<p>如现在对纬度<code>39.21779321</code>进行换算编码，最后得到这个纬度的纬度编码为:10110 11111
+<img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-2.png" alt="" /></p>
+
+<p>那么假设经度是<code>120.63946734</code>，那么他的经度编码为: 11010 10111</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-3.png" alt="" /></p>
+
+<p>奇数位放纬度，偶数位放经度，得到混合编码为： 11011 01100 11101 11111</p>
+
+<p>每五位作为一个二进制数，转换成十进制数为 : 27 12 29 31</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/geohash/gh-base.png" alt="" /></p>
+
+<p>使用<code>base32</code>对得到的十进制数进行编码得到 : 3M57</p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/gis/">GIS</a>
+                
+                <a href="https://jaswine.com/blog/tags/hash/">hash</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

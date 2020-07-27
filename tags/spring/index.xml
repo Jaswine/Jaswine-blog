@@ -12,29 +12,29 @@
     
     
     <item>
-      <title>「Debug」记录一次Spring事务不生效的情况</title>
-      <link>https://jaswine.com/blog/posts/debug_trans/</link>
+      <title>「🐞DEBUG」记录一次Spring事务不生效的情况</title>
+      <link>https://jaswine.com/blog/posts/debug/debug_trans/</link>
       <pubDate>Wed, 15 Apr 2020 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/debug_trans/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/debug_trans/</guid>
       <description>&lt;p&gt;使用&lt;code&gt;@Transactional&lt;/code&gt;注解就可以很简单的开启一个事务，但是在一次开发中发现事务没有起作用&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「坑•经验」实现接口异常重试机制</title>
-      <link>https://jaswine.com/blog/posts/retry/</link>
+      <title>「🔨实践」实现接口异常重试机制</title>
+      <link>https://jaswine.com/blog/posts/practice/retry/</link>
       <pubDate>Sun, 15 Mar 2020 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/retry/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/retry/</guid>
       <description>&lt;p&gt;在使用微服务的过程中，系统之间接口相互调用有时候被调用的接口会莫名其妙的报错，有的时候是因为网络的问题，这非常影响系统的可用性，所以希望有接口重试机制&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Bean的概念</title>
-      <link>https://jaswine.com/blog/posts/bean/</link>
+      <title>「📝总结」Bean的概念</title>
+      <link>https://jaswine.com/blog/posts/summary/bean/</link>
       <pubDate>Wed, 08 Aug 2018 14:38:54 +0000</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/bean/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/bean/</guid>
       <description>&lt;p&gt;☕&lt;/p&gt;</description>
     </item>
     

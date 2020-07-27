@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="StackOverflowError非常少见，今天在业务代码中的一个俄地柜方法报了突然StackOverflowError错误。
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/debug/stackoverflow/"/>
+
+  
+
+  <title>「🐞DEBUG」记录一次递归引起的StackOverflowError &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/debug/stackoverflow/'>「🐞DEBUG」记录一次递归引起的StackOverflowError</a></h2>
+          <span class="date">2019.10.15</span>
+        </div>
+        <div class="post_content markdown"><p><code>StackOverflowError</code>非常少见，今天在业务代码中的一个俄地柜方法报了突然<code>StackOverflowError</code>错误。</p>
+
+<h2 id="1-场景">1.场景</h2>
+
+<p>数据库有一张表,记录了一个链接的推荐关系，比如A第一次打开链接推荐给B，B又推荐给C，C继续推荐下去。。。</p>
+
+<p>这个数据模型应该是一个树形，现在的一个需求就是输入一个人id能知道他的源头推荐人(或者说他的推荐路径)是什么</p>
+
+<ul>
+<li><strong>表结构简化</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">推荐人id</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">B</td>
+<td align="left">A</td>
+</tr>
+
+<tr>
+<td align="left">C</td>
+<td align="left">B</td>
+</tr>
+
+<tr>
+<td align="left">D</td>
+<td align="left">C</td>
+</tr>
+
+<tr>
+<td align="left">E</td>
+<td align="left">D</td>
+</tr>
+
+<tr>
+<td align="left">F</td>
+<td align="left">E</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="2-问题">2.问题</h2>
+
+<p>测试在测试的过程中，伪造数据发生了循环的错误，A推荐B，B推荐C，C又推荐A形成了一个循环，递归一直调用，导致<code>StackOverflowError</code>的发生。</p>
+
+<h2 id="3-解决">3.解决</h2>
+
+<p>强制声明递归次数，超过这个次数还没有返回直接抛异常或者给别的提示。</p>
+
+<h2 id="附-算法实现">附.算法实现</h2>
+
+<pre><code class="language-java">public class Demo {
+
+    /**
+     * 模拟推荐关系
+     * 第一个Integer   -&gt;   id
+     * 第二个Integer   -&gt;   推荐人id 
+     */
+    static Map&lt;Integer,Integer&gt; a;
+
+    /* 获得推荐人id */
+	static int getTj(int id){
+		Integer integer = a.get(id);
+		if (integer == null){
+			return integer;
+		}
+		return getTj(integer);
+	}
+
+	public static void main(String[] args) {
+		a = new HashMap&lt;&gt;(8);
+		a.put(1, 2);
+		a.put(2, 3);
+		a.put(3, 1);
+		System.out.println(getTj(1));
+	}
+}
+</code></pre></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/%E9%80%92%E5%BD%92/">递归</a>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

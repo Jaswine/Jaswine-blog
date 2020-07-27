@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="IO是学习编程绕不过的话题，从学习Java中BIO到NIO，再到Nginx、Redis、kafka....IO一直是非常热门的话题
+❓为什么他们那么快?
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/summary/io/"/>
+
+  
+
+  <title>「📝总结」计算机世界的I/O &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/summary/io/'>「📝总结」计算机世界的I/O</a></h2>
+          <span class="date">2020.04.19</span>
+        </div>
+        <div class="post_content markdown"><p><code>IO</code>是学习编程绕不过的话题，从学习<code>Java</code>中<code>BIO</code>到<code>NIO</code>，再到<code>Nginx</code>、<code>Redis</code>、<code>kafka</code>....<code>IO</code>一直是非常热门的话题</p>
+
+<p><em><strong>❓为什么他们那么快?</strong></em></p>
+
+<p>无论是C语言写的Redis还是Java写的kafka，我们经常看到的字眼是使用了非阻塞的IO模型。说明这是和语言无关的特性，值得去学习一下</p>
+
+<p><strong>📌 有几点共识写在前面</strong></p>
+
+<blockquote>
+<p>1.应用程序的IO都是操作系统去实现的，本质上就是使用OS的API来完成IO
+2.Linux没有统一好异步非阻塞的IO模型</p>
+</blockquote>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#大纲">大纲</a>
+
+<ul>
+<li><a href="#io模型">IO模型</a></li>
+<li><a href="#操作系统的io系统调用">操作系统的IO系统调用</a></li>
+<li><a href="#java中bio的执行细节">Java中BIO的执行细节</a></li>
+<li><a href="#java中nio的执行细节">Java中NIO的执行细节</a></li>
+<li><a href="#redis的io模型">Redis的IO模型</a></li>
+<li><a href="#nginx的io模型">Nginx的IO模型</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="大纲">大纲</h1>
+
+<h2 id="io模型">IO模型</h2>
+
+<p>在《UNIX网络编程•卷1:套接字联网API(第三版)》<sup>[1]</sup>中，UNIX网络模型如下</p>
+
+<blockquote>
+<p><img src="https://cdn.jaswine.com/Web/Blog/io/io_model.png" alt="" /></p>
+</blockquote>
+
+<h2 id="操作系统的io系统调用">操作系统的IO系统调用</h2>
+
+<h2 id="java中bio的执行细节">Java中BIO的执行细节</h2>
+
+<h2 id="java中nio的执行细节">Java中NIO的执行细节</h2>
+
+<h2 id="redis的io模型">Redis的IO模型</h2>
+
+<h2 id="nginx的io模型">Nginx的IO模型</h2>
+
+<h2 id="参考">参考</h2>
+
+<p><em>[1]<a href="https://book.douban.com/subject/4859464/">UNIX网络编程•卷1:套接字联网API(第三版)</a></em></p>
+
+<p><em>[2]<a href="https://man.linuxde.net/strace">Linux命令Doc-strace</a></em></p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+                <a href="https://jaswine.com/blog/tags/io/">IO</a>
+                
+                <a href="https://jaswine.com/blog/tags/redis/">Redis</a>
+                
+                <a href="https://jaswine.com/blog/tags/nginx/">Nginx</a>
+                
+                <a href="https://jaswine.com/blog/tags/tomcat/">Tomcat</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

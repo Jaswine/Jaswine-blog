@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>记录一次递归引起的StackOverflowError</title>
-      <link>https://jaswine.com/blog/posts/stackoverflow/</link>
+      <title>「🐞DEBUG」记录一次递归引起的StackOverflowError</title>
+      <link>https://jaswine.com/blog/posts/debug/stackoverflow/</link>
       <pubDate>Tue, 15 Oct 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/stackoverflow/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/stackoverflow/</guid>
       <description>&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;非常少见，今天在业务代码中的一个俄地柜方法报了突然&lt;code&gt;StackOverflowError&lt;/code&gt;错误。&lt;/p&gt;</description>
     </item>
     

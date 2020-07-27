@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>「坑•经验」实现接口异常重试机制</title>
-      <link>https://jaswine.com/blog/posts/retry/</link>
+      <title>「🔨实践」实现接口异常重试机制</title>
+      <link>https://jaswine.com/blog/posts/practice/retry/</link>
       <pubDate>Sun, 15 Mar 2020 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/retry/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/retry/</guid>
       <description>&lt;p&gt;在使用微服务的过程中，系统之间接口相互调用有时候被调用的接口会莫名其妙的报错，有的时候是因为网络的问题，这非常影响系统的可用性，所以希望有接口重试机制&lt;/p&gt;</description>
     </item>
     

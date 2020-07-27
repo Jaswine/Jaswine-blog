@@ -12,20 +12,29 @@
     
     
     <item>
-      <title>「总结」从本地事务到分布式事务</title>
-      <link>https://jaswine.com/blog/posts/distributed_trans/</link>
+      <title>「📝总结」从本地事务到分布式事务</title>
+      <link>https://jaswine.com/blog/posts/summary/distributed_trans/</link>
       <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/distributed_trans/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/distributed_trans/</guid>
       <description>&lt;p&gt;系统变成分布式之后，原来在单个事务中完成的业务分布到多个事务中，维持事务的ACID带来困难，有很多解决分布式事务的解决方案，汇总一下&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>「坑•经验」一次线上重复消费的问题-接口幂等性</title>
-      <link>https://jaswine.com/blog/posts/idempotent/</link>
+      <title>「🔨实践」使用RocketMQ实现分布式事务</title>
+      <link>https://jaswine.com/blog/posts/practice/trans_rocketmq/</link>
+      <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/trans_rocketmq/</guid>
+      <description>&lt;p&gt;分布式系统中，消息队列是必不可不少的中间件，实现服务之间的异步调用，分布式系统中存在分布式事务的问题，使用RocketMQ可以实现分布式事务&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「🐞DEBUG」记录一次线上重复消费的问题-接口幂等性</title>
+      <link>https://jaswine.com/blog/posts/debug/idempotent/</link>
       <pubDate>Thu, 18 Jul 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/idempotent/</guid>
+      <guid>https://jaswine.com/blog/posts/debug/idempotent/</guid>
       <description>&lt;p&gt;在一个项目中，因为硬件机器太烂，网络太烂而导致用户点击消费的时候很长时间没有收到回复，用户再次点击引发了重复消费的问题&lt;/p&gt;</description>
     </item>
     

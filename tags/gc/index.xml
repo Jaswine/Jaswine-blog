@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>随话Java对象GC的事</title>
-      <link>https://jaswine.com/blog/posts/gc/</link>
+      <title>「📝总结」随话Java对象GC的事</title>
+      <link>https://jaswine.com/blog/posts/summary/gc/</link>
       <pubDate>Mon, 19 Aug 2019 11:22:54 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/gc/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/gc/</guid>
       <description>&lt;p&gt;&#39;Java&#39;对象垃圾回收是一个系统的问题，有前后的联系关系，所以要前后串联起来看。&lt;/p&gt;</description>
     </item>
     

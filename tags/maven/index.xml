@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>使用阿里云的maven打造自己的私服仓库</title>
-      <link>https://jaswine.com/blog/posts/ali_maven/</link>
+      <title>「🔨实践」使用阿里云的maven打造自己的私服仓库</title>
+      <link>https://jaswine.com/blog/posts/practice/ali_maven/</link>
       <pubDate>Mon, 15 Jul 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/ali_maven/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/ali_maven/</guid>
       <description>&lt;p&gt;&lt;code&gt;Maven&lt;/code&gt;私服是企业开发的基础工具,在阿里云部署一个自己的&lt;code&gt;Maven&lt;/code&gt;私服仓库。&lt;/p&gt;</description>
     </item>
     

@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>「大白话」计算机世界的I/O</title>
-      <link>https://jaswine.com/blog/posts/io/</link>
+      <title>「📝总结」计算机世界的I/O</title>
+      <link>https://jaswine.com/blog/posts/summary/io/</link>
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/io/</guid>
+      <guid>https://jaswine.com/blog/posts/summary/io/</guid>
       <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>

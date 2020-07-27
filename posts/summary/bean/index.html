@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="☕
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/summary/bean/"/>
+
+  
+
+  <title>「📝总结」Bean的概念 &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/summary/bean/'>「📝总结」Bean的概念</a></h2>
+          <span class="date">2018.08.08</span>
+        </div>
+        <div class="post_content markdown"><p>☕</p>
+
+<p>学习<code>Spring</code>的时候，<code>Bean</code>是我们最常看到的名词，但是对于他的理解不够深入，所以花时间来系统的学习一下到底什么是<code>Bean</code>。</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#java-bean">Java Bean</a></li>
+<li><a href="#spring-bean">Spring Bean</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="java-bean">Java Bean</h1>
+
+<p>之前对<code>Java Bean</code>不是很理解，就肤浅的理解成为<code>Java</code>对象，随着学习的深入发现理解是不对的，所以系统的查了一下。</p>
+
+<p><a href="https://zh.wikipedia.org/wiki/JavaBeans">JavaBeans -- 维基百科</a>定义了<code>Java Bean</code>是什么
+&gt; JavaBeans是Java中一种特殊的类，可以将多个对象封装到一个对象（bean）中。特点是可序列化，提供无参构造器，提供getter方法和setter方法访问对象的属性。</p>
+
+<p>总结一下，就是以下几点</p>
+
+<ul>
+<li>可以序列化</li>
+<li>类是一个公共类(Public修饰)</li>
+<li>不能有公共的实例变量，变量都应该是private的</li>
+<li>提供无参构造器</li>
+<li>提供setter和getter方法</li>
+</ul>
+
+<p><a href="https://blog.csdn.net/litong09282039/article/details/46888169">Java Bean 简介及其应用</a>这篇文章中对于<code>Java Bean</code>的结构进行了说明，包括以下三个部分</p>
+
+<blockquote>
+<ul>
+<li>属性：即Java Bean类的成员变量，用于描述JavaBean对象的状态，对象属性值的改变触发事件，属性本身就是事件源。</li>
+<li>方法：在Java Bean中，函数和过程统称为方法，通过方法来改变和获取属性的值。方法可以分为构造方法、访问方法和普通方法等。</li>
+<li>事件：事件实际上是一种特殊的Java Bean，属性值的改变触发事件，事件激发相关对象作出反应，通过Java Bean注册对象事件监听者机制来接收、处理事件，它实现了Java Bean之间的通信。</li>
+</ul>
+</blockquote>
+
+<p><a href="https://www.zhihu.com/question/19773379">Java bean 是个什么概念 -- 知乎</a>这个问题中的第一个回答说明了为什么使用这种规范，看完这篇文章我已经明白Sun公司开始他的套路——定义规范，让程序员或者厂商自己去实现。就好像JDBC一样。下面写一下代码说明一下我的理解吧</p>
+
+<pre><code class="language-java">public class Person {
+	public String name;
+	public int age;
+}
+</code></pre>
+
+<p>如上面的代码所示，我声明了一个类<code>Person</code>，他有两个成员变量，我们获取成员变量的值方法就是</p>
+
+<pre><code class="language-java">String name = new Person().name
+</code></pre>
+
+<p>这个name我是怎么赋值的，我不知道。我现在修改一下Person类，改成如下：</p>
+
+<pre><code class="language-java">public class Person {
+	
+    public int age;
+
+    public String getName(){
+        String name = &quot;&quot;;
+        name = Math.random().toString;
+        return name;
+    }
+}
+</code></pre>
+
+<p>现在name这个成员变量都没有了，那以前那个程序肯定会报错啊，现在得到name是</p>
+
+<pre><code class="language-java">String name = new Person().getName();
+</code></pre>
+
+<p>只是这边名字是通过随机生成的逻辑，我们也可以用别的逻辑来写。这样有好处啊，我反正会最后给你一个String的name，但是我怎么得到的你不知道，听着就越来越像接口的定义，接口就是规范啊，所以自然而然的形成如下的规范。</p>
+
+<pre><code class="language-java">public class Person {
+
+	public String name;
+	public int age ;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+}
+</code></pre>
+
+<p>类成员变量的赋值和取值都通过两个方法来实现，那其中到底怎么实现你可以去写。</p>
+
+<p>ps：这里我觉得我的理解不是很好</p>
+
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414#rd">Java 帝国之Java bean (上）</a>，
+<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513118&amp;idx=1&amp;sn=487fefb8fa7efd59de6f37043eb21799#rd">Java 帝国之Java bean（下）</a>这两篇文章用非常通俗的话讲<code>Java Bean</code>说明白了，说明白了他为什么会产生说了他的变迁历史，因为我没有使用过EJB开发过项目，等我从事Java开发的时候已经是Spring的天下，所以EJB为什么差我不知道，不过大家都说差那肯定就是差了啊。</p>
+
+<h1 id="spring-bean">Spring Bean</h1>
+
+<p><a href="https://stackoverflow.com/questions/21866571/difference-between-javabean-and-spring-bean">Difference between JavaBean and Spring bean -- Stack Overflow</a>这个投票最高的回答中是这么说的</p>
+
+<pre><code class="language-plant">Java Bean 有如下三个特征
+ - 有public修饰的空参构造器
+ - 通过setter和getter方法来修改和获得成员变量
+ - 实现序列化接口
+  
+Spring Bean是一个被Spring管理的简单对象。这个对象特别之处就是他是被spring容器实例化，配置和管理的。spring bean在spring的配置文件中被定义(一般是注解的方式),被spring容器实例化然后被依赖注入到应用中。
+
+注意了啊，spring bean不一定是java bean， spring bean可以不实现序列化的接口，也可以有有参数的构造器等等等。。。(PS:这不就是java类吗，，，)
+下面是一个文章链接
+</code></pre>
+
+<p><img src="spring2/s1.png" alt="JavaBean" /></p>
+
+<p><a href="http://crbtech.in/Java-Training/javabeans-vs-spring-beans-vs-pojos/">JavaBeans vs Spring beans vs POJOs</a>,
+<a href="http://www.importnew.com/14019.html">JavaBeans vs Spring beans vs POJOs -- 中文</a>这连个是一个文章，中英文版本。习惯了阅读英文是一件非常有意思的事情哈，上面的回答就是拷贝这个文章中的，可以去详细看一下原文是怎么写的。
+PS：这个文章提到一个人叫<code>Martin Fowler</code>，你以后会经常看到他，微服务就是他提出的，相关的文章可以在他的网站看到，理所当然是英文的。。<a href="https://www.martinfowler.com/">Martin Fowler网站</a></p>
+
+<p>上面的还有几个链接文章基本上讲的是一个内容，可以看一看。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/JavaBeans">JavaBeans -- 维基百科</a></li>
+<li><a href="https://blog.csdn.net/litong09282039/article/details/46888169">Java Bean 简介及其应用</a></li>
+<li><a href="https://www.zhihu.com/question/19773379">Java bean 是个什么概念 -- 知乎</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414#rd">Java 帝国之Java bean (上）</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513118&amp;idx=1&amp;sn=487fefb8fa7efd59de6f37043eb21799#rd">Java 帝国之Java bean（下）</a></li>
+<li><a href="https://stackoverflow.com/questions/21866571/difference-between-javabean-and-spring-bean">Difference between JavaBean and Spring bean -- Stack Overflow</a></li>
+<li><a href="http://crbtech.in/Java-Training/javabeans-vs-spring-beans-vs-pojos/">JavaBeans vs Spring beans vs POJOs</a></li>
+<li><a href="http://www.importnew.com/14019.html">JavaBeans vs Spring beans vs POJOs -- 中文</a></li>
+<li><a href="https://www.quora.com/What-are-the-differences-between-Spring-beans-and-Java-beans">What are the differences between Spring beans and Java beans? -- Quora</a></li>
+<li><a href="https://blog.csdn.net/haibin_hu/article/details/51793606">传统javabean与spring中的bean的区别</a></li>
+<li><a href="https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html">@Bean注解 -- spring官方Doc</a></li>
+<li><a href="https://wizardforcel.gitbooks.io/spring-doc-3x/content/17.html">Spring IoC 容器和 bean 的介绍 -- Spring中文文档3.1</a></li>
+<li><a href="https://www.tutorialspoint.com/spring/spring_bean_definition.htm">Spring - Bean Definition</a></li>
+<li><a href="https://www.baeldung.com/spring-bean-annotations">Spring Bean Annotations</a></li>
+</ul></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/spring/">Spring</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="Java8中带来全新的Stream API，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/stream/"/>
+
+  
+
+  <title>「🔨实践」使用Java8中Stream的API &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/stream/'>「🔨实践」使用Java8中Stream的API</a></h2>
+          <span class="date">2019.12.05</span>
+        </div>
+        <div class="post_content markdown"><p><code>Java8</code>中带来全新的<code>Stream API</code>，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。</p>
+
+<p>使用<code>stream</code>是因为生成一张复杂的报表，想用一条SQL直接写出来，但是一直没有达到想要的效果，碍于项目的进度，只能很丑的分成多条SQL来完成。查出来的结果还要各种按照条件删选。直到遇到<code>stream</code>，最直接的感觉就是:</p>
+
+<blockquote>
+<p>以操控集合像写SQL一样</p>
+</blockquote>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#stream特点">Stream特点</a></li>
+<li><a href="#stream生命周期">Stream生命周期</a>
+
+<ul>
+<li><a href="#stream的创建">Stream的创建</a></li>
+<li><a href="#intermediate操作stream">Intermediate操作Stream</a></li>
+<li><a href="#terminal操作">Terminal操作</a></li>
+</ul></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="stream特点">Stream特点</h1>
+
+<ul>
+<li>如同流一样，单向不可重复</li>
+<li>可以并行化操作</li>
+</ul>
+
+<h1 id="stream生命周期">Stream生命周期</h1>
+
+<p><code>stream</code>的操作主要分成三步:</p>
+
+<ul>
+<li>1.创建流</li>
+<li>2.Intermediate操作刘</li>
+<li>3.Terminal操作流</li>
+</ul>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/stream_flow.png" alt="流" /></p>
+
+<p>其中Intermediate操作可以叠加多次，但是Terminal操作只能操作一次。</p>
+
+<h2 id="stream的创建">Stream的创建</h2>
+
+<p>创建<code>stream</code>有以下几种方法:</p>
+
+<pre><code class="language-java"># 第一种
+Stream stream = Stream.of(1,2,3);
+
+# 第二种
+Integer[] intArr = [1,2,3]
+Stream stream = Stream.of(intArr);;
+
+# 第三种
+List&lt;Integer&gt; list = new ArrayList();
+stream = list.stream();
+</code></pre>
+
+<h2 id="intermediate操作stream">Intermediate操作Stream</h2>
+
+<pre><code class="language-java"># Filter(筛选出大于1的元素)
+List&lt;Integer&gt; intList = list.stream()
+                .fliter(i -&gt; i &gt; 1)
+                .collect(Collectors.toList());
+
+# map(映射成大写)
+List&lt;String&gt; output = wordList.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+
+# sorted(按照年龄排序)
+Person p1 new Person(&quot;James&quot;,12);
+Person p1 new Person(&quot;Pony&quot;,22);
+Person p1 new Person(&quot;Nancy&quot;,12);
+. . .
+List&lt;Person&gt; list = persons.stream().
+                .sorted(p - &gt; )
+
+</code></pre>
+
+<h2 id="terminal操作">Terminal操作</h2></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

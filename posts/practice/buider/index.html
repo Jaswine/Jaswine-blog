@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/buider/"/>
+
+  
+
+  <title>「🔨实践」使用构建器(Builder)来替代多个构造器 &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/buider/'>「🔨实践」使用构建器(Builder)来替代多个构造器</a></h2>
+          <span class="date">2019.03.19</span>
+        </div>
+        <div class="post_content markdown"><p>在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#传统方式构造器重载">传统方式(构造器重载)</a></li>
+<li><a href="#传统方式缺点">传统方式缺点</a></li>
+<li><a href="#builder方式">Builder方式</a></li>
+<li><a href="#tips">Tips：</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<p><code>Java</code>用<code>new</code>这个关键字来创建对象，创建对象的细节我们写在构造器中。我们调用构造器来创建对象的时候可以依据传入的参数不同来控制创建对象的细节。</p>
+
+<p><strong>示例要求:</strong>
+&gt; 编写一个生成序列号的工具类，序列号是字符串类型，可以是UUID，可以是时间(如201901201536)，可以是前缀+时间，可以是时间+后缀，可以是前缀+时间+后缀，并且以后根据需求可能还会进行扩展</p>
+
+<h1 id="传统方式-构造器重载">传统方式(构造器重载)</h1>
+
+<pre><code class="language-java">public class Serial{
+    private Type serialType;
+    private String prefix;
+    private String suffix;
+
+    Serial(Type serialType){
+        this.serialType = serialType;
+    }
+
+    Serial(String prefix,Type serialType){
+        this.serialType = serialType;
+        this.prefix = prefix;
+    }
+
+    Serial(Type serialType,String suffix){
+        this.serialType = serialType;
+        this.suffix = suffix;
+    }
+
+    Serial(String prefix,Type serialType,String suffix){
+        this.serialType = serialType;
+        this.prefix = prefix;
+        this.suffix = suffix;
+    }
+}
+</code></pre>
+
+<h1 id="传统方式缺点">传统方式缺点</h1>
+
+<ul>
+<li>不能很好的扩展大量的参数</li>
+<li>代码很丑</li>
+</ul>
+
+<h1 id="builder方式">Builder方式</h1>
+
+<pre><code class="language-java">public class Person {
+
+	static Builder builder(String name){
+		return new Builder().withName(name);
+	}
+
+	static class Builder{
+
+		private String name;
+		private int age;
+		private String location;
+
+		Builder withName(String name){
+			this.name = name;
+			return this;
+		}
+
+		Builder withAge(int age){
+			this.age = age;
+			return this;
+		}
+
+		Builder withLocation(String location){
+			this.location = location;
+			return this;
+		}
+
+		String generateperson(){
+			return this.toString();
+		}
+
+		@Override
+		public String toString() {
+			return &quot;Builder{&quot; +&quot;name='&quot; + name + '\'' +&quot;, age=&quot; + age +&quot;, location='&quot; + location + '\'' +'}';
+		}
+	}
+}
+</code></pre>
+
+<p>所有的对象创建工作都给<code>Builder</code>这个内部类去完成，使用代码如下：</p>
+
+<pre><code class="language-java"> Person.builder(&quot;jaswine&quot;)
+    .withAge(12)
+    .withLocation(&quot;wuxi.jiangsu&quot;)
+    .generateperson();
+</code></pre>
+
+<p>最后的结果是:</p>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/builder.png" alt="res" /></p>
+
+<h1 id="tips">Tips：</h1>
+
+<p>第三方工具<code>lombok</code>实现了这个功能</p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/java/">Java</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>
