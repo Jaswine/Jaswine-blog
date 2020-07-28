@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 15 Jun 2020 14:03:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「🔨实践」使用线程池</title>
+      <link>https://jaswine.com/blog/posts/practice/thread_pool/</link>
+      <pubDate>Mon, 15 Jun 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/thread_pool/</guid>
+      <description>&lt;p&gt;多线程的支持是Java语言的一个特性，使用多线程可以提高程序的性能&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
