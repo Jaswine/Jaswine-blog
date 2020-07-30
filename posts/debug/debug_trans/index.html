@@ -132,15 +132,15 @@
 
 <ul>
 <li><a href="#1引入自身bean">1.引入自身bean</a></li>
-<li><a href="#2通过applicationcontext引入bean">2.通过ApplicationContext引入bean</a></li>
-<li><a href="#3通过aopcontext获取到当前类的代理类">3.通过AopContext获取到当前类的代理类</a></li>
+<li><a href="#2通过aopcontext获取到当前类的代理类">2.通过AopContext获取到当前类的代理类</a></li>
 </ul></li>
+<li><a href="#总结">总结</a></li>
 <li><a href="#参考">参考</a></li>
 </ul>
 
 <!-- /TOC -->
 
-<h2 id="现象">现象</h2>
+<h1 id="现象">现象</h1>
 
 <p>有一个业务是将excel导进来的数据处理一下再导到数据库中，业务逻辑如下图</p>
 
@@ -177,7 +177,7 @@ public class InputDataService{
 }
 </code></pre>
 
-<h2 id="原因">原因</h2>
+<h1 id="原因">原因</h1>
 
 <p>spring事务是使用的<code>AOP</code>的动态代理机制来生成一个代理类来完成的，事务相关操作都是由代理类来完成的。</p>
 
@@ -195,9 +195,9 @@ public class InputDataService{
 <li>2.Spring中AOP实现的原理是什么</li>
 </ul>
 
-<h2 id="解决办法">解决办法</h2>
+<h1 id="解决办法">解决办法</h1>
 
-<h3 id="1-引入自身bean">1.引入自身bean</h3>
+<h2 id="1-引入自身bean">1.引入自身bean</h2>
 
 <pre><code class="language-JAVA">    @Autowired
     private InputDataService inputDataService;
@@ -208,11 +208,31 @@ public class InputDataService{
 
 </code></pre>
 
-<h3 id="2-通过applicationcontext引入bean">2.通过ApplicationContext引入bean</h3>
+<h2 id="2-通过aopcontext获取到当前类的代理类">2.通过AopContext获取到当前类的代理类</h2>
 
-<h3 id="3-通过aopcontext获取到当前类的代理类">3.通过AopContext获取到当前类的代理类</h3>
+<pre><code class="language-java">InputDataService inputDataService = (InputDataService)AopContext.currentProxy();
+inputDataService.testTransaction();
+</code></pre>
 
-<h2 id="参考">参考</h2>
+<h1 id="总结">总结</h1>
+
+<p>使用Spring声明式事务不生效的原因有以下两点:</p>
+
+<ul>
+<li>API使用不规范
+
+<ul>
+<li>捕捉的异常和抛出的异常不对应</li>
+</ul></li>
+<li>动态代理没有生效
+
+<ul>
+<li>方法自调用(没有走代理类)</li>
+<li>方法是不是public修饰的(无法生成代理)</li>
+</ul></li>
+</ul>
+
+<h1 id="参考">参考</h1>
 
 <p><a href="https://juejin.im/post/5d4bea09f265da03db0764a7">🔗内部方法调用，事务不起作用的原因及解决办法</a></p></div>
         <div class="post_footer">
