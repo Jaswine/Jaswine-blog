@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 23 Jul 2020 11:15:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2020 14:03:50 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Cloud</title>
+      <link>https://jaswine.com/blog/tags/spring-cloud/</link>
+      <pubDate>Thu, 30 Jul 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/spring-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gateway</title>
+      <link>https://jaswine.com/blog/tags/gateway/</link>
+      <pubDate>Thu, 30 Jul 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/gateway/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring</title>
+      <link>https://jaswine.com/blog/tags/spring/</link>
+      <pubDate>Thu, 30 Jul 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/tags/spring/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>I/O</title>
@@ -116,15 +143,6 @@
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/tags/tomcat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>spring</title>
-      <link>https://jaswine.com/blog/tags/spring/</link>
-      <pubDate>Wed, 15 Apr 2020 14:03:50 +0800</pubDate>
-      
-      <guid>https://jaswine.com/blog/tags/spring/</guid>
       <description></description>
     </item>
     

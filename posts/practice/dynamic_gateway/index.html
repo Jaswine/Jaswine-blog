@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Jaswine"/>
+
+  
+  <meta name="description" content="在使用Spring Cloud Gateway来实现服务网关的时候，官方提供了路由的配置方式，但是不怎么适合我们开发的场景
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Java, Jaswine, jaswine, 王远志"/>
+  
+
+  
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/dynamic_gateway/"/>
+
+  
+
+  <title>「🔨实践」基于数据库动态配置Spring Cloud Gateway信息 &middot; Jaswine</title>
+
+  
+  <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jaswine.com/blog/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/blog/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/blog/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/blog/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/blog/about/">关于</a>
+      </li>
+      
+      <li>
+        <a href="/blog/senior/">前辈</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jaswine.com/blog/">
+          <span>Jaswine</span>
+          
+          <img src="https://cdn.jaswine.com/www/logo.svg" width="50px" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">Try Everything Different In My Life.</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://jaswine.com" title="award" target="_blank"><i class="remixicon-award-fill"></i></a>
+        
+        
+        
+        <a href="https://github.com/Jaswine" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://www.instagram.com/jaswine_wang/" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="https://twitter.com/Jaswine_Wang" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="https://www.zhihu.com/people/jasmine217" title="zhihu" target="_blank"><i class="remixicon-zhihu-fill"></i></a>
+        
+        
+        <a href="https://jaswine.com/blog/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/dynamic_gateway/'>「🔨实践」基于数据库动态配置Spring Cloud Gateway信息</a></h2>
+          <span class="date">2020.07.30</span>
+        </div>
+        <div class="post_content markdown"><p>在使用Spring Cloud Gateway来实现服务网关的时候，官方提供了路由的配置方式，但是不怎么适合我们开发的场景</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#原生方式">原生方式</a></li>
+<li><a href="#基于数据库的动态路由配置方案">基于数据库的动态路由配置方案</a>
+
+<ul>
+<li><a href="#架构图">架构图</a></li>
+<li><a href="#业务逻辑">业务逻辑</a></li>
+<li><a href="#代码实现">代码实现</a>
+
+<ul>
+<li><a href="#cloud-gateway">cloud-gateway</a></li>
+<li><a href="#cloud-gateway-manage">cloud-gateway-manage</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#tips">Tips:</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="原生方式">原生方式</h1>
+
+<p>Spring Cloud Gateway给我们提供了三种配置路由信息的方式</p>
+
+<ul>
+<li>yaml文件中</li>
+<li>Java代码</li>
+<li>基于内存(Actuator提供的Endpoint)</li>
+</ul>
+
+<p>前两种配置方式都是写死的，不适合，第三种是基于内存的，程序崩溃的时候信息都会丢失掉。</p>
+
+<h1 id="基于数据库的动态路由配置方案">基于数据库的动态路由配置方案</h1>
+
+<h2 id="架构图">架构图</h2>
+
+<p><img src="https://cdn.jaswine.com/Web/Blog/practice/dynamic_gateway/gateway_arch.png" alt="" /></p>
+
+<p>整个架构中包括两个系统</p>
+
+<ul>
+<li>cloud-gateway</li>
+<li>cloud-gateway-manage</li>
+</ul>
+
+<p>cloud-gateway负责路由转发，就是Spring Cloud Gateway的工作，cloud-gateway-manage是和用户对接的，负责路由信息的数据维护。</p>
+
+<p>使用消息中间件来通知路由变更的信息。</p>
+
+<h2 id="业务逻辑">业务逻辑</h2>
+
+<ul>
+<li><strong>Init</strong></li>
+</ul>
+
+<p>当cloud-gateway启动的时候，去Redis中查找路由信息，然后加载路由信息，当Redis中没有数据的时候，发送一条给cloud-gateway-manage来将数据库的信息查出来推到Redis中，然后cloud-gateway来重新加载路由信息</p>
+
+<ul>
+<li><strong>Add</strong></li>
+</ul>
+
+<p>当cloud-gateway-manage新增路由信息的时候，将这个信息推送给cloud-gateway，然后cloud-gateway将路由信息加载</p>
+
+<ul>
+<li><strong>Update</strong></li>
+</ul>
+
+<p>当cloud-gateway-manage更新路由信息的时候，将消息推送给cloud-gateway，然后将该路由信息删除，然后将新的路由信息加载</p>
+
+<ul>
+<li><strong>Delete</strong></li>
+</ul>
+
+<p>当cloud-gateway-manage删除路由信息的时候，将消息推送给cloud-gateway，然后将该路由信息删除</p>
+
+<h2 id="代码实现">代码实现</h2>
+
+<h3 id="cloud-gateway">cloud-gateway</h3>
+
+<ul>
+<li><strong>Init</strong></li>
+</ul>
+
+<pre><code class="language-Java">    /** Routes */
+	private final Map&lt;String,RouteDefinition&gt; routeDefinitions = synchronizedMap(new LinkedHashMap&lt;&gt;());
+
+	@Resource
+	private RedisTemplate&lt;String,Object&gt; redisTemplate;
+
+
+	/**
+	 * 获得路由定义
+	 * @return 路由定义
+	 */
+	@Override
+	public Flux&lt;RouteDefinition&gt; getRouteDefinitions() {
+		log.info(&quot;从redis获得所有路由信息&quot;);
+		List&lt;RedisRouteDefinition&gt; routes = ((List&lt;String&gt;) (List) redisTemplate.opsForHash().values(RedisKeysConstant.KEY_GATEWAY_ROUTES)).stream()
+				.map(item -&gt; JsonUtil.json2Obj(item, RedisRouteDefinition.class))
+				.collect(Collectors.toList());
+
+		routes.forEach(route -&gt; {
+			log.info(&quot;新增路由信息&quot;);
+			routeDefinitions.put(route.getRouteId(),CustomRouteDefinitionConvert.convert(route));
+		});
+
+		log.info(&quot;Redis中路由信息个数为 : {} ; 详情为 : {} &quot;,routeDefinitions.size(),routeDefinitions);
+		return Flux.fromIterable(routeDefinitions.values());
+	}
+
+</code></pre>
+
+<ul>
+<li><strong>Add</strong></li>
+</ul>
+
+<pre><code class="language-Java">	/***
+	 * 保存Route
+	 * @param route 路由定义
+	 */
+	public void save(RouteDefinition route){
+		if (StringUtils.isEmpty(route.getId())) {
+			throw new IllegalArgumentException(&quot;id may not be empty&quot;);
+		}
+		routeDefinitions.put(route.getId(),route);
+	}
+</code></pre>
+
+<ul>
+<li><strong>Delete</strong></li>
+</ul>
+
+<pre><code class="language-Java">public void delete(String id){
+
+    if (routeDefinitions.containsKey(id)) {
+        routeDefinitions.remove(id);
+    }else {
+        throw new NotFoundException(&quot;RouteDefinition not found: &quot; + id);
+    }
+}
+</code></pre>
+
+<h3 id="cloud-gateway-manage">cloud-gateway-manage</h3>
+
+<h1 id="tips">Tips:</h1>
+
+<blockquote>
+<p>Q1:为什么要写cloud-gateway-manage？</p>
+</blockquote>
+
+<p>A: 因为Spring Cloud Gateway是基于webFlux的，连接数据库是阻塞的，所以使用Redis来作为过渡</p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/spring-cloud/">Spring Cloud</a>
+                
+                <a href="https://jaswine.com/blog/tags/spring/">spring</a>
+                
+                <a href="https://jaswine.com/blog/tags/gateway/">gateway</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span></span>
+  </div>
+</footer>
+
+
+
+<script src="https://jaswine.com/blog/js/jquery-3.3.1.min.js"></script>
+<script src="https://jaswine.com/blog/js/zozo.js"></script>
+<script src="https://jaswine.com/blog/js/highlight.pack.js"></script>
+<link  href="https://jaswine.com/blog/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jaswine.com/blog/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>

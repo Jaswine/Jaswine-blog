@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 23 Jul 2020 11:15:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2020 14:03:50 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>「🔨实践」基于数据库动态配置Spring Cloud Gateway信息</title>
+      <link>https://jaswine.com/blog/posts/practice/dynamic_gateway/</link>
+      <pubDate>Thu, 30 Jul 2020 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/dynamic_gateway/</guid>
+      <description>&lt;p&gt;在使用Spring Cloud Gateway来实现服务网关的时候，官方提供了路由的配置方式，但是不怎么适合我们开发的场景&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>「💡探究」使用strace来探究Java I/O在操作系统层面的调用</title>
