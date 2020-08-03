@@ -149,6 +149,33 @@
     </item>
     
     <item>
+      <title>「🔨实践」缓存击穿(Redis)解决方案</title>
+      <link>https://jaswine.com/blog/posts/practice/cache_-breakdown/</link>
+      <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/cache_-breakdown/</guid>
+      <description>&lt;p&gt;在使用缓存的过程中，由于键的过期导致大量访问落在数据层，这就是缓存击穿&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「🔨实践」缓存穿透(Redis)解决方案</title>
+      <link>https://jaswine.com/blog/posts/practice/cache_-penetration/</link>
+      <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/cache_-penetration/</guid>
+      <description>&lt;p&gt;在使用缓存的过程中，遇到恶意访问不存在的数据，导致缓存失效，所有请求都落在数据库层，这在生产环境是不允许的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「🔨实践」缓存雪崩(Redis)解决方案</title>
+      <link>https://jaswine.com/blog/posts/practice/cache_-avalanche/</link>
+      <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/cache_-avalanche/</guid>
+      <description>&lt;p&gt;在使用缓存的过程中，因为缓存大面积失效造成大面积的查询落在数据库层，这就是缓存雪崩&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>「🔨实践」使用构建器(Builder)来替代多个构造器</title>
       <link>https://jaswine.com/blog/posts/practice/buider/</link>
       <pubDate>Tue, 19 Mar 2019 10:38:39 +0800</pubDate>
