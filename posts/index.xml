@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>「📝总结」从【重复消费】到【接口幂等】</title>
+      <link>https://jaswine.com/blog/posts/summary/idempotent/</link>
+      <pubDate>Mon, 06 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/summary/idempotent/</guid>
+      <description>&lt;p&gt;在之前做系统的过程中，出现过一次重复消费的情况。在引入消息队列之后，系统变得越来越复杂，接口设计的幂等性也是重要的考量之一&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>「📝总结」从本地事务到分布式事务</title>
       <link>https://jaswine.com/blog/posts/summary/distributed_trans/</link>
       <pubDate>Sun, 05 Jul 2020 11:15:23 +0800</pubDate>
@@ -149,29 +158,38 @@
     </item>
     
     <item>
-      <title>「🔨实践」缓存击穿(Redis)解决方案</title>
-      <link>https://jaswine.com/blog/posts/practice/cache_-breakdown/</link>
+      <title>「🔨实践」缓存(Redis)一致性解决方案</title>
+      <link>https://jaswine.com/blog/posts/practice/cache_consistency/</link>
       <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/practice/cache_-breakdown/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/cache_consistency/</guid>
+      <description>&lt;p&gt;在使用缓存的过程中，因为数据库和缓存的数据不一致导致数据不对，这样的现象叫做缓存不一致&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「🔨实践」缓存击穿(Redis)解决方案</title>
+      <link>https://jaswine.com/blog/posts/practice/cache_breakdown/</link>
+      <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/cache_breakdown/</guid>
       <description>&lt;p&gt;在使用缓存的过程中，由于键的过期导致大量访问落在数据层，这就是缓存击穿&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>「🔨实践」缓存穿透(Redis)解决方案</title>
-      <link>https://jaswine.com/blog/posts/practice/cache_-penetration/</link>
+      <link>https://jaswine.com/blog/posts/practice/cache_penetration/</link>
       <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/practice/cache_-penetration/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/cache_penetration/</guid>
       <description>&lt;p&gt;在使用缓存的过程中，遇到恶意访问不存在的数据，导致缓存失效，所有请求都落在数据库层，这在生产环境是不允许的&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>「🔨实践」缓存雪崩(Redis)解决方案</title>
-      <link>https://jaswine.com/blog/posts/practice/cache_-avalanche/</link>
+      <link>https://jaswine.com/blog/posts/practice/cache_avalanche/</link>
       <pubDate>Tue, 02 Apr 2019 14:03:50 +0800</pubDate>
       
-      <guid>https://jaswine.com/blog/posts/practice/cache_-avalanche/</guid>
+      <guid>https://jaswine.com/blog/posts/practice/cache_avalanche/</guid>
       <description>&lt;p&gt;在使用缓存的过程中，因为缓存大面积失效造成大面积的查询落在数据库层，这就是缓存雪崩&lt;/p&gt;</description>
     </item>
     

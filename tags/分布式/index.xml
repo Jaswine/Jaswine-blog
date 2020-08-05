@@ -6,10 +6,19 @@
     <description>Recent content in 分布式 on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Jul 2020 11:15:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2020 11:15:23 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>「📝总结」从【重复消费】到【接口幂等】</title>
+      <link>https://jaswine.com/blog/posts/summary/idempotent/</link>
+      <pubDate>Mon, 06 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/summary/idempotent/</guid>
+      <description>&lt;p&gt;在之前做系统的过程中，出现过一次重复消费的情况。在引入消息队列之后，系统变得越来越复杂，接口设计的幂等性也是重要的考量之一&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>「📝总结」从本地事务到分布式事务</title>

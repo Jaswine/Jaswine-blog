@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="王远志的个人网站"/>
+  <meta name="description" content="在使用缓存的过程中，遇到恶意访问不存在的数据，导致缓存失效，所有请求都落在数据库层，这在生产环境是不允许的
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/cache_penetration/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/index.xml">
-  
 
-  <title>缓存 &middot; Jaswine</title>
+  <title>「🔨实践」缓存穿透(Redis)解决方案 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -114,43 +113,92 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_avalanche/">「🔨实践」缓存雪崩(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/cache_penetration/'>「🔨实践」缓存穿透(Redis)解决方案</a></h2>
+          <span class="date">2019.04.02</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_penetration/">「🔨实践」缓存穿透(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
+        <div class="post_content markdown"><p>在使用缓存的过程中，遇到恶意访问不存在的数据，导致缓存失效，所有请求都落在数据库层，这在生产环境是不允许的</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#现象">现象</a></li>
+<li><a href="#解决方案">解决方案</a>
+
+<ul>
+<li><a href="#空对象">空对象</a></li>
+<li><a href="#布隆过滤器推荐">布隆过滤器(推荐)</a></li>
+</ul></li>
+<li><a href="#代码实现">代码实现</a>
+
+<ul>
+<li><a href="#空对象-1">空对象</a></li>
+<li><a href="#布隆过滤器">布隆过滤器</a>
+
+<ul>
+<li><a href="#google-guava">Google Guava</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="现象">现象</h1>
+
+<p>比如我们在数据库中，没有id为1000的信息，但是一直伪造查询id为1000的数据信息，无论在缓存中还是数据库中都没有，那么每一次查询的时候都会把请求落在数据库层，如果有大量的这样的恶意请求，那么数据库负载将会很大，缓存完全失去保护数据库的效果，这种就叫做缓存穿透</p>
+
+<h1 id="解决方案">解决方案</h1>
+
+<p>在面对缓存穿透的问题上一般有两种解决方案，分别是</p>
+
+<ul>
+<li>缓存空对象</li>
+<li>布隆过滤器</li>
+</ul>
+
+<h2 id="空对象">空对象</h2>
+
+<p>当第一次访问不存在的数据的时候，我们将这个查询缓存起来，最终指向一个空对象，下次再按照相同条件查询的时候，那么直接返回空对象。</p>
+
+<p>但是在使用这种方式的时候，遇到大量的恶意访问的时候会产生大量的无效缓存。</p>
+
+<h2 id="布隆过滤器-推荐">布隆过滤器(推荐)</h2>
+
+<h1 id="代码实现">代码实现</h1>
+
+<h2 id="空对象-1">空对象</h2>
+
+<h2 id="布隆过滤器">布隆过滤器</h2>
+
+<h3 id="google-guava">Google Guava</h3>
+
+<h1 id="总结">总结</h1>
+
+<h1 id="参考">参考</h1></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/redis/">Redis</a>
+                
+                <a href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+                
+              </span>
+            </div>
           </div>
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_breakdown/">「🔨实践」缓存击穿(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_consistency/">「🔨实践」缓存(Redis)一致性解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

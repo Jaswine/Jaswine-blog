@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="王远志的个人网站"/>
+  <meta name="description" content="在使用缓存的过程中，由于键的过期导致大量访问落在数据层，这就是缓存击穿
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/cache_breakdown/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/index.xml">
-  
 
-  <title>缓存 &middot; Jaswine</title>
+  <title>「🔨实践」缓存击穿(Redis)解决方案 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -114,43 +113,71 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_avalanche/">「🔨实践」缓存雪崩(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/cache_breakdown/'>「🔨实践」缓存击穿(Redis)解决方案</a></h2>
+          <span class="date">2019.04.02</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_penetration/">「🔨实践」缓存穿透(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
+        <div class="post_content markdown"><p>在使用缓存的过程中，由于键的过期导致大量访问落在数据层，这就是缓存击穿</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#现象">现象</a></li>
+<li><a href="#解决方案">解决方案</a>
+
+<ul>
+<li><a href="#java互斥锁">Java互斥锁</a></li>
+<li><a href="#redis锁推荐">Redis锁(推荐)</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="现象">现象</h1>
+
+<p>和缓存穿透不通的是，查询的数据在数据库中是真实存在的，但是在缓存中是没有的，当大量的请求并发的过来的时候，所有的请求都落在了数据库层，造成数据库崩溃，这就是缓存击穿</p>
+
+<h1 id="解决方案">解决方案</h1>
+
+<ul>
+<li>互斥锁</li>
+</ul>
+
+<h2 id="java互斥锁">Java互斥锁</h2>
+
+<p>在方法上加上synchronized关键字，或者使用显式锁来加锁</p>
+
+<h2 id="redis锁-推荐">Redis锁(推荐)</h2>
+
+<p>使用redis的锁</p>
+
+<h1 id="总结">总结</h1>
+
+<h1 id="参考">参考</h1></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/redis/">Redis</a>
+                
+                <a href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+                
+              </span>
+            </div>
           </div>
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_breakdown/">「🔨实践」缓存击穿(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_consistency/">「🔨实践」缓存(Redis)一致性解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

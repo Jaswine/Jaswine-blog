@@ -10,7 +10,8 @@
         content="Jaswine"/>
 
   
-  <meta name="description" content="王远志的个人网站"/>
+  <meta name="description" content="在使用缓存的过程中，因为缓存大面积失效造成大面积的查询落在数据库层，这就是缓存雪崩
+"/>
   
 
   
@@ -19,13 +20,11 @@
   
 
   
-  <link rel="canonical" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/"/>
+  <link rel="canonical" href="https://jaswine.com/blog/posts/practice/cache_avalanche/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/index.xml">
-  
 
-  <title>缓存 &middot; Jaswine</title>
+  <title>「🔨实践」缓存雪崩(Redis)解决方案 &middot; Jaswine</title>
 
   
   <link rel="shortcut icon" href="https://jaswine.com/blog/images/J.png" />
@@ -114,43 +113,71 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_avalanche/">「🔨实践」缓存雪崩(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/blog/posts/practice/cache_avalanche/'>「🔨实践」缓存雪崩(Redis)解决方案</a></h2>
+          <span class="date">2019.04.02</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_penetration/">「🔨实践」缓存穿透(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
+        <div class="post_content markdown"><p>在使用缓存的过程中，因为缓存大面积失效造成大面积的查询落在数据库层，这就是缓存雪崩</p>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#现象">现象</a></li>
+<li><a href="#原因">原因</a></li>
+<li><a href="#解决方案">解决方案</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="现象">现象</h1>
+
+<p>所有的查询都落在了数据库上，缓存完全失效，这个现象就是缓存雪崩</p>
+
+<h1 id="原因">原因</h1>
+
+<p>造成缓存雪崩的原因有以下两点</p>
+
+<ul>
+<li>缓存服务挂了</li>
+<li>大面积的key失效过期</li>
+</ul>
+
+<h1 id="解决方案">解决方案</h1>
+
+<p>在面对缓存服务宕机这种情况，一般有以下两种方式</p>
+
+<ul>
+<li>缓存服务做高可用(Redis-Cluster)</li>
+<li>缓存服务做降级容错(cloud-sentinel)</li>
+</ul>
+
+<p>在面对大面积key失效这种情况</p>
+
+<ul>
+<li>过期时间设置随机</li>
+</ul></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="https://jaswine.com/blog/tags/redis/">Redis</a>
+                
+                <a href="https://jaswine.com/blog/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+                
+              </span>
+            </div>
           </div>
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_breakdown/">「🔨实践」缓存击穿(Redis)解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/blog/posts/practice/cache_consistency/">「🔨实践」缓存(Redis)一致性解决方案</a>
-            <div class="post_time"><span class="date">04-02</span></div>
-          </div>
-        </div>
-        
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

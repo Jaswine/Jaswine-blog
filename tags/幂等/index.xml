@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>幂等 on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/%E5%B9%82%E7%AD%89/</link>
+    <description>Recent content in 幂等 on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Jul 2020 11:15:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/%E5%B9%82%E7%AD%89/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「📝总结」从【重复消费】到【接口幂等】</title>
+      <link>https://jaswine.com/blog/posts/summary/idempotent/</link>
+      <pubDate>Mon, 06 Jul 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/summary/idempotent/</guid>
+      <description>&lt;p&gt;在之前做系统的过程中，出现过一次重复消费的情况。在引入消息队列之后，系统变得越来越复杂，接口设计的幂等性也是重要的考量之一&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
