@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Jaswine</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Jaswine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jul 2020 14:03:50 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 11:15:23 +0800</lastBuildDate>
     
 	<atom:link href="https://jaswine.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>「🔨实践」分布式事务方案-最大努力通知</title>
+      <link>https://jaswine.com/blog/posts/practice/trans_rocketmq-copy/</link>
+      <pubDate>Mon, 07 Sep 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/trans_rocketmq-copy/</guid>
+      <description>&lt;p&gt;分布式系统中，消息队列是必不可不少的中间件，实现服务之间的异步调用，分布式系统中存在分布式事务的问题，除了RocketMQ可以实现分布式事务，别的消息队列是不支持事务消息的，但是也可以通过“最大努力通知”的方案来实现分布式事务&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>「🔨实践」基于数据库动态配置Spring Cloud Gateway信息</title>
@@ -71,8 +80,7 @@
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/summary/io/</guid>
-      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
-
+      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;&amp;hellip;.&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     
@@ -136,7 +144,7 @@
       <pubDate>Mon, 19 Aug 2019 11:22:54 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/summary/gc/</guid>
-      <description>&lt;p&gt;&#39;Java&#39;对象垃圾回收是一个系统的问题，有前后的联系关系，所以要前后串联起来看。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&amp;lsquo;Java&amp;rsquo;对象垃圾回收是一个系统的问题，有前后的联系关系，所以要前后串联起来看。&lt;/p&gt;</description>
     </item>
     
     <item>

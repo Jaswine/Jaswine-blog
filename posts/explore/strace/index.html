@@ -120,218 +120,140 @@
           <span class="date">2020.07.23</span>
         </div>
         <div class="post_content markdown"><p>我们写的代码最终以一个进程的形式运行在操作系统上，我们的进程要依赖操作系统完成一些工作，此时进程便会进行系统调用，Linux系统下提供strace来查看系统调用信息，以此来查看Java 提供的IO在操作系统层面是什么情况</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#bio使用多线程实现非阻塞">BIO(使用多线程实现非阻塞)</a>
-
+<li><a href="#bio%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E9%9D%9E%E9%98%BB%E5%A1%9E">BIO(使用多线程实现非阻塞)</a>
 <ul>
-<li><a href="#示例代码">示例代码</a></li>
-<li><a href="#strace查看系统调用">strace查看系统调用</a></li>
-</ul></li>
-<li><a href="#总结">总结</a>
-
-<ul>
-<li><a href="#bio多线程非阻塞">BIO(多线程非阻塞)</a>
-
-<ul>
-<li><a href="#实现逻辑">实现逻辑</a></li>
-<li><a href="#优点">优点</a></li>
-<li><a href="#缺点">缺点</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">示例代码</a></li>
+<li><a href="#strace%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">strace查看系统调用</a></li>
 </ul>
-
-<!-- /TOC -->
-
-<h2 id="bio-使用多线程实现非阻塞">BIO(使用多线程实现非阻塞)</h2>
-
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a>
+<ul>
+<li><a href="#bio%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%9E%E9%98%BB%E5%A1%9E">BIO(多线程非阻塞)</a>
+<ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91">实现逻辑</a></li>
+<li><a href="#%E4%BC%98%E7%82%B9">优点</a></li>
+<li><a href="#%E7%BC%BA%E7%82%B9">缺点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="bio使用多线程实现非阻塞">BIO(使用多线程实现非阻塞)</h2>
 <h3 id="示例代码">示例代码</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#f92672">import</span> java.io.BufferedReader<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.io.IOException<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.io.InputStreamReader<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.net.InetSocketAddress<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.net.ServerSocket<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.net.Socket<span style="color:#f92672">;</span>
 
-<pre><code class="language-Java">import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * @author : Jaswine
+</span><span style="color:#75715e"> * @date : 2020-07-23 13:04
+</span><span style="color:#75715e"> **/</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
 
-/**
- * @author : Jaswine
- * @date : 2020-07-23 13:04
- **/
-public class Test {
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
 
-	public static void main(String[] args) throws IOException {
+		ServerSocket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">();</span>		
+		socket<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InetSocketAddress<span style="color:#f92672">(</span>8888<span style="color:#f92672">));</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;新建的socket8888&#34;</span><span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
+			Socket client <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;client&#34;</span> <span style="color:#f92672">+</span> client<span style="color:#f92672">.</span><span style="color:#a6e22e">getPort</span><span style="color:#f92672">());</span>
 
-		ServerSocket socket = new ServerSocket();		
-		socket.bind(new InetSocketAddress(8888));
-		System.out.println(&quot;新建的socket8888&quot;);
-		while (true){
-			Socket client = socket.accept();
-			System.out.println(&quot;client&quot; + client.getPort());
+			<span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+				<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+					BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span>client<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">()));</span>
+					<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
+						System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>reader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">());</span>
+					<span style="color:#f92672">}</span>
+				<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+					e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+				<span style="color:#f92672">}</span>
+			<span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-			new Thread(() -&gt; {
-				try {
-					BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-					while (true){
-						System.out.println(reader.readLine());
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}).start();
-		}
-	}
-}
-
-</code></pre>
-
-<p>代码很简单，开启一个<code>ServerSocket</code>绑定8888端口，然后等待连接。</p>
-
+</code></pre></div><p>代码很简单，开启一个<code>ServerSocket</code>绑定8888端口，然后等待连接。</p>
 <h3 id="strace查看系统调用">strace查看系统调用</h3>
-
 <blockquote>
 <p>关于strace的用法参考:</p>
-
 <p><a href="https://man.linuxde.net/strace">🔗 strace - Linux命令Doc</a></p>
 </blockquote>
-
-<pre><code class="language-shell">## 1.编译Test.java
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">## 1.编译Test.java</span>
 javac Test.java
 
-## 2.运行
+<span style="color:#75715e">## 2.运行</span>
 strace -ff -o ./test java Test
-</code></pre>
-
-<p>会在当前目录下生成以<code>test.</code>开头，线程号码结尾的文件</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-1.png" alt="" /></p>
-
+</code></pre></div><p>会在当前目录下生成以<code>test.</code>开头，线程号码结尾的文件</p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-1.png" alt=""></p>
 <p>使用<code>JPS</code>查看当前的<code>Java</code>进程，进程号为2592</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-2.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-2.png" alt=""></p>
 <p>打开<code>test.2592</code>文件,发现最后使用<code>clone</code>函数开启了新进程2593</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-3.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-3.png" alt=""></p>
 <p>现在打开<code>test.2593</code>，发调用了<code>socket</code>函数创建了一个网络socket</p>
-
 <blockquote>
 <p>socket函数成功成功后悔创建一个指向socket的文件描述符，看到指向的文件描述符为 5</p>
 </blockquote>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-4.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-4.png" alt=""></p>
 <p>在Linux系统中一切都是文件，到当前进程的目录文件下看一看到该文件</p>
-
-<pre><code class="language-shell">cd /proc/2592/fd
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd /proc/2592/fd
+</code></pre></div><blockquote>
 <p>其中0，1，2是Linux系统的标准输出，每一个进程都会有这三个文件描述符</p>
 </blockquote>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-6.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-6.png" alt=""></p>
 <p>再看系统调用的秒速文件，看到调用了bind函数绑定了8888端口，将当前socket和文件描述符为5的文件进行了绑定，然后socket处于listen状态</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-7.png" alt="" /></p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-10.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-7.png" alt=""></p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-10.png" alt=""></p>
 <p>使用命令行可以查看 占用 8888 端口的应用程序状态</p>
-
-<pre><code class="language-SHELL">netstat -anp | grep 8888
-</code></pre>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-8.png" alt="" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SHELL" data-lang="SHELL">netstat -anp | grep <span style="color:#ae81ff">8888</span>
+</code></pre></div><p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-8.png" alt=""></p>
 <p>此时我们连接这个socket服务,会出现以下的现象</p>
-
-<pre><code class="language-shell">nc localhost 8888
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">nc localhost <span style="color:#ae81ff">8888</span>
+</code></pre></div><ul>
 <li>终端会打印出连接进来客户端的端口</li>
 <li>在进程的目录下的fd文件中会新出现一个指向socket的文件描述符</li>
 <li>在test.2593中显示这个程序执行的系统调用</li>
 <li>使用netstat查看网络会发现一个建立连接的TCP</li>
 </ul>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-11.png" alt="" />
-<center>程序终端输出</center>
-<img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-12.png" alt="" />
-<center>accept函数</center>
-<img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-13.png" alt="" />
-<center>新的文件描述符指向socket</center>
-<img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-14.png" alt="" />
-<center>新建的网络连接</center></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-11.png" alt=""></p>
+<!-- raw HTML omitted -->
 <p>因为我们代码是用多线程来接收客户端输入，所以在主程最后发现将io交给了新的线程</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-15.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-15.png" alt=""></p>
 <p>我们打开上面说的线程号为4160的test文件,发现被recvfrom函数阻塞住，等待文件描述符为6的文件</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-16.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-16.png" alt=""></p>
 <p>当我们输入<code>jaswine</code>的时候，发现test.4160文件拿到客户端输入之后又进入recvfrom函数，进入阻塞状态</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-17.png" alt="" /></p>
-
-<!-- 
-最后我们看到系统调用了`poll`函数后就没有了
-
-> poll()函数会
-
-![](https://cdn.jaswine.com/Web/Blog/explore/io/io-9.png)
- -->
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/explore/io/io-17.png" alt=""></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h2 id="总结">总结</h2>
-
 <p>Java的IO就是操作系统的底层封装。</p>
-
-<h3 id="bio-多线程非阻塞">BIO(多线程非阻塞)</h3>
-
+<h3 id="bio多线程非阻塞">BIO(多线程非阻塞)</h3>
 <h4 id="实现逻辑">实现逻辑</h4>
-
 <p>在主线程中使用</p>
-
-<pre><code class="language-java">ServerSocket serverSocket = new ServerSocket(8888);
-</code></pre>
-
-<p>在操作系统层面上发生了以下的操作
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">(</span>8888<span style="color:#f92672">);</span>
+</code></pre></div><p>在操作系统层面上发生了以下的操作
 使用<code>socket</code>函数返回了一个socket套接字，这个套接字指向进程<code>fd</code>目录下的一个具体文件(Linux中一切都是文件),然后使用bind函数绑定对应的端口，使用listen函数进行监听。</p>
-
 <p>当有客户端连接服务端的时候</p>
-
 <pre><code>nc localhost 8888
 </code></pre>
-
 <p>调用serverSocket的accept()方法之后操作系统执行accept方法返回一个socket，因为是使用多线程生成一个子线程，将信息复制到子线程中然后子线程调用revcfrom方法阻塞住，等待客户端输入。</p>
-
 <p>当客户端输入的时候，调用read方法将数据读出来，然后处理完对应的业务逻辑再次执行revcfrom方法阻塞等待客户端的输入。</p>
-
 <h4 id="优点">优点</h4>
-
 <p>代码逻辑简单</p>
-
 <h4 id="缺点">缺点</h4>
-
 <p>当有很多客户端的时候要生成很多子线程</p>
-
 <h2 id="参考">参考</h2>
-
 <p><a href="https://man.linuxde.net/strace">🔗 strace - Linux命令Doc</a></p>
-
-<p><a href="https://developer.ibm.com/zh/tutorials/l-lpic1-103-4/">🔗 Linux系统中流、管道和重定向 -- IBM Developer</a></p>
-
-<p><a href="https://en.wikipedia.org/wiki/Poll_(Unix)">🔗 poll(UNIX) -- 维基百科</a></p>
-
-<p><a href="https://man7.org/linux/man-pages/man2/recvfrom.2.html">🔗 recvfrom -- Linux Man</a></p></div>
+<p><a href="https://developer.ibm.com/zh/tutorials/l-lpic1-103-4/">🔗 Linux系统中流、管道和重定向 &ndash; IBM Developer</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Poll_(Unix)">🔗 poll(UNIX) &ndash; 维基百科</a></p>
+<p><a href="https://man7.org/linux/man-pages/man2/recvfrom.2.html">🔗 recvfrom &ndash; Linux Man</a></p></div>
         <div class="post_footer">
           
           <div class="meta">

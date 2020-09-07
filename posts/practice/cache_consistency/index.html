@@ -120,71 +120,51 @@
           <span class="date">2019.04.02</span>
         </div>
         <div class="post_content markdown"><p>在使用缓存的过程中，因为数据库和缓存的数据不一致导致数据不对，这样的现象叫做缓存不一致</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#原因">原因</a></li>
-<li><a href="#解决方案">解决方案</a>
-
+<li><a href="#%E5%8E%9F%E5%9B%A0">原因</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a>
 <ul>
-<li><a href="#同步更新">同步更新</a>
-
+<li><a href="#%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0">同步更新</a>
 <ul>
-<li><a href="#思想">思想</a></li>
-</ul></li>
-<li><a href="#异步更新">异步更新</a>
-
-<ul>
-<li><a href="#思想-1">思想</a></li>
-</ul></li>
-<li><a href="#缓存失效">缓存失效</a>
-
-<ul>
-<li><a href="#思想-2">思想</a></li>
-</ul></li>
-<li><a href="#定时更新">定时更新</a></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
+<li><a href="#%E6%80%9D%E6%83%B3">思想</a></li>
 </ul>
-
-<!-- /TOC -->
-
+</li>
+<li><a href="#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0">异步更新</a>
+<ul>
+<li><a href="#%E6%80%9D%E6%83%B3-1">思想</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88">缓存失效</a>
+<ul>
+<li><a href="#%E6%80%9D%E6%83%B3-2">思想</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9A%E6%97%B6%E6%9B%B4%E6%96%B0">定时更新</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+<!-- raw HTML omitted -->
 <h1 id="原因">原因</h1>
-
 <p>造成缓存和数据库不一致的情况大概分为以下</p>
-
 <ul>
 <li>数据库更新成功，缓存更新失败</li>
 <li>数据库更新失败，缓存被删除了</li>
 </ul>
-
 <h1 id="解决方案">解决方案</h1>
-
 <h2 id="同步更新">同步更新</h2>
-
 <h3 id="思想">思想</h3>
-
 <p>缓存和数据库更新都在一个事务中，保证强一致性</p>
-
 <h2 id="异步更新">异步更新</h2>
-
 <h3 id="思想-1">思想</h3>
-
 <p>数据库更新成功后，异步执行缓存更新的操作(可以通过多线程，消息队列)</p>
-
 <h2 id="缓存失效">缓存失效</h2>
-
 <h3 id="思想-2">思想</h3>
-
 <p>给key加上过期时间，过期了没有缓存然后再去更新下缓存</p>
-
 <h2 id="定时更新">定时更新</h2>
-
 <p>开启定时任务，执行缓存更新的操作</p>
-
 <h1 id="总结">总结</h1>
-
 <table>
 <thead>
 <tr>
@@ -195,37 +175,33 @@
 <th align="left">适用场景</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">同步更新</td>
 <td align="left">使用事务</td>
 <td align="left">强一致性</td>
 <td align="left">影响主业务</td>
-<td align="left">实时性要求高的场景:<br>银行业务<br>证券业务</td>
+<td align="left">实时性要求高的场景:<!-- raw HTML omitted -->银行业务<!-- raw HTML omitted -->证券业务</td>
 </tr>
-
 <tr>
 <td align="left">异步更新</td>
-<td align="left">异步线程<br>消息队列</td>
-<td align="left">业务解耦<br></td>
-<td align="left">有较短时延<br>需要手段保证最终一致性(消息补偿机制)</td>
+<td align="left">异步线程<!-- raw HTML omitted -->消息队列</td>
+<td align="left">业务解耦<!-- raw HTML omitted --></td>
+<td align="left">有较短时延<!-- raw HTML omitted -->需要手段保证最终一致性(消息补偿机制)</td>
 <td align="left">不适合写操作频繁，数据一致性要求高的场景</td>
 </tr>
-
 <tr>
 <td align="left">缓存失效</td>
 <td align="left">依赖Redis的key过期时间</td>
 <td align="left">实现简单</td>
-<td align="left">有一定延迟<br>缓存穿透<br>缓存雪崩</td>
+<td align="left">有一定延迟<!-- raw HTML omitted -->缓存穿透<!-- raw HTML omitted -->缓存雪崩</td>
 <td align="left">适合读多写少的场景，能接受时延</td>
 </tr>
-
 <tr>
 <td align="left">定时任务</td>
 <td align="left">定时任务</td>
 <td align="left">不影响业务</td>
-<td align="left">一致性难以保证<br>代码复杂<br>时延大</td>
+<td align="left">一致性难以保证<!-- raw HTML omitted -->代码复杂<!-- raw HTML omitted -->时延大</td>
 <td align="left">对于时延要求很低的场景</td>
 </tr>
 </tbody>

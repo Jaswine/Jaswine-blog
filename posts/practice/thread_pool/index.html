@@ -120,75 +120,60 @@
           <span class="date">2020.06.15</span>
         </div>
         <div class="post_content markdown"><p>多线程的支持是Java语言的一个特性，使用多线程可以提高程序的性能</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#java线程池概貌">Java线程池概貌</a></li>
-<li><a href="#使用线程池">使用线程池</a>
-
+<li><a href="#java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A6%82%E8%B2%8C">Java线程池概貌</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0">使用线程池</a>
 <ul>
-<li><a href="#使用executors来创建线程池">使用Executors来创建线程池</a></li>
-<li><a href="#为什么阿里巴巴不允许使用executors来创建线程池">为什么阿里巴巴不允许使用Executors来创建线程池</a></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8executors%E6%9D%A5%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0">使用Executors来创建线程池</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E4%B8%8D%E5%85%81%E8%AE%B8%E4%BD%BF%E7%94%A8executors%E6%9D%A5%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0">为什么阿里巴巴不允许使用Executors来创建线程池</a></li>
 </ul>
-
-<!-- /TOC -->
-
+</li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+<!-- raw HTML omitted -->
 <h1 id="java线程池概貌">Java线程池概貌</h1>
-
 <p>在Java开发中，池化的思想可以减少对象的频繁的创建，这种思想在软件开发中常用，比如数据库连接池。</p>
-
 <p>在操作系统中，线程的创建也是非常消耗资源的操作，所有对于线程的创建应该慎重，Java提供了线程池来完成线程的创建。</p>
-
 <p>在对象池化的思想中，可以简化成以下的模型</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JAVA" data-lang="JAVA"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pool</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;{</span>
 
-<pre><code class="language-JAVA">public class Pool&lt;T&gt;{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> poolSize<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
 
-    private int poolSize;
-    private List&lt;T&gt; pool = new ArrayList&lt;&gt;();
+    Pool<span style="color:#f92672">(</span>ObjectFactory<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> factory<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> poolSize<span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+            T obj <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">();</span>
+            pool<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>obj<span style="color:#f92672">)</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 
-    Pool(ObjectFactory&lt;T&gt; factory){
-        for(i = 0; i &lt; poolSize; i++){
-            T obj = factory.create();
-            pool.add(obj)
-        }
-    }
-
-    T getObj(){
-       return obj; 
-    }
+    T <span style="color:#a6e22e">getObj</span><span style="color:#f92672">(){</span>
+       <span style="color:#66d9ef">return</span> obj<span style="color:#f92672">;</span> 
+    <span style="color:#f92672">}</span>
     
-    void release(T obj){
-        ....   
-    }
-}
-</code></pre>
-
-<p>对象池是一个容器，这个容器来管理对象的创建和调用。但是线程池不是这种模型，线程池是一种<code>生产-消费模型</code>。</p>
-
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">release</span><span style="color:#f92672">(</span>T obj<span style="color:#f92672">){</span>
+        <span style="color:#f92672">....</span>   
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>对象池是一个容器，这个容器来管理对象的创建和调用。但是线程池不是这种模型，线程池是一种<code>生产-消费模型</code>。</p>
 <p>本质上就是将任务(Thread)提交给线程池，然后线程池安排任务的执行，但是不是线程池都能完成提交的任务，所有线程池维护一个队列，当线程池中的线程不够的时候，所有的任务都是放在一个队列中，线程池中的线程完成任务之后消费队列中没有被消费的任务。当队列也满的时候，线程池就可以拒绝新的任务。</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/practice/thread_pool/tp-1.jpg" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/practice/thread_pool/tp-1.jpg" alt=""></p>
 <blockquote>
-<p>ThreadPoolExecutor创建的使用传入以下参数
- - int corePoolSize, 核心线程数
- - int maximumPoolSize, 最大线程数
- - long keepAliveTime, 线程存活时间
- - TimeUnit unit, 时间单位
- - BlockingQueue<Runnable> workQueue, 队列
- - ThreadFactory threadFactory, 线程工厂
- - RejectedExecutionHandler handler 拒绝策略</p>
+<p>ThreadPoolExecutor创建的使用传入以下参数</p>
+<ul>
+<li>int corePoolSize, 核心线程数</li>
+<li>int maximumPoolSize, 最大线程数</li>
+<li>long keepAliveTime, 线程存活时间</li>
+<li>TimeUnit unit, 时间单位</li>
+<li>BlockingQueue<!-- raw HTML omitted --> workQueue, 队列</li>
+<li>ThreadFactory threadFactory, 线程工厂</li>
+<li>RejectedExecutionHandler handler 拒绝策略</li>
+</ul>
 </blockquote>
-
 <h1 id="使用线程池">使用线程池</h1>
-
 <h2 id="使用executors来创建线程池">使用Executors来创建线程池</h2>
-
 <p>Java给我们提供了简单的线程池创建方法，使用<code>Executors</code>类可以创建4种线程池</p>
-
 <table>
 <thead>
 <tr>
@@ -196,37 +181,29 @@
 <th align="left">特点</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left"><code>newSingleThreadExecutor</code></td>
 <td align="left">只有一个线程，保证任务按照顺序完成</td>
 </tr>
-
 <tr>
 <td align="left"><code>newFixedThreadPool</code></td>
 <td align="left">线程池大小固定</td>
 </tr>
-
 <tr>
 <td align="left"><code>newCachedThreadPool</code></td>
 <td align="left">线程池大小不固定</td>
 </tr>
-
 <tr>
 <td align="left"><code>newScheduleThreadPool</code></td>
 <td align="left">按照周期来执行任务，线程池大小不固定</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="为什么阿里巴巴不允许使用executors来创建线程池">为什么阿里巴巴不允许使用Executors来创建线程池</h2>
-
 <p>使用<code>Executors</code>来创建线程池，队列是无界的，当有高并发的的情况下，一直往队列中添加会照成OOM</p>
-
 <h1 id="参考">参考</h1>
-
-<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">🔗 Java线程池实现原理及其在美团业务中的实践 -- 美团技术团队 </a></p></div>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">🔗 Java线程池实现原理及其在美团业务中的实践 &ndash; 美团技术团队 </a></p></div>
         <div class="post_footer">
           
           <div class="meta">

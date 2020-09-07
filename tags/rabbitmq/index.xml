@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RabbitMQ on Jaswine</title>
+    <link>https://jaswine.com/blog/tags/rabbitmq/</link>
+    <description>Recent content in RabbitMQ on Jaswine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Sep 2020 11:15:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://jaswine.com/blog/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「🔨实践」分布式事务方案-最大努力通知</title>
+      <link>https://jaswine.com/blog/posts/practice/trans_rocketmq-copy/</link>
+      <pubDate>Mon, 07 Sep 2020 11:15:23 +0800</pubDate>
+      
+      <guid>https://jaswine.com/blog/posts/practice/trans_rocketmq-copy/</guid>
+      <description>&lt;p&gt;分布式系统中，消息队列是必不可不少的中间件，实现服务之间的异步调用，分布式系统中存在分布式事务的问题，除了RocketMQ可以实现分布式事务，别的消息队列是不支持事务消息的，但是也可以通过“最大努力通知”的方案来实现分布式事务&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

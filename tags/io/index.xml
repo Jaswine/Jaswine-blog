@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IO on Jaswine</title>
@@ -17,8 +17,7 @@
       <pubDate>Sun, 19 Apr 2020 11:22:54 +0800</pubDate>
       
       <guid>https://jaswine.com/blog/posts/summary/io/</guid>
-      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;....&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
-
+      <description>&lt;p&gt;&lt;code&gt;IO&lt;/code&gt;是学习编程绕不过的话题，从学习&lt;code&gt;Java&lt;/code&gt;中&lt;code&gt;BIO&lt;/code&gt;到&lt;code&gt;NIO&lt;/code&gt;，再到&lt;code&gt;Nginx&lt;/code&gt;、&lt;code&gt;Redis&lt;/code&gt;、&lt;code&gt;kafka&lt;/code&gt;&amp;hellip;.&lt;code&gt;IO&lt;/code&gt;一直是非常热门的话题&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;❓为什么他们那么快?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     

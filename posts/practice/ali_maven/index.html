@@ -120,78 +120,54 @@
           <span class="date">2019.07.15</span>
         </div>
         <div class="post_content markdown"><p><code>Maven</code>私服是企业开发的基础工具,在阿里云部署一个自己的<code>Maven</code>私服仓库。</p>
-
-<h2 id="1-开通服务">1.开通服务</h2>
-
+<h2 id="1开通服务">1.开通服务</h2>
 <p>首先阿里云注册就说不说了，登陆阿里云的后台。或者直接使用输入这个网址<a href="https://maven.aliyun.com/mvn/search">https://maven.aliyun.com/mvn/search</a></p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn1.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn1.png" alt=""></p>
 <p>点击开通之后,会有如下的页面,会有一个<code>SNAPSHOT</code>和<code>RELEASE</code>的版本库。接下来就可以配置自己的私服了。</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn2.png" alt="" /></p>
-
-<h2 id="2-配置">2.配置</h2>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn2.png" alt=""></p>
+<h2 id="2配置">2.配置</h2>
 <p>阿里云给了相关的配置，直接按照他的配置就好了，我这边提供下我配置的过程</p>
-
 <ul>
-<li>1.配置maven的setting.xml文件,将阿里云配置文档中的<servers>复制到setting.xml文件中</li>
+<li>1.配置maven的setting.xml文件,将阿里云配置文档中的<!-- raw HTML omitted -->复制到setting.xml文件中</li>
 <li>2.添加profiles节点配置</li>
 <li>3.在项目中的pom.xml文件中配置distributionManagement信息</li>
 </ul>
-
 <p>这三个步骤只要复制阿里云给的配置是没有问题的，然后运行下面的命令</p>
-
-<pre><code class="language-bash">// 清除项目然后跳过测试直接发布
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// 清除项目然后跳过测试直接发布
 mvn clean deploy -DskipTests
-</code></pre>
-
-<p>这边可以看到我们打包上去的jar包
-<img src="https://cdn.jaswine.com/Web/Blog/ali_mvn3.png" alt="" /></p>
-
-<h2 id="3-使用">3.使用</h2>
-
+</code></pre></div><p>这边可以看到我们打包上去的jar包
+<img src="https://cdn.jaswine.com/Web/Blog/ali_mvn3.png" alt=""></p>
+<h2 id="3使用">3.使用</h2>
 <p>自己写的东西打包到私服上了，但是在项目中要使用，下面是使用的配置</p>
-
 <ul>
 <li>1.在项目的工程中配置自己的私服仓库</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- 注意这里的id和setting.xml配置文件中servers用户的id要相同 --&gt;</span>
+<span style="color:#f92672">&lt;repositories&gt;</span>
+        <span style="color:#f92672">&lt;repository&gt;</span>
+            <span style="color:#f92672">&lt;id&gt;</span>rdc-releases<span style="color:#f92672">&lt;/id&gt;</span>
+            <span style="color:#f92672">&lt;name&gt;</span>aliyun maven<span style="color:#f92672">&lt;/name&gt;</span>
+            <span style="color:#f92672">&lt;url&gt;</span>https://repo.rdc.aliyun.com/repository/72999-release-iMjgLP<span style="color:#f92672">&lt;/url&gt;</span>
+        <span style="color:#f92672">&lt;/repository&gt;</span>
 
-<pre><code class="language-xml">&lt;!-- 注意这里的id和setting.xml配置文件中servers用户的id要相同 --&gt;
-&lt;repositories&gt;
-        &lt;repository&gt;
-            &lt;id&gt;rdc-releases&lt;/id&gt;
-            &lt;name&gt;aliyun maven&lt;/name&gt;
-            &lt;url&gt;https://repo.rdc.aliyun.com/repository/72999-release-iMjgLP&lt;/url&gt;
-        &lt;/repository&gt;
-
-        &lt;repository&gt;
-            &lt;id&gt;rdc-snapshots&lt;/id&gt;
-            &lt;name&gt;aliyun maven&lt;/name&gt;
-            &lt;url&gt;https://repo.rdc.aliyun.com/repository/72999-snapshot-DNYIZh&lt;/url&gt;
-        &lt;/repository&gt;
-&lt;/repositories&gt;
-</code></pre>
-
-<ul>
-<li>2.引用私服jar...</li>
+        <span style="color:#f92672">&lt;repository&gt;</span>
+            <span style="color:#f92672">&lt;id&gt;</span>rdc-snapshots<span style="color:#f92672">&lt;/id&gt;</span>
+            <span style="color:#f92672">&lt;name&gt;</span>aliyun maven<span style="color:#f92672">&lt;/name&gt;</span>
+            <span style="color:#f92672">&lt;url&gt;</span>https://repo.rdc.aliyun.com/repository/72999-snapshot-DNYIZh<span style="color:#f92672">&lt;/url&gt;</span>
+        <span style="color:#f92672">&lt;/repository&gt;</span>
+<span style="color:#f92672">&lt;/repositories&gt;</span>
+</code></pre></div><ul>
+<li>2.引用私服jar&hellip;</li>
 </ul>
-
 <p>import就可以拉进来了</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.jaswine&lt;/groupId&gt;
-    &lt;artifactId&gt;commons&lt;/artifactId&gt;
-    &lt;version&gt;1.0.1.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<h2 id="final">Final</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>com.jaswine<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>commons<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>1.0.1.RELEASE<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+</code></pre></div><h2 id="final">Final</h2>
 <p>最终的样子</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn4.png" alt="" /></p></div>
+<p><img src="https://cdn.jaswine.com/Web/Blog/ali_mvn4.png" alt=""></p></div>
         <div class="post_footer">
           
           <div class="meta">

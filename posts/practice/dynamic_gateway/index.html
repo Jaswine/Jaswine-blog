@@ -120,158 +120,120 @@
           <span class="date">2020.07.30</span>
         </div>
         <div class="post_content markdown"><p>在使用Spring Cloud Gateway来实现服务网关的时候，官方提供了路由的配置方式，但是不怎么适合我们开发的场景</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#原生方式">原生方式</a></li>
-<li><a href="#基于数据库的动态路由配置方案">基于数据库的动态路由配置方案</a>
-
+<li><a href="#%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F">原生方式</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E6%96%B9%E6%A1%88">基于数据库的动态路由配置方案</a>
 <ul>
-<li><a href="#架构图">架构图</a></li>
-<li><a href="#业务逻辑">业务逻辑</a></li>
-<li><a href="#代码实现">代码实现</a>
-
+<li><a href="#%E6%9E%B6%E6%9E%84%E5%9B%BE">架构图</a></li>
+<li><a href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91">业务逻辑</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a>
 <ul>
 <li><a href="#cloud-gateway">cloud-gateway</a></li>
 <li><a href="#cloud-gateway-manage">cloud-gateway-manage</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#tips">Tips:</a></li>
 </ul>
-
-<!-- /TOC -->
-
+<!-- raw HTML omitted -->
 <h1 id="原生方式">原生方式</h1>
-
 <p>Spring Cloud Gateway给我们提供了三种配置路由信息的方式</p>
-
 <ul>
 <li>yaml文件中</li>
 <li>Java代码</li>
 <li>基于内存(Actuator提供的Endpoint)</li>
 </ul>
-
 <p>前两种配置方式都是写死的，不适合，第三种是基于内存的，程序崩溃的时候信息都会丢失掉。</p>
-
 <h1 id="基于数据库的动态路由配置方案">基于数据库的动态路由配置方案</h1>
-
 <h2 id="架构图">架构图</h2>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/practice/dynamic_gateway/gateway_arch.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/practice/dynamic_gateway/gateway_arch.png" alt=""></p>
 <p>整个架构中包括两个系统</p>
-
 <ul>
 <li>cloud-gateway</li>
 <li>cloud-gateway-manage</li>
 </ul>
-
 <p>cloud-gateway负责路由转发，就是Spring Cloud Gateway的工作，cloud-gateway-manage是和用户对接的，负责路由信息的数据维护。</p>
-
 <p>使用消息中间件来通知路由变更的信息。</p>
-
 <h2 id="业务逻辑">业务逻辑</h2>
-
 <ul>
 <li><strong>Init</strong></li>
 </ul>
-
 <p>当cloud-gateway启动的时候，去Redis中查找路由信息，然后加载路由信息，当Redis中没有数据的时候，发送一条给cloud-gateway-manage来将数据库的信息查出来推到Redis中，然后cloud-gateway来重新加载路由信息</p>
-
 <ul>
 <li><strong>Add</strong></li>
 </ul>
-
 <p>当cloud-gateway-manage新增路由信息的时候，将这个信息推送给cloud-gateway，然后cloud-gateway将路由信息加载</p>
-
 <ul>
 <li><strong>Update</strong></li>
 </ul>
-
 <p>当cloud-gateway-manage更新路由信息的时候，将消息推送给cloud-gateway，然后将该路由信息删除，然后将新的路由信息加载</p>
-
 <ul>
 <li><strong>Delete</strong></li>
 </ul>
-
 <p>当cloud-gateway-manage删除路由信息的时候，将消息推送给cloud-gateway，然后将该路由信息删除</p>
-
 <h2 id="代码实现">代码实现</h2>
-
 <h3 id="cloud-gateway">cloud-gateway</h3>
-
 <ul>
 <li><strong>Init</strong></li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">    <span style="color:#75715e">/** Routes */</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>RouteDefinition<span style="color:#f92672">&gt;</span> routeDefinitions <span style="color:#f92672">=</span> synchronizedMap<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> LinkedHashMap<span style="color:#f92672">&lt;&gt;());</span>
 
-<pre><code class="language-Java">    /** Routes */
-	private final Map&lt;String,RouteDefinition&gt; routeDefinitions = synchronizedMap(new LinkedHashMap&lt;&gt;());
-
-	@Resource
-	private RedisTemplate&lt;String,Object&gt; redisTemplate;
+	<span style="color:#a6e22e">@Resource</span>
+	<span style="color:#66d9ef">private</span> RedisTemplate<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Object<span style="color:#f92672">&gt;</span> redisTemplate<span style="color:#f92672">;</span>
 
 
-	/**
-	 * 获得路由定义
-	 * @return 路由定义
-	 */
-	@Override
-	public Flux&lt;RouteDefinition&gt; getRouteDefinitions() {
-		log.info(&quot;从redis获得所有路由信息&quot;);
-		List&lt;RedisRouteDefinition&gt; routes = ((List&lt;String&gt;) (List) redisTemplate.opsForHash().values(RedisKeysConstant.KEY_GATEWAY_ROUTES)).stream()
-				.map(item -&gt; JsonUtil.json2Obj(item, RedisRouteDefinition.class))
-				.collect(Collectors.toList());
+	<span style="color:#75715e">/**
+</span><span style="color:#75715e">	 * 获得路由定义
+</span><span style="color:#75715e">	 * @return 路由定义
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> Flux<span style="color:#f92672">&lt;</span>RouteDefinition<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getRouteDefinitions</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;从redis获得所有路由信息&#34;</span><span style="color:#f92672">);</span>
+		List<span style="color:#f92672">&lt;</span>RedisRouteDefinition<span style="color:#f92672">&gt;</span> routes <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;)</span> <span style="color:#f92672">(</span>List<span style="color:#f92672">)</span> redisTemplate<span style="color:#f92672">.</span><span style="color:#a6e22e">opsForHash</span><span style="color:#f92672">().</span><span style="color:#a6e22e">values</span><span style="color:#f92672">(</span>RedisKeysConstant<span style="color:#f92672">.</span><span style="color:#a6e22e">KEY_GATEWAY_ROUTES</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+				<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>item <span style="color:#f92672">-&gt;</span> JsonUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">json2Obj</span><span style="color:#f92672">(</span>item<span style="color:#f92672">,</span> RedisRouteDefinition<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">))</span>
+				<span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
 
-		routes.forEach(route -&gt; {
-			log.info(&quot;新增路由信息&quot;);
-			routeDefinitions.put(route.getRouteId(),CustomRouteDefinitionConvert.convert(route));
-		});
+		routes<span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>route <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+			log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;新增路由信息&#34;</span><span style="color:#f92672">);</span>
+			routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>route<span style="color:#f92672">.</span><span style="color:#a6e22e">getRouteId</span><span style="color:#f92672">(),</span>CustomRouteDefinitionConvert<span style="color:#f92672">.</span><span style="color:#a6e22e">convert</span><span style="color:#f92672">(</span>route<span style="color:#f92672">));</span>
+		<span style="color:#f92672">});</span>
 
-		log.info(&quot;Redis中路由信息个数为 : {} ; 详情为 : {} &quot;,routeDefinitions.size(),routeDefinitions);
-		return Flux.fromIterable(routeDefinitions.values());
-	}
+		log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Redis中路由信息个数为 : {} ; 详情为 : {} &#34;</span><span style="color:#f92672">,</span>routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span>routeDefinitions<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">return</span> Flux<span style="color:#f92672">.</span><span style="color:#a6e22e">fromIterable</span><span style="color:#f92672">(</span>routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
 
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li><strong>Add</strong></li>
 </ul>
-
-<pre><code class="language-Java">	/***
-	 * 保存Route
-	 * @param route 路由定义
-	 */
-	public void save(RouteDefinition route){
-		if (StringUtils.isEmpty(route.getId())) {
-			throw new IllegalArgumentException(&quot;id may not be empty&quot;);
-		}
-		routeDefinitions.put(route.getId(),route);
-	}
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">	<span style="color:#75715e">/***
+</span><span style="color:#75715e">	 * 保存Route
+</span><span style="color:#75715e">	 * @param route 路由定义
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>RouteDefinition route<span style="color:#f92672">){</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>StringUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">(</span>route<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">()))</span> <span style="color:#f92672">{</span>
+			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id may not be empty&#34;</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+		routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>route<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">(),</span>route<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+</code></pre></div><ul>
 <li><strong>Delete</strong></li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">delete</span><span style="color:#f92672">(</span>String id<span style="color:#f92672">){</span>
 
-<pre><code class="language-Java">public void delete(String id){
-
-    if (routeDefinitions.containsKey(id)) {
-        routeDefinitions.remove(id);
-    }else {
-        throw new NotFoundException(&quot;RouteDefinition not found: &quot; + id);
-    }
-}
-</code></pre>
-
-<h3 id="cloud-gateway-manage">cloud-gateway-manage</h3>
-
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>id<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+        routeDefinitions<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>id<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotFoundException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;RouteDefinition not found: &#34;</span> <span style="color:#f92672">+</span> id<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="cloud-gateway-manage">cloud-gateway-manage</h3>
 <h1 id="tips">Tips:</h1>
-
 <blockquote>
 <p>Q1:为什么要写cloud-gateway-manage？</p>
 </blockquote>
-
 <p>A: 因为Spring Cloud Gateway是基于webFlux的，连接数据库是阻塞的，所以使用Redis来作为过渡</p></div>
         <div class="post_footer">
           

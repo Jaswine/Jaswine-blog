@@ -120,39 +120,26 @@
           <span class="date">2020.07.05</span>
         </div>
         <div class="post_content markdown"><p>分布式系统中，消息队列是必不可不少的中间件，实现服务之间的异步调用，分布式系统中存在分布式事务的问题，使用RocketMQ可以实现分布式事务</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#rocketmq的事务消息">RocketMQ的事务消息</a>
-
+<li><a href="#rocketmq%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%B6%88%E6%81%AF">RocketMQ的事务消息</a>
 <ul>
-<li><a href="#半消息">半消息</a></li>
-<li><a href="#消息回查">消息回查</a></li>
-</ul></li>
-<li><a href="#代码实现">代码实现</a></li>
+<li><a href="#%E5%8D%8A%E6%B6%88%E6%81%AF">半消息</a></li>
+<li><a href="#%E6%B6%88%E6%81%AF%E5%9B%9E%E6%9F%A5">消息回查</a></li>
 </ul>
-
-<!-- /TOC -->
-
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a></li>
+</ul>
+<!-- raw HTML omitted -->
 <h1 id="rocketmq的事务消息">RocketMQ的事务消息</h1>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/practice/trans_rocketmq/trans_arch.png" alt="" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/practice/trans_rocketmq/trans_arch.png" alt=""></p>
 <p>简单来说，就是生产者给MQ发送一个半消息(暂时不可被消费)，消息发送成功后执行本地的事务，根据本地的事务将事务是提交还是回滚告诉MQ，收到commit的话消费消息，Rollback就丢弃消息。</p>
-
 <p>如果生产者长时间没有告诉MQ本地事务的状态，那么MQ就会重新询问生产者本地事务的状态，然后根据状态来确定最终消息是commit还是丢弃</p>
-
 <h2 id="半消息">半消息</h2>
-
 <p>暂时不会被消费的消息</p>
-
 <h2 id="消息回查">消息回查</h2>
-
 <p>当长时间未收到本地事务执行的结果的时候，MQ会重新询问生产者本地事务执行的结果</p>
-
 <h1 id="代码实现">代码实现</h1>
-
 <blockquote>
 <p>业务内容为：修改订单的状态，成功后相应的减少库存。A服务为修改订单的状态，B服务为修改商品的库存。他们存在在两个业务系统中，中间依靠消息队列来进行消息通信</p>
 </blockquote></div>

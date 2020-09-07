@@ -120,88 +120,68 @@
           <span class="date">2019.12.05</span>
         </div>
         <div class="post_content markdown"><p><code>Java8</code>中带来全新的<code>Stream API</code>，提供更加便利的方法来操作集合对象。是对集合对象操作的增强。</p>
-
 <p>使用<code>stream</code>是因为生成一张复杂的报表，想用一条SQL直接写出来，但是一直没有达到想要的效果，碍于项目的进度，只能很丑的分成多条SQL来完成。查出来的结果还要各种按照条件删选。直到遇到<code>stream</code>，最直接的感觉就是:</p>
-
 <blockquote>
 <p>以操控集合像写SQL一样</p>
 </blockquote>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#stream特点">Stream特点</a></li>
-<li><a href="#stream生命周期">Stream生命周期</a>
-
+<li><a href="#stream%E7%89%B9%E7%82%B9">Stream特点</a></li>
+<li><a href="#stream%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Stream生命周期</a>
 <ul>
-<li><a href="#stream的创建">Stream的创建</a></li>
-<li><a href="#intermediate操作stream">Intermediate操作Stream</a></li>
-<li><a href="#terminal操作">Terminal操作</a></li>
-</ul></li>
+<li><a href="#stream%E7%9A%84%E5%88%9B%E5%BB%BA">Stream的创建</a></li>
+<li><a href="#intermediate%E6%93%8D%E4%BD%9Cstream">Intermediate操作Stream</a></li>
+<li><a href="#terminal%E6%93%8D%E4%BD%9C">Terminal操作</a></li>
 </ul>
-
-<!-- /TOC -->
-
+</li>
+</ul>
+<!-- raw HTML omitted -->
 <h1 id="stream特点">Stream特点</h1>
-
 <ul>
 <li>如同流一样，单向不可重复</li>
 <li>可以并行化操作</li>
 </ul>
-
 <h1 id="stream生命周期">Stream生命周期</h1>
-
 <p><code>stream</code>的操作主要分成三步:</p>
-
 <ul>
 <li>1.创建流</li>
 <li>2.Intermediate操作刘</li>
 <li>3.Terminal操作流</li>
 </ul>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/stream_flow.png" alt="流" /></p>
-
+<p><img src="https://cdn.jaswine.com/Web/Blog/stream_flow.png" alt="流"></p>
 <p>其中Intermediate操作可以叠加多次，但是Terminal操作只能操作一次。</p>
-
 <h2 id="stream的创建">Stream的创建</h2>
-
 <p>创建<code>stream</code>有以下几种方法:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#960050;background-color:#1e0010">#</span> 第一种
+Stream stream <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">);</span>
 
-<pre><code class="language-java"># 第一种
-Stream stream = Stream.of(1,2,3);
+<span style="color:#960050;background-color:#1e0010">#</span> 第二种
+Integer<span style="color:#f92672">[]</span> intArr <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">]</span>
+Stream stream <span style="color:#f92672">=</span> Stream<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>intArr<span style="color:#f92672">);;</span>
 
-# 第二种
-Integer[] intArr = [1,2,3]
-Stream stream = Stream.of(intArr);;
+<span style="color:#960050;background-color:#1e0010">#</span> 第三种
+List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">();</span>
+stream <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="intermediate操作stream">Intermediate操作Stream</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#960050;background-color:#1e0010">#</span> Filter<span style="color:#f92672">(</span>筛选出大于1的元素<span style="color:#f92672">)</span>
+List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> intList <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">fliter</span><span style="color:#f92672">(</span>i <span style="color:#f92672">-&gt;</span> i <span style="color:#f92672">&gt;</span> 1<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
 
-# 第三种
-List&lt;Integer&gt; list = new ArrayList();
-stream = list.stream();
-</code></pre>
+<span style="color:#960050;background-color:#1e0010">#</span> map<span style="color:#f92672">(</span>映射成大写<span style="color:#f92672">)</span>
+List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> output <span style="color:#f92672">=</span> wordList<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>String<span style="color:#f92672">::</span>toUpperCase<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
 
-<h2 id="intermediate操作stream">Intermediate操作Stream</h2>
+<span style="color:#960050;background-color:#1e0010">#</span> sorted<span style="color:#f92672">(</span>按照年龄排序<span style="color:#f92672">)</span>
+Person p1 <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;James&#34;</span><span style="color:#f92672">,</span>12<span style="color:#f92672">);</span>
+Person p1 <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Pony&#34;</span><span style="color:#f92672">,</span>22<span style="color:#f92672">);</span>
+Person p1 <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Nancy&#34;</span><span style="color:#f92672">,</span>12<span style="color:#f92672">);</span>
+<span style="color:#f92672">.</span> <span style="color:#f92672">.</span> <span style="color:#f92672">.</span>
+List<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> persons<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">(</span>p <span style="color:#f92672">-</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">)</span>
 
-<pre><code class="language-java"># Filter(筛选出大于1的元素)
-List&lt;Integer&gt; intList = list.stream()
-                .fliter(i -&gt; i &gt; 1)
-                .collect(Collectors.toList());
-
-# map(映射成大写)
-List&lt;String&gt; output = wordList.stream()
-                .map(String::toUpperCase)
-                .collect(Collectors.toList());
-
-# sorted(按照年龄排序)
-Person p1 new Person(&quot;James&quot;,12);
-Person p1 new Person(&quot;Pony&quot;,22);
-Person p1 new Person(&quot;Nancy&quot;,12);
-. . .
-List&lt;Person&gt; list = persons.stream().
-                .sorted(p - &gt; )
-
-</code></pre>
-
-<h2 id="terminal操作">Terminal操作</h2></div>
+</code></pre></div><h2 id="terminal操作">Terminal操作</h2></div>
         <div class="post_footer">
           
           <div class="meta">

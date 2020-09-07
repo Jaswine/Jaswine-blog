@@ -120,117 +120,99 @@
           <span class="date">2019.03.19</span>
         </div>
         <div class="post_content markdown"><p>在写一些通用工具类的时候，通常会有不同的配置，如果使用创痛的方式的话，需要重构多个构造器，使用构建器可以解决这样的问题。</p>
-
-<!-- TOC -->
-
+<!-- raw HTML omitted -->
 <ul>
-<li><a href="#传统方式构造器重载">传统方式(构造器重载)</a>
-
+<li><a href="#%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E6%9E%84%E9%80%A0%E5%99%A8%E9%87%8D%E8%BD%BD">传统方式(构造器重载)</a>
 <ul>
-<li><a href="#传统方式缺点">传统方式缺点</a></li>
-</ul></li>
-<li><a href="#builder方式">Builder方式</a></li>
+<li><a href="#%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E7%BC%BA%E7%82%B9">传统方式缺点</a></li>
+</ul>
+</li>
+<li><a href="#builder%E6%96%B9%E5%BC%8F">Builder方式</a></li>
 <li><a href="#tips">Tips：</a></li>
 </ul>
-
-<!-- /TOC -->
-
+<!-- raw HTML omitted -->
 <p><code>Java</code>用<code>new</code>这个关键字来创建对象，创建对象的细节我们写在构造器中。我们调用构造器来创建对象的时候可以依据传入的参数不同来控制创建对象的细节。</p>
+<p><strong>示例要求:</strong></p>
+<blockquote>
+<p>编写一个生成序列号的工具类，序列号是字符串类型，可以是UUID，可以是时间(如201901201536)，可以是前缀+时间，可以是时间+后缀，可以是前缀+时间+后缀，并且以后根据需求可能还会进行扩展</p>
+</blockquote>
+<h1 id="传统方式构造器重载">传统方式(构造器重载)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Serial</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> Type serialType<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String prefix<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String suffix<span style="color:#f92672">;</span>
 
-<p><strong>示例要求:</strong>
-&gt; 编写一个生成序列号的工具类，序列号是字符串类型，可以是UUID，可以是时间(如201901201536)，可以是前缀+时间，可以是时间+后缀，可以是前缀+时间+后缀，并且以后根据需求可能还会进行扩展</p>
+    Serial<span style="color:#f92672">(</span>Type serialType<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">serialType</span> <span style="color:#f92672">=</span> serialType<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-<h1 id="传统方式-构造器重载">传统方式(构造器重载)</h1>
+    Serial<span style="color:#f92672">(</span>String prefix<span style="color:#f92672">,</span>Type serialType<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">serialType</span> <span style="color:#f92672">=</span> serialType<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">prefix</span> <span style="color:#f92672">=</span> prefix<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-<pre><code class="language-java">public class Serial{
-    private Type serialType;
-    private String prefix;
-    private String suffix;
+    Serial<span style="color:#f92672">(</span>Type serialType<span style="color:#f92672">,</span>String suffix<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">serialType</span> <span style="color:#f92672">=</span> serialType<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">suffix</span> <span style="color:#f92672">=</span> suffix<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-    Serial(Type serialType){
-        this.serialType = serialType;
-    }
-
-    Serial(String prefix,Type serialType){
-        this.serialType = serialType;
-        this.prefix = prefix;
-    }
-
-    Serial(Type serialType,String suffix){
-        this.serialType = serialType;
-        this.suffix = suffix;
-    }
-
-    Serial(String prefix,Type serialType,String suffix){
-        this.serialType = serialType;
-        this.prefix = prefix;
-        this.suffix = suffix;
-    }
-}
-</code></pre>
-
-<h2 id="传统方式缺点">传统方式缺点</h2>
-
+    Serial<span style="color:#f92672">(</span>String prefix<span style="color:#f92672">,</span>Type serialType<span style="color:#f92672">,</span>String suffix<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">serialType</span> <span style="color:#f92672">=</span> serialType<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">prefix</span> <span style="color:#f92672">=</span> prefix<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">suffix</span> <span style="color:#f92672">=</span> suffix<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="传统方式缺点">传统方式缺点</h2>
 <ul>
 <li>不能很好的扩展大量的参数</li>
 <li>代码很丑</li>
 </ul>
-
 <h1 id="builder方式">Builder方式</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-java">public class Person {
+	<span style="color:#66d9ef">static</span> Builder <span style="color:#a6e22e">builder</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">){</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Builder<span style="color:#f92672">().</span><span style="color:#a6e22e">withName</span><span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
 
-	static Builder builder(String name){
-		return new Builder().withName(name);
-	}
+	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Builder</span><span style="color:#f92672">{</span>
 
-	static class Builder{
+		<span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">private</span> String location<span style="color:#f92672">;</span>
 
-		private String name;
-		private int age;
-		private String location;
+		Builder <span style="color:#a6e22e">withName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">){</span>
+			<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
 
-		Builder withName(String name){
-			this.name = name;
-			return this;
-		}
+		Builder <span style="color:#a6e22e">withAge</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">){</span>
+			<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
 
-		Builder withAge(int age){
-			this.age = age;
-			return this;
-		}
+		Builder <span style="color:#a6e22e">withLocation</span><span style="color:#f92672">(</span>String location<span style="color:#f92672">){</span>
+			<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> location<span style="color:#f92672">;</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
 
-		Builder withLocation(String location){
-			this.location = location;
-			return this;
-		}
+		String <span style="color:#a6e22e">generateperson</span><span style="color:#f92672">(){</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span>
 
-		String generateperson(){
-			return this.toString();
-		}
-
-		@Override
-		public String toString() {
-			return &quot;Builder{&quot; +&quot;name='&quot; + name + '\'' +&quot;, age=&quot; + age +&quot;, location='&quot; + location + '\'' +'}';
-		}
-	}
-}
-</code></pre>
-
-<p>所有的对象创建工作都给<code>Builder</code>这个内部类去完成，使用代码如下：</p>
-
-<pre><code class="language-java"> Person.builder(&quot;jaswine&quot;)
-    .withAge(12)
-    .withLocation(&quot;wuxi.jiangsu&quot;)
-    .generateperson();
-</code></pre>
-
-<p>最后的结果是:</p>
-
-<p><img src="https://cdn.jaswine.com/Web/Blog/builder.png" alt="res" /></p>
-
+		<span style="color:#a6e22e">@Override</span>
+		<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Builder{&#34;</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;name=&#39;&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\&#39;&#39;</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, age=&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, location=&#39;&#34;</span> <span style="color:#f92672">+</span> location <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\&#39;&#39;</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#39;}&#39;</span><span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>所有的对象创建工作都给<code>Builder</code>这个内部类去完成，使用代码如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> Person<span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jaswine&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">withAge</span><span style="color:#f92672">(</span>12<span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">withLocation</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;wuxi.jiangsu&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">.</span><span style="color:#a6e22e">generateperson</span><span style="color:#f92672">();</span>
+</code></pre></div><p>最后的结果是:</p>
+<p><img src="https://cdn.jaswine.com/Web/Blog/builder.png" alt="res"></p>
 <h1 id="tips">Tips：</h1>
-
 <p>第三方工具<code>lombok</code>实现了这个功能</p></div>
         <div class="post_footer">
           

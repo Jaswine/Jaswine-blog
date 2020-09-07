@@ -120,17 +120,12 @@
           <span class="date">2019.10.15</span>
         </div>
         <div class="post_content markdown"><p><code>StackOverflowError</code>非常少见，今天在业务代码中的一个俄地柜方法报了突然<code>StackOverflowError</code>错误。</p>
-
-<h2 id="1-场景">1.场景</h2>
-
+<h2 id="1场景">1.场景</h2>
 <p>数据库有一张表,记录了一个链接的推荐关系，比如A第一次打开链接推荐给B，B又推荐给C，C继续推荐下去。。。</p>
-
 <p>这个数据模型应该是一个树形，现在的一个需求就是输入一个人id能知道他的源头推荐人(或者说他的推荐路径)是什么</p>
-
 <ul>
 <li><strong>表结构简化</strong></li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -138,72 +133,61 @@
 <th align="left">推荐人id</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">B</td>
 <td align="left">A</td>
 </tr>
-
 <tr>
 <td align="left">C</td>
 <td align="left">B</td>
 </tr>
-
 <tr>
 <td align="left">D</td>
 <td align="left">C</td>
 </tr>
-
 <tr>
 <td align="left">E</td>
 <td align="left">D</td>
 </tr>
-
 <tr>
 <td align="left">F</td>
 <td align="left">E</td>
 </tr>
 </tbody>
 </table>
-
-<h2 id="2-问题">2.问题</h2>
-
+<h2 id="2问题">2.问题</h2>
 <p>测试在测试的过程中，伪造数据发生了循环的错误，A推荐B，B推荐C，C又推荐A形成了一个循环，递归一直调用，导致<code>StackOverflowError</code>的发生。</p>
-
-<h2 id="3-解决">3.解决</h2>
-
+<h2 id="3解决">3.解决</h2>
 <p>强制声明递归次数，超过这个次数还没有返回直接抛异常或者给别的提示。</p>
+<h2 id="附算法实现">附.算法实现</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
 
-<h2 id="附-算法实现">附.算法实现</h2>
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 模拟推荐关系
+</span><span style="color:#75715e">     * 第一个Integer   -&gt;   id
+</span><span style="color:#75715e">     * 第二个Integer   -&gt;   推荐人id 
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">static</span> Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span>Integer<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">public class Demo {
+    <span style="color:#75715e">/* 获得推荐人id */</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTj</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">){</span>
+		Integer integer <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>id<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>integer <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+			<span style="color:#66d9ef">return</span> integer<span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#66d9ef">return</span> getTj<span style="color:#f92672">(</span>integer<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
 
-    /**
-     * 模拟推荐关系
-     * 第一个Integer   -&gt;   id
-     * 第二个Integer   -&gt;   推荐人id 
-     */
-    static Map&lt;Integer,Integer&gt; a;
-
-    /* 获得推荐人id */
-	static int getTj(int id){
-		Integer integer = a.get(id);
-		if (integer == null){
-			return integer;
-		}
-		return getTj(integer);
-	}
-
-	public static void main(String[] args) {
-		a = new HashMap&lt;&gt;(8);
-		a.put(1, 2);
-		a.put(2, 3);
-		a.put(3, 1);
-		System.out.println(getTj(1));
-	}
-}
-</code></pre></div>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;(</span>8<span style="color:#f92672">);</span>
+		a<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
+		a<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> 3<span style="color:#f92672">);</span>
+		a<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>3<span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>getTj<span style="color:#f92672">(</span>1<span style="color:#f92672">));</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></div>
         <div class="post_footer">
           
           <div class="meta">
